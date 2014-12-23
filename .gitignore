@@ -244,3 +244,9 @@ GC_Data/doc/microSurveyCook2006.pdf
 GC_Data/lib/helpers.R
 GC_Data/diagnostics/1.R
 GC_Data/src/ReadFlatFile.R
+GC_Data/munge/01-A.R
+GC_Data/profiling/1.R
+GC_Data/src/eda.R
+GC_Data/tests/1.R
+GC_Data/TODO
+Repro/diagnostics/1.R
