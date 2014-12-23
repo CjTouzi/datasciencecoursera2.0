@@ -1,2 +1,2 @@
-datasciencecoursera2.0
-======================
+datasciencecoursera
+===================
