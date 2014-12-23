@@ -1,0 +1,35 @@
+---
+title: "Getting and Cleaning Data Course Project"
+author: "CJ"
+date: "Sunday, December 14, 2014"
+output:
+  html_document:
+    fig_caption: yes
+    highlight: tango
+    keep_md: yes
+    theme: united
+    toc: yes
+    toc_depth: 4
+---
+
+#### how run_analysis.R script works.
+
+1. Unzip the data from [data link] and record your data directory
+2. Set dataDir to your data directory
+3. Source("run_analysis.R") command in RStudio.
+4. Two output files will be generated in your data directory  
+    - **merged_data.txt** (7.9Mb)
+    - **data_with_means.txt** (220 Kb)
+    
+####  merged_data.txt(7.9Mb)     
+- It contains a data frame called x_all with 10299*68 dimension. 
+- x_all merges X_train.txt and X_text.txt on the feasures with mean and standard deviation, 
+subject and activity (please check codeBook for details)
+    
+#### data_with_means.txt (220 Kb)       
+- It contains a data frame called result with 180*68 dimension.
+- It averages of each variale for each activity and each subject of x_all dataset mentioned before
+(please check codeBook for details)
+    
+    
+[data link]:(https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
