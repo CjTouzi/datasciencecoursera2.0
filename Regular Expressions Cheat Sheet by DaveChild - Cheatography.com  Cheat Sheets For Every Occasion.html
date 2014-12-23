@@ -1,0 +1,1894 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html
+lang="en"><head><title>Regular Expressions Cheat Sheet by DaveChild - Cheatography.com: Cheat Sheets For Every Occasion</title><meta
+content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta
+http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta
+http-equiv="Content-Style-Type" content="text/css"><meta
+http-equiv="X-UA-Compatible" content="IE=Edge"><base
+href="http://www.cheatography.com/"><link
+rel="shortcut icon" href="favicon.png"><link
+rel="apple-touch-icon" href="/images/cheatography-iphone.png"><link
+rel="alternate" type="application/rss+xml" title="New Cheat Sheets RSS feed." href="http://www.cheatography.com/explore/new/rss/"><meta
+property="fb:admins" content="860405712"/><meta
+property="fb:app_id" content="152741628156662"/><meta
+property="og:site_name" content="Cheatography"/><meta
+property="og:url" content="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/"/><meta
+property="og:title" content="Regular Expressions Cheat Sheet"/><meta
+property="og:image" content="http://www.cheatography.com/storage/thumb/davechild_regular-expressions.600.jpg"/><meta
+property="og:type" content="cheatography:cheat_sheet"/><meta
+property="og:description" content="Regular Expressions Cheat Sheet from DaveChild. A quick reference guide for regular expressions (regex), including symbols, ranges, grouping, assertions and some sample patterns to get you started."/> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script> <link
+href="/styles/styles.scss.css?v=1" rel="stylesheet" type="text/css"><link
+href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"></head><body><div
+id="mobile_wrap_outer"><a
+href="#" id="mobileTrigger">Show Menu</a><div
+id="mobile_wrap_inner"><div
+id="header"><div
+id="header_inner"><a
+href="http://www.cheatography.com/" class="imagelink logolink"><img
+width="156" height="25" id="title_logo" src="images/cheatography_logo.png" alt="Cheatography"></a><div
+id="user_info" class="hideMobile"><div
+style="margin: 13px 15px 0; color: #fff;"><a
+class="imagelink login_button" href="/members/login">Login</a> &nbsp;or&nbsp; <a
+class="imagelink login_button" href="/members/register/">Register</a></div><div
+class="clear"></div></div>
+<nav><ul><li><a
+href="/">Home</a></li><li
+class="hidden showMobile"><a
+href="/members/login/">Login</a></li><li
+class="hidden showMobile"><a
+href="/members/register/">Register</a></li><li><a
+href="/explore/">Explore</a><ul
+class="hideMobile"><li
+class=""><i
+class="fa fa-fw fa-book"></i><a
+href="/explore/">Topics</a></li><li
+class=""><i
+class="fa fa-fw fa-tag"></i><a
+href="/explore/tags/">Tags</a></li><li
+class=""><i
+class="fa fa-fw fa-globe"></i><a
+href="/language/">Languages</a></li><li
+class=""><i
+class="fa fa-fw fa-graduation-cap"></i><a
+href="/explore/new/">New</a></li><li
+class=""><i
+class="fa fa-fw fa-star"></i><a
+href="/explore/popular/">Popular</a></li><li
+class=""><i
+class="fa fa-fw fa-link"></i><a
+href="/external/">Links</a></li><li
+class="menu_separate"><form
+method="GET" action="/explore/search/"><span
+style="color: #666;"><i
+class="fa fa-fw fa-search"></i>Find:</span> <input
+id="q" name="q" type="text" style="width: 100px;" value=""> <input
+type="submit" value="Search"></form></li></ul></li><li
+class="hideMobile"><a
+href="/create/">Create</a><ul
+class="hideMobile"><li
+class=""><i
+class="fa fa-fw fa-question"></i><a
+href="/create/">Getting Started</a></li><li
+class="menu_separate"><i
+class="fa fa-fw fa-smile-o"></i>A <a
+href="/davechild/cheat-sheets/cheatography/">Cheat Sheet</a> for Making Cheat Sheets!</li></ul></li><li><a
+href="/members/">Community</a><ul
+class="hideMobile"><li
+class=""><i
+class="fa fa-fw fa-globe"></i><a
+href="/members/">Community</a></li><li
+class=""><i
+class="fa fa-fw fa-sitemap"></i><a
+href="/members/forum/">Forum</a></li><li
+class=""><i
+class="fa fa-fw fa-bookmark"></i><a
+href="/blog/">Blog</a></li><li
+class=""><i
+class="fa fa-fw fa-trophy"></i><a
+href="/badges/">Badges</a></li><li
+class=" menu_separate "><i
+class="fa fa-fw fa-user"></i><a
+href="/members/register/">Join Us!</a></li><li
+class=""><i
+class="fa fa-fw fa-key"></i><a
+href="/members/login/">Login</a></li><li
+class=" menu_separate "><i
+class="fa fa-fw fa-twitter"></i><a
+href="http://twitter.com/Cheatography/">Twitter</a></li><li
+class=""><i
+class="fa fa-fw fa-facebook"></i><a
+href="http://www.facebook.com/pages/Cheatography/255012094556007">Facebook</a></li><li
+class=""><i
+class="fa fa-fw fa-pinterest"></i><a
+href="http://www.pinterest.com/source/cheatography.com/">Pinterest</a></li></ul></li><li
+class="last"><a
+href="/help/">Help</a></li></ul><div
+class="hidden showMobile" id="user_dropdown_mobile"></div></nav><div
+class="clear"></div></div></div><div
+class="adsense"> <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> 
+<ins
+class="adsbygoogle"
+style="display:inline-block;width:728px;height:90px"
+data-ad-client="ca-pub-2965569270921917"
+data-ad-slot="8025457838"></ins> <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> </div><div
+class="hideMobile" id="cs_menu_wrapper"><div
+id="cs_menu"><div
+class="download_menu"><ul
+class="hideMobile noicon"><li><i
+class="fa fa-fw fa-download"></i> <a
+href="#download_popup" onclick="trackDownloadPopup(); return false;" class="download_popup">Downloads</a></li><li><i
+class="fa fa-fw fa-comments"></i> <a
+href="/davechild/cheat-sheets/regular-expressions/#comments">39 Comments</a></li></ul></div></div></div><div
+id="content"><div
+id="content_inner"><div
+class="clear"></div><div
+id="pagetitle"><h1>Regular Expressions Cheat Sheet <span
+class="subhead"> by  <a
+href="http://www.cheatography.com/davechild/" class="user_hover">DaveChild</a></span></h1><p
+class="subdesc">A quick reference guide for regular expressions (regex), including symbols, ranges, grouping, assertions and some sample patterns to get you started.</p><div
+class="clear"></div></div><div
+id="body_wide"><div
+id="body_wide_inner"><div
+id="body_wide_shadow"> <script type="text/javascript">var redirectTimeout;
+var _gaq = _gaq || [];
+    // Analytics
+    _gaq.push(
+        ['b._setAccount', 'UA-4997759-19'],
+        ['b._trackPageview']
+    );
+var cheat_sheet_id = 5; // Used in ajax
+var cheatSheetName = 'Regular Expressions Cheat Sheet';
+    var bTracking = true;
+$(document).ready(function() {
+    $('#tabs').tabs();
+    var hiddenBlocks = new Array();
+    if ($.cookie('hiddenBlocks')) {
+        hiddenBlocks = $.cookie('hiddenBlocks').split('-');
+        for (var i = 0; i < hiddenBlocks.length; i++) {
+            $('#block_' + hiddenBlocks[i]).slideUp(400);
+        }
+    }
+    $('.cheat_sheet_output_title').click(function() {
+        var block_id = this.id.substr(6);
+        // Check to see if it's hidden
+        if ($.inArray(block_id, hiddenBlocks) === -1) {
+            $('#block_' + block_id).slideUp(400);
+            hiddenBlocks[hiddenBlocks.length] = block_id;
+        } else {
+            $('#block_' + block_id).slideDown(400);
+            for (var i = 0; i < hiddenBlocks.length; i++) {
+                if (hiddenBlocks[i] == block_id) {
+                    hiddenBlocks.splice(i, 1);
+                }
+            }
+        }
+        // Now, toggle all those items with cookies
+        $.cookie('hiddenBlocks', hiddenBlocks.join('-'));
+    });
+    });</script> <div
+class="clear"></div><div
+id="cs_search"><form
+method="GET" action="/explore/search/"><p><label>Search this cheat sheet: &nbsp; <input
+id="cs_filter" type="text" style="padding: 10px; font-size: 1.2em; width: 160px;"></label></p></form></div><div
+class="clear"></div><style type="text/css">.cheat_sheet_output_wrapper {
+                background: #C10443;
+                border-bottom: 3px solid #C10443;
+            }
+
+                .cheat_sheet_output_wrapper a, .cheat_sheet_output_wrapper a:visited, .cheat_sheet_output_wrapper a:focus, .cheat_sheet_output_wrapper a:link, .cheat_sheet_output_wrapper a:hover {
+                    color: #C10443;
+                    border-color: #C10443;
+                }
+
+                .cheat_sheet_output_wrapper .cheat_sheet_output_block tr.altrow td, .cheat_sheet_output_wrapper .cheat_sheet_note {
+                    background: #F4D4DF;
+                }
+
+                .cheat_sheet_output_wrapper .cheat_sheet_note {
+                    border-top: 3px solid #C10443;
+                }
+
+                .cheat_sheet_output_wrapper h3.cheat_sheet_output_title {
+                                            color: #F4D4DF;
+                                    }
+
+            /* Breaks */
+            .cheat_sheet_output_column_columnbreak, .cheat_sheet_output_column_pagebreak {
+                border-color: #eee;
+            }
+
+                .cheat_sheet_output_wrapper.cheat_sheet_output_column_columnbreak .cheat_sheet_output_block,
+                .cheat_sheet_output_wrapper.cheat_sheet_output_column_pagebreak .cheat_sheet_output_block {
+                    border-top: none;
+                }
+
+                .cheat_sheet_output_wrapper.cheat_sheet_output_column_columnbreak h3.cheat_sheet_output_title,
+                .cheat_sheet_output_wrapper.cheat_sheet_output_column_pagebreak h3.cheat_sheet_output_title {
+                    color: #999;
+                    background: #eee;
+                }
+
+            /* Buttons */
+            .button_add, .button_add:visited, .button_add:active, .button_add:hover {
+                background-color: #C10443;
+                border: 1px solid #C10443;
+                color: #F4D4DF;
+            }
+
+                .button_add:hover {
+                    background-color: #F4D4DF;
+                    color: #C10443;
+                }
+
+            .download_menu {
+                background-color: #C10443;
+            }
+
+            #content #content_inner, #cs_menu {
+                border-top-color: #C10443;
+            }
+
+            #content #content_inner {
+                top: -3px;
+            }
+
+            .cheat_sheet_output_block div {
+                border-color: #C10443 !important;
+            }</style><table
+border="0" cellspacing="0" width="100%" cellpadding="0" class="cheat_sheet_output"><tr><td
+width="32%" valign="top" class="cheat_sheet_output_sortable cheat_sheet_output_column_1"><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_twocol" style="z-index: 30; page-break-inside: avoid;" id="block_160"><h3 class="cheat_sheet_output_title" id="title_5_160">Anchors</h3><div
+class="cheat_sheet_output_block" id="block_5_160"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_twocol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">^</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Start of string, or start of line in multi-line pattern</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\A</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Start of string</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">$</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">End of string, or end of line in multi-line pattern</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\Z</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">End of string</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\b</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Word boundary</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\B</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Not word boundary</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\&lt;</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Start of word</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\&gt;</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">End of word</div></td></tr></table></div></div><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_twocol" style="z-index: 30; page-break-inside: avoid;" id="block_161"><h3 class="cheat_sheet_output_title" id="title_5_161">Character Classes</h3><div
+class="cheat_sheet_output_block" id="block_5_161"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_twocol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\c</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Control character</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\s</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">White space</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\S</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Not white space</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\d</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Digit</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\D</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Not digit</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\w</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Word</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\W</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Not word</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\x</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Hexade&#173;cimal digit</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\O</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Octal digit</div></td></tr></table></div></div><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_twocol" style="z-index: 30; page-break-inside: avoid;" id="block_162"><h3 class="cheat_sheet_output_title" id="title_5_162">POSIX</h3><div
+class="cheat_sheet_output_block" id="block_5_162"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_twocol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:upper:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Upper case letters</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:lower:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Lower case letters</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:alpha:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">All letters</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:alnum:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Digits and letters</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:digit:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Digits</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:xdigit:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Hexade&#173;cimal digits</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:punct:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Punctu&#173;ation</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:blank:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Space and tab</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:space:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Blank characters</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:cntrl:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Control characters</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:graph:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Printed characters</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:print:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Printed characters and spaces</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1" style="white-space: nowrap"><div
+style="padding: 3px 8px;">[:word:]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Digits, letters and underscore</div></td></tr></table></div></div><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_twocol" style="z-index: 30; page-break-inside: avoid;" id="block_163"><h3 class="cheat_sheet_output_title" id="title_5_163">Assertions</h3><div
+class="cheat_sheet_output_block" id="block_5_163"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_twocol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">?=</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Lookahead assertion</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">?!</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Negative lookahead</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">?&lt;=</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Lookbehind assertion</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">?!= or ?&lt;!</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Negative lookbehind</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">?&gt;</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Once-only Subexp&#173;ression</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">?()</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Condition [if then]</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">?()|</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Condition [if then else]</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">?#</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Comment</div></td></tr></table></div></div></td><td
+class="cheat_sheet_output_column_spacer" width="2%">&nbsp;</td><td
+width="32%" valign="top" class="cheat_sheet_output_sortable cheat_sheet_output_column_2"><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_fourcol" style="z-index: 30; page-break-inside: avoid;" id="block_164"><h3 class="cheat_sheet_output_title" id="title_5_164">Quanti&#173;fiers</h3><div
+class="cheat_sheet_output_block" id="block_5_164"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_fourcol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">*</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">0 or more</div></td><td
+valign="top" class="cheat_sheet_output_cell_3"><div
+style="padding: 3px 8px;">{3}</div></td><td
+valign="top" class="cheat_sheet_output_cell_4"><div
+style="padding: 3px 8px;">Exactly 3</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">+</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">1 or more</div></td><td
+valign="top" class="cheat_sheet_output_cell_3"><div
+style="padding: 3px 8px;">{3,}</div></td><td
+valign="top" class="cheat_sheet_output_cell_4"><div
+style="padding: 3px 8px;">3 or more</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">?</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">0 or 1</div></td><td
+valign="top" class="cheat_sheet_output_cell_3"><div
+style="padding: 3px 8px;">{3,5}</div></td><td
+valign="top" class="cheat_sheet_output_cell_4"><div
+style="padding: 3px 8px;">3, 4 or 5</div></td></tr></table><div
+class="cheat_sheet_note"><div
+style="padding: 3px 8px;">Add a ? to a quantifier to make it ungreedy.</div></div></div></div><div
+class="hideprint" style="margin: 10px 0 20px 0;"> <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> 
+<ins
+class="adsbygoogle"
+style="display:inline-block;width:300px;height:250px"
+data-ad-client="ca-pub-2965569270921917"
+data-ad-slot="6925390326"></ins> <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> </div><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_twocol" style="z-index: 30; page-break-inside: avoid;" id="block_2316"><h3 class="cheat_sheet_output_title" id="title_5_2316">Escape Sequences</h3><div
+class="cheat_sheet_output_block" id="block_5_2316"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_twocol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Escape following character</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\Q</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Begin literal sequence</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\E</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">End literal sequence</div></td></tr></table><div
+class="cheat_sheet_note"><div
+style="padding: 3px 8px;">&quot;&#173;Esc&#173;api&#173;ng&quot; is a way of treating characters which have a special meaning in regular expres&#173;sions literally, rather than as special charac&#173;ters.</div></div></div></div><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_fourcol" style="z-index: 30; page-break-inside: avoid;" id="block_169"><h3 class="cheat_sheet_output_title" id="title_5_169">Common Metach&#173;ara&#173;cters</h3><div
+class="cheat_sheet_output_block" id="block_5_169"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_fourcol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">^</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">[</div></td><td
+valign="top" class="cheat_sheet_output_cell_3"><div
+style="padding: 3px 8px;">.</div></td><td
+valign="top" class="cheat_sheet_output_cell_4"><div
+style="padding: 3px 8px;">$</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">{</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">*</div></td><td
+valign="top" class="cheat_sheet_output_cell_3"><div
+style="padding: 3px 8px;">(</div></td><td
+valign="top" class="cheat_sheet_output_cell_4"><div
+style="padding: 3px 8px;">\</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">+</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">)</div></td><td
+valign="top" class="cheat_sheet_output_cell_3"><div
+style="padding: 3px 8px;">|</div></td><td
+valign="top" class="cheat_sheet_output_cell_4"><div
+style="padding: 3px 8px;">?</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">&lt;</div></td><td
+valign="top" class="cheat_sheet_output_cell_2" colspan="3"><div
+style="padding: 3px 8px;">&gt;</div></td></tr></table><div
+class="cheat_sheet_note"><div
+style="padding: 3px 8px;">The escape character is usually \</div></div></div></div><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_twocol" style="z-index: 30; page-break-inside: avoid;" id="block_165"><h3 class="cheat_sheet_output_title" id="title_5_165">Special Characters</h3><div
+class="cheat_sheet_output_block" id="block_5_165"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_twocol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\n</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">New line</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\r</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Carriage return</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\t</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Tab</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\v</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Vertical tab</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\f</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Form feed</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\xxx</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Octal character xxx</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\xhh</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Hex character hh</div></td></tr></table></div></div></td><td
+class="cheat_sheet_output_column_spacer" width="2%">&nbsp;</td><td
+width="32%" valign="top" class="cheat_sheet_output_sortable cheat_sheet_output_column_3"><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_twocol" style="z-index: 30; page-break-inside: avoid;" id="block_166"><h3 class="cheat_sheet_output_title" id="title_5_166">Groups and Ranges</h3><div
+class="cheat_sheet_output_block" id="block_5_166"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_twocol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">.</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Any character except new line (\n)</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">(a|b)</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">a or b</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">(...)</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Group</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">(?:...)</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Passive (non-c&#173;apt&#173;uring) group</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">[abc]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Range (a or b or c)</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">[^abc]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Not a or b or c</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">[a-q]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Lower case letter from a to q</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">[A-Q]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Upper case letter from A to Q</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">[0-7]</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Digit from 0 to 7</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">\x</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Group/&#173;sub&#173;pattern number &quot;&#173;x&quot;</div></td></tr></table><div
+class="cheat_sheet_note"><div
+style="padding: 3px 8px;">Ranges are inclusive.</div></div></div></div><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_twocol" style="z-index: 30; page-break-inside: avoid;" id="block_167"><h3 class="cheat_sheet_output_title" id="title_5_167">Pattern Modifiers</h3><div
+class="cheat_sheet_output_block" id="block_5_167"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_twocol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">g</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Global match</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">i&nbsp;*</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Case-i&#173;nse&#173;nsitive</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">m&nbsp;*</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Multiple lines</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">s&nbsp;*</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Treat string as single line</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">x&nbsp;*</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Allow comments and whitespace in pattern</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">e&nbsp;*</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Evaluate replac&#173;ement</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">U&nbsp;*</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Ungreedy pattern</div></td></tr></table><div
+class="cheat_sheet_note"><div
+style="padding: 3px 8px;">* PCRE modifier</div></div></div></div><div
+class="cheat_sheet_output_wrapper cheat_sheet_output_column_twocol" style="z-index: 30; page-break-inside: avoid;" id="block_168"><h3 class="cheat_sheet_output_title" id="title_5_168">String Replac&#173;ement</h3><div
+class="cheat_sheet_output_block" id="block_5_168"><table
+border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="cheat_sheet_output_twocol"><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">$n</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">nth non-pa&#173;ssive group</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">$2</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">&quot;&#173;xyz&#173;&quot; in /^(abc&#173;(xy&#173;z))$/</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">$1</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">&quot;&#173;xyz&#173;&quot; in /^(?:a&#173;bc)&#173;(xyz)$/</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">$`</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Before matched string</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">$'</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">After matched string</div></td></tr><tr
+class="countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">$+</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Last matched string</div></td></tr><tr
+class="altrow countrow"><td
+valign="top" class="cheat_sheet_output_cell_1"><div
+style="padding: 3px 8px;">$&amp;</div></td><td
+valign="top" class="cheat_sheet_output_cell_2"><div
+style="padding: 3px 8px;">Entire matched string</div></td></tr></table><div
+class="cheat_sheet_note"><div
+style="padding: 3px 8px;">Some regex implem&#173;ent&#173;ations use \ instead of $.</div></div></div></div></td></tr></table><div
+class="clear"></div><div
+style="padding-top: 20px;" class="adsense"> <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> 
+<ins
+class="adsbygoogle"
+style="display:inline-block;width:728px;height:90px"
+data-ad-client="ca-pub-2965569270921917"
+data-ad-slot="8025457838"></ins> <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> </div><div
+class="hidden showMobile"><div
+id="download_popup"><div
+id="download_popup_inner"><h2 class="notopmargin">Regular Expressions Cheat Sheet Downloads</h2><div
+style="padding: 20px; width: 400px; display: none;" id="postDownloadContent"><p>Your download will begin in a moment. In the meantime, why not share this cheat sheet!</p><div
+class="imagelink addthis_toolbox addthis_default_style addthis_32x32_style" style="width:430px; margin: 30px auto; text-align: center;">
+<a
+class="addthis_button_facebook"></a>
+<a
+class="addthis_button_twitter"></a>
+<a
+class="addthis_button_google_plusone_badge" g:plusone:count="false" g:plusone:size="medium"></a>
+<a
+class="addthis_button_pinterest_share" pi:pinit:media="http://www.cheatography.com/storage/thumb/davechild_regular-expressions.600.jpg?last=1404064562"></a>
+<a
+class="addthis_button_reddit"></a>
+<a
+class="addthis_button_stumbleupon"></a>
+<a
+class="addthis_button_email"></a>
+<a
+class="addthis_button_favorites"></a>
+<a
+class="addthis_button_compact"></a>
+<a
+class="addthis_counter addthis_bubble_style"></a> <script type="text/javascript">var addthis_config = {"data_track_clickback":true, "services_exclude":'print', data_ga_property:'UA-4997759-8'};</script> <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4db5226a16bf710d"></script> </div><p><a
+href="#" onclick="$('#downloadContent').show(); $('#postDownloadContent').hide(); return false;">&#171; Return to the Downloads List</a></p></div><div
+style="padding: 20px; width: 400px;" id="downloadContent"><div
+class="biptych1 hideMobile">
+<a
+style="position: relative;" class="imagelink" href="/davechild/cheat-sheets/regular-expressions/pdf/"><img
+style="-moz-box-shadow: 1px 1px 3px #666; -webkit-box-shadow: 1px 1px 3px #666; box-shadow: 1px 1px 3px #666; line-height: 1;" width="150" src="/storage/thumb/davechild_regular-expressions.600.jpg?last=1404064562"><span
+class="page_count" style="background-color: #F4D4DF">1 Page</span></a></div><div
+class="biptych2"><p
+class="padded"><strong>PDF</strong> (recommended)</p><ul
+class="noicon" style="margin-bottom: 20px;"><li><i
+class="fa fa-fw fa-file-pdf-o"></i> <a
+target="_blank" href="/davechild/cheat-sheets/regular-expressions/pdf/" onclick="trackDownload('PDF', this.href);">PDF (1 page)</a></li></ul><p
+class="padded"><strong>Alternative&nbsp;Downloads</strong></p><ul
+class="noicon"><li><i
+class="fa fa-fw fa-file-pdf-o"></i> <a
+target="_blank" href="/davechild/cheat-sheets/regular-expressions/pdf_bw/" onclick="trackDownload('PDF - Black and White', this.href);">PDF (black and white)</a></li><li><i
+class="fa fa-fw fa-file-text-o"></i> <a
+target="_blank" href="/davechild/cheat-sheets/regular-expressions/latex/" onclick="trackDownload('LaTeX', this.href);">LaTeX</a></li></ul></div><div
+class="clear"></div></div></div></div></div><div
+id="comments"><div
+class="clear">&nbsp;</div><div
+class="block_wrapper_wide"><div
+class="triptychdbll"><div
+class="hideMobile"><h2 class="notopmargin">Share This Cheat Sheet!</h2><div
+class="imagelink addthis_toolbox addthis_default_style addthis_32x32_style" style="width:430px; margin: 30px auto; text-align: center;">
+<a
+class="addthis_button_facebook"></a>
+<a
+class="addthis_button_twitter"></a>
+<a
+class="addthis_button_google_plusone_badge" g:plusone:count="false" g:plusone:size="medium"></a>
+<a
+class="addthis_button_pinterest_share" pi:pinit:media="http://www.cheatography.com/storage/thumb/davechild_regular-expressions.600.jpg?last=1404064562"></a>
+<a
+class="addthis_button_reddit"></a>
+<a
+class="addthis_button_stumbleupon"></a>
+<a
+class="addthis_button_email"></a>
+<a
+class="addthis_button_favorites"></a>
+<a
+class="addthis_button_compact"></a>
+<a
+class="addthis_counter addthis_bubble_style"></a> <script type="text/javascript">var addthis_config = {"data_track_clickback":true, "services_exclude":'print', data_ga_property:'UA-4997759-8'};</script> <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4db5226a16bf710d"></script> </div></div><h2>Favourited by 144 Members:</h2><p
+class="padded" style="line-height: 36px; vertical-align: middle;">
+<a
+href="/kirby/" class="imagelink user_hover" title="Kirby"><img
+class="gravatar" src="http://www.cheatography.com/images/users/6ae3e1b7f84f154e198582a01fd53152.32.jpg" width="32" height="32" alt="Kirby"></a>
+<a
+href="/kippg/" class="imagelink user_hover" title="kippg"><img
+class="gravatar" src="http://www.cheatography.com/images/users/696d1a3d524c4e8998c8cf41e459f82c.32.jpg" width="32" height="32" alt="kippg"></a>
+<a
+href="/freaksed/" class="imagelink user_hover" title="Freaksed"><img
+class="gravatar" src="http://www.cheatography.com/images/users/caa7e496eb9c6bd678a00bbd78bdee54.32.jpg" width="32" height="32" alt="Freaksed"></a>
+<a
+href="/dontaut/" class="imagelink user_hover" title="dontaut"><img
+class="gravatar" src="http://www.cheatography.com/images/users/e8d52fcc35a03598d7709a612dc2c853.32.jpg" width="32" height="32" alt="dontaut"></a>
+<a
+href="/fkorling/" class="imagelink user_hover" title="fkorling"><img
+class="gravatar" src="http://www.cheatography.com/images/users/d032fb06136a64b9e27eaf9a085c3331.32.jpg" width="32" height="32" alt="fkorling"></a>
+<a
+href="/bullfrog/" class="imagelink user_hover" title="bullfrog"><img
+class="gravatar" src="http://www.cheatography.com/images/users/f2f101fcfa6f5598f502a05349be46ad.32.jpg" width="32" height="32" alt="bullfrog"></a>
+<a
+href="/pereirtc/" class="imagelink user_hover" title="pereirtc"><img
+class="gravatar" src="http://www.cheatography.com/images/users/7b9ba0c51cee72cbad01e9001f30e25e.32.jpg" width="32" height="32" alt="pereirtc"></a>
+<a
+href="/scitrenb/" class="imagelink user_hover" title="scitrenb"><img
+class="gravatar" src="http://www.cheatography.com/images/users/bbd1fc4986ae779d7ffd5e0e7e64ac69.32.jpg" width="32" height="32" alt="scitrenb"></a>
+<a
+href="/lasantha/" class="imagelink user_hover" title="Lasantha"><img
+class="gravatar" src="http://www.cheatography.com/images/users/a95b0467b6db038c18c48864a9f264f5.32.jpg" width="32" height="32" alt="Lasantha"></a>
+<a
+href="/hamburg/" class="imagelink user_hover" title="hamburg"><img
+class="gravatar" src="http://www.cheatography.com/images/users/8a0c6090be87dcbdd263779495023cf6.32.jpg" width="32" height="32" alt="hamburg"></a>
+<a
+href="/chi-zach/" class="imagelink user_hover" title="chi-zach"><img
+class="gravatar" src="http://www.cheatography.com/images/users/0342a09d44429cbbe9af26360627fd49.32.jpg" width="32" height="32" alt="chi-zach"></a>
+<span
+class="show_more_trigger">and <a
+href="javascript:return false;" onclick="$('.show_more_trigger').hide(); $('.show_more_content').show(); return false;">134 more ...</a></span> <span
+class="show_more_content hidden">                                <a
+href="/xtiam57/" class="imagelink user_hover" title="xtiam57"><img
+class="gravatar" src="http://www.cheatography.com/images/users/c8a2dd912e3d06ae0c8b889efc5ebd96.32.jpg" width="32" height="32" alt="xtiam57"></a>
+<a
+href="/sirgt/" class="imagelink user_hover" title="sirgt"><img
+class="gravatar" src="http://www.cheatography.com/images/users/ab0bfb0991457de9649e8e63d27b0672.32.jpg" width="32" height="32" alt="sirgt"></a>
+<a
+href="/twbcs/" class="imagelink user_hover" title="twbcs"><img
+class="gravatar" src="http://www.cheatography.com/images/users/a6743cda87ed41892017bd52c3794e05.32.jpg" width="32" height="32" alt="twbcs"></a>
+<a
+href="/adamholwerda/" class="imagelink user_hover" title="adamholwerda"><img
+class="gravatar" src="http://www.cheatography.com/images/users/5da1a11488b53b45dfb32201ea48d726.32.jpg" width="32" height="32" alt="adamholwerda"></a>
+<a
+href="/ineedmyherbs/" class="imagelink user_hover" title="ineedmyherbs"><img
+class="gravatar" src="http://www.cheatography.com/images/users/a7e7c73e8c48fdb4f1ccb648b152bf25.32.jpg" width="32" height="32" alt="ineedmyherbs"></a>
+<a
+href="/stumx/" class="imagelink user_hover" title="StuMx"><img
+class="gravatar" src="http://www.cheatography.com/images/users/f3c87f0f0ba22a3b9c99aba1743f2e86.32.jpg" width="32" height="32" alt="StuMx"></a>
+<a
+href="/mccloud/" class="imagelink user_hover" title="McCloud"><img
+class="gravatar" src="http://www.cheatography.com/images/users/43aa500f4a4f7a0b8f5edf60c62fbf53.32.jpg" width="32" height="32" alt="McCloud"></a>
+<a
+href="/leshkin/" class="imagelink user_hover" title="leshkin"><img
+class="gravatar" src="http://www.cheatography.com/images/users/9a07a8fd2e1cec7114a2e5a80bc9dc69.32.jpg" width="32" height="32" alt="leshkin"></a>
+<a
+href="/chilly-bang/" class="imagelink user_hover" title="Chilly_Bang"><img
+class="gravatar" src="http://www.cheatography.com/images/users/031ec198d6124beb2ea18dd25cd31ca9.32.jpg" width="32" height="32" alt="Chilly_Bang"></a>
+<a
+href="/dandelion-hhv/" class="imagelink user_hover" title="dandelion_hhv"><img
+class="gravatar" src="http://www.cheatography.com/images/users/ef5ad5bbcc52544d27be70170815d232.32.jpg" width="32" height="32" alt="dandelion_hhv"></a>
+<a
+href="/dacheat/" class="imagelink user_hover" title="dacheat"><img
+class="gravatar" src="http://www.cheatography.com/images/users/a0f4906eea5dcfd1b452c1c5507b76f5.32.jpg" width="32" height="32" alt="dacheat"></a>
+<a
+href="/dafnalula/" class="imagelink user_hover" title="dafnalula"><img
+class="gravatar" src="http://www.cheatography.com/images/users/391b16b206c45fd394cbafba217d34e8.32.jpg" width="32" height="32" alt="dafnalula"></a>
+<a
+href="/abdulqabiz/" class="imagelink user_hover" title="abdulqabiz"><img
+class="gravatar" src="http://www.cheatography.com/images/users/5171d6240918a2a29d00653ad5e419c9.32.jpg" width="32" height="32" alt="abdulqabiz"></a>
+<a
+href="/keksdose/" class="imagelink user_hover" title="Keksdose"><img
+class="gravatar" src="http://www.cheatography.com/images/users/c55a0928a32cf9b059968307a0d74fb7.32.jpg" width="32" height="32" alt="Keksdose"></a>
+<a
+href="/vbgenie/" class="imagelink user_hover" title="vbgenie"><img
+class="gravatar" src="http://www.cheatography.com/images/users/0d7bd7b13121ebdf0b9306dae7a685e8.32.jpg" width="32" height="32" alt="vbgenie"></a>
+<a
+href="/caroline-artz/" class="imagelink user_hover" title="caroline.artz"><img
+class="gravatar" src="http://www.cheatography.com/images/users/ad17cfdca9c90e4968363615f0bb9b11.32.jpg" width="32" height="32" alt="caroline.artz"></a>
+<a
+href="/eulerintegral333/" class="imagelink user_hover" title="Eulerintegral333"><img
+class="gravatar" src="http://www.cheatography.com/images/users/6dc4452eb5ded13ecc9049c9f2709b33.32.jpg" width="32" height="32" alt="Eulerintegral333"></a>
+<a
+href="/thibaultgomarin/" class="imagelink user_hover" title="ThibaultGomarin"><img
+class="gravatar" src="http://www.cheatography.com/images/users/4489494c63979343159c2b0d8e546d0a.32.jpg" width="32" height="32" alt="ThibaultGomarin"></a>
+<a
+href="/alexpopov/" class="imagelink user_hover" title="alexpopov"><img
+class="gravatar" src="http://www.cheatography.com/images/users/058744c91d324bf29bb5423b5ce7bdde.32.jpg" width="32" height="32" alt="alexpopov"></a>
+<a
+href="/centuryman1979/" class="imagelink user_hover" title="CenturyMan1979"><img
+class="gravatar" src="http://www.cheatography.com/images/users/bd8e43cb6e4e630e5ec69e07a48f48e5.32.jpg" width="32" height="32" alt="CenturyMan1979"></a>
+<a
+href="/happypaul55/" class="imagelink user_hover" title="HappyPaul55"><img
+class="gravatar" src="http://www.cheatography.com/images/users/78c87b1732f1b553ebaa6613ad3e2d4b.32.jpg" width="32" height="32" alt="HappyPaul55"></a>
+<a
+href="/garthzares/" class="imagelink user_hover" title="GarthZares"><img
+class="gravatar" src="http://www.cheatography.com/images/users/7b960da7f28cb3ee51be9386e2b06b65.32.jpg" width="32" height="32" alt="GarthZares"></a>
+<a
+href="/mrfatmen/" class="imagelink user_hover" title="mrfatmen"><img
+class="gravatar" src="http://www.cheatography.com/images/users/7dfa10bb941387b1bfdeb4c4c728f644.32.jpg" width="32" height="32" alt="mrfatmen"></a>
+<a
+href="/sandeep/" class="imagelink user_hover" title="sandeep"><img
+class="gravatar" src="http://www.cheatography.com/images/users/d6d4ae3fbba4b27e34e84abd05cf5b4f.32.jpg" width="32" height="32" alt="sandeep"></a>
+<a
+href="/relizont/" class="imagelink user_hover" title="relizont"><img
+class="gravatar" src="http://www.cheatography.com/images/users/ab2584e3a201906447bfb122e1a55ba7.32.jpg" width="32" height="32" alt="relizont"></a>
+<a
+href="/trpaige001/" class="imagelink user_hover" title="Trpaige001"><img
+class="gravatar" src="http://www.cheatography.com/images/users/03da051aedc84fc6705feaeedd91d366.32.jpg" width="32" height="32" alt="Trpaige001"></a>
+<a
+href="/amitb2050/" class="imagelink user_hover" title="amitb2050"><img
+class="gravatar" src="http://www.cheatography.com/images/users/e225794836693131f3833298c47a640c.32.jpg" width="32" height="32" alt="amitb2050"></a>
+<a
+href="/sam-chen/" class="imagelink user_hover" title="sam chen"><img
+class="gravatar" src="http://www.cheatography.com/images/users/30fb9543780510496ee0f38165a18ffd.32.jpg" width="32" height="32" alt="sam chen"></a>
+<a
+href="/claysmith/" class="imagelink user_hover" title="claysmith"><img
+class="gravatar" src="http://www.cheatography.com/images/users/7901f9e898821ad2cdf32384dadf0f68.32.jpg" width="32" height="32" alt="claysmith"></a>
+<a
+href="/virviil/" class="imagelink user_hover" title="Virviil"><img
+class="gravatar" src="http://www.cheatography.com/images/users/72d13aff18a4220e8d9ff8d79fc72f14.32.jpg" width="32" height="32" alt="Virviil"></a>
+<a
+href="/internaciulo/" class="imagelink user_hover" title="internaciulo"><img
+class="gravatar" src="http://www.cheatography.com/images/users/f33435ee7e8da5170a0e92b3e7ef084a.32.jpg" width="32" height="32" alt="internaciulo"></a>
+<a
+href="/theosis/" class="imagelink user_hover" title="Theosis"><img
+class="gravatar" src="http://www.cheatography.com/images/users/21111185cb4567f7059181d0559ea94f.32.jpg" width="32" height="32" alt="Theosis"></a>
+<a
+href="/jeremic/" class="imagelink user_hover" title="jeremic"><img
+class="gravatar" src="http://www.cheatography.com/images/users/627dd9cc94e5dd5a82f19bae6667c0b0.32.jpg" width="32" height="32" alt="jeremic"></a>
+<a
+href="/ariver/" class="imagelink user_hover" title="ariver"><img
+class="gravatar" src="http://www.cheatography.com/images/users/534a00ddb5091b2d69c3bc714f65ffdd.32.jpg" width="32" height="32" alt="ariver"></a>
+<a
+href="/nyc-dab/" class="imagelink user_hover" title="nyc.dab"><img
+class="gravatar" src="http://www.cheatography.com/images/users/56af4e4283bf850ffa3a196fe8c4d576.32.jpg" width="32" height="32" alt="nyc.dab"></a>
+<a
+href="/veloz/" class="imagelink user_hover" title="Veloz"><img
+class="gravatar" src="http://www.cheatography.com/images/users/b8ee637d9e81c27b741d9e342aabdfa5.32.jpg" width="32" height="32" alt="Veloz"></a>
+<a
+href="/gokure/" class="imagelink user_hover" title="gokure"><img
+class="gravatar" src="http://www.cheatography.com/images/users/90b61e7409f0e7177258ec73b1f38204.32.jpg" width="32" height="32" alt="gokure"></a>
+<a
+href="/willy-wang/" class="imagelink user_hover" title="Willy Wang"><img
+class="gravatar" src="http://www.cheatography.com/images/users/52a3eb91838c51913ed534b302ecc231.32.jpg" width="32" height="32" alt="Willy Wang"></a>
+<a
+href="/abhisekp/" class="imagelink user_hover" title="abhisekp"><img
+class="gravatar" src="http://www.cheatography.com/images/users/8a4924b04ad0fa95cb4c53a0da3f6c25.32.jpg" width="32" height="32" alt="abhisekp"></a>
+<a
+href="/erichuang/" class="imagelink user_hover" title="erichuang"><img
+class="gravatar" src="http://www.cheatography.com/images/users/a576ec8390be13c4eadf8f73fcfe26ac.32.jpg" width="32" height="32" alt="erichuang"></a>
+<a
+href="/arest/" class="imagelink user_hover" title="arest"><img
+class="gravatar" src="http://www.cheatography.com/images/users/6f869b617aaa50c2b4bbd412db994152.32.jpg" width="32" height="32" alt="arest"></a>
+<a
+href="/moonrider441/" class="imagelink user_hover" title="moonrider441"><img
+class="gravatar" src="http://www.cheatography.com/images/users/c3cd056c9348a484f8b3d4ed1adb2be6.32.jpg" width="32" height="32" alt="moonrider441"></a>
+<a
+href="/coldblackice/" class="imagelink user_hover" title="Coldblackice"><img
+class="gravatar" src="http://www.cheatography.com/images/users/5ca6b00262ff3a2e88f8e2e019ccf092.32.jpg" width="32" height="32" alt="Coldblackice"></a>
+<a
+href="/paulblp/" class="imagelink user_hover" title="PaulBlp"><img
+class="gravatar" src="http://www.cheatography.com/images/users/898523d373553f318838a546ab7238c7.32.jpg" width="32" height="32" alt="PaulBlp"></a>
+<a
+href="/alexikia/" class="imagelink user_hover" title="alexikia"><img
+class="gravatar" src="http://www.cheatography.com/images/users/4ab96f1ae9a1cc9e25c9f964bc52fd4f.32.jpg" width="32" height="32" alt="alexikia"></a>
+<a
+href="/kbenoitcegep/" class="imagelink user_hover" title="kbenoitcegep"><img
+class="gravatar" src="http://www.cheatography.com/images/users/29fa076da419a431d3835efa2c9ea2a2.32.jpg" width="32" height="32" alt="kbenoitcegep"></a>
+<a
+href="/dranzz/" class="imagelink user_hover" title="Dranzz"><img
+class="gravatar" src="http://www.cheatography.com/images/users/5facd4f28fd3a342ecf594e2e2817663.32.jpg" width="32" height="32" alt="Dranzz"></a>
+<a
+href="/ivanfioravanti/" class="imagelink user_hover" title="ivanfioravanti"><img
+class="gravatar" src="http://www.cheatography.com/images/users/4aa04a5dc5066423fd82df601d971bc3.32.jpg" width="32" height="32" alt="ivanfioravanti"></a>
+<a
+href="/rajivvishwa/" class="imagelink user_hover" title="rajivvishwa"><img
+class="gravatar" src="http://www.cheatography.com/images/users/0b4edcf4f22a16e38949a3d3ccfc05c7.32.jpg" width="32" height="32" alt="rajivvishwa"></a>
+<a
+href="/ciphan/" class="imagelink user_hover" title="ciphan"><img
+class="gravatar" src="http://www.cheatography.com/images/users/18c261562697c798b4ff9280c5fd95a5.32.jpg" width="32" height="32" alt="ciphan"></a>
+<a
+href="/mambero/" class="imagelink user_hover" title="mambero"><img
+class="gravatar" src="http://www.cheatography.com/images/users/b093ff7de1152d62c0705027a780936f.32.jpg" width="32" height="32" alt="mambero"></a>
+<a
+href="/vijay/" class="imagelink user_hover" title="Vijay"><img
+class="gravatar" src="http://www.cheatography.com/images/users/6b1b6874964cf6ff83ced37759f9146c.32.jpg" width="32" height="32" alt="Vijay"></a>
+<a
+href="/akipta/" class="imagelink user_hover" title="akipta"><img
+class="gravatar" src="http://www.cheatography.com/images/users/aaa5e881c580fdca952bd9fb475b5cf2.32.jpg" width="32" height="32" alt="akipta"></a>
+<a
+href="/epoc/" class="imagelink user_hover" title="Epoc"><img
+class="gravatar" src="http://www.cheatography.com/images/users/fc4bc12e62be354d11c5d2261a489b1c.32.jpg" width="32" height="32" alt="Epoc"></a>
+<a
+href="/mroggy85/" class="imagelink user_hover" title="MrOggy85"><img
+class="gravatar" src="http://www.cheatography.com/images/users/b8ccf4adaf5b8c68b90707026fb5e8a6.32.jpg" width="32" height="32" alt="MrOggy85"></a>
+<a
+href="/itbuddha/" class="imagelink user_hover" title="itbuddha"><img
+class="gravatar" src="http://www.cheatography.com/images/users/63567d0266fde9ef468dc256a3b25205.32.jpg" width="32" height="32" alt="itbuddha"></a>
+<a
+href="/mvotani/" class="imagelink user_hover" title="mvotani"><img
+class="gravatar" src="http://www.cheatography.com/images/users/ea301e21ccd51c03230e828e50dc019f.32.jpg" width="32" height="32" alt="mvotani"></a>
+<a
+href="/parastudio/" class="imagelink user_hover" title="parastudio"><img
+class="gravatar" src="http://www.cheatography.com/images/users/be924edd507a080ab9129f15b7d49c55.32.jpg" width="32" height="32" alt="parastudio"></a>
+<a
+href="/manjuv-gmit/" class="imagelink user_hover" title="manjuv.gmit"><img
+class="gravatar" src="http://www.cheatography.com/images/users/2c8ac240291823ae7177975de910ead1.32.jpg" width="32" height="32" alt="manjuv.gmit"></a>
+<a
+href="/avalitan/" class="imagelink user_hover" title="avalitan"><img
+class="gravatar" src="http://www.cheatography.com/images/users/2ed7525a1bf1d2bf484beef042aa1996.32.jpg" width="32" height="32" alt="avalitan"></a>
+<a
+href="/petraeus/" class="imagelink user_hover" title="petraeus"><img
+class="gravatar" src="http://www.cheatography.com/images/users/e2952534013be59d9c64798ff3e4713c.32.jpg" width="32" height="32" alt="petraeus"></a>
+<a
+href="/0x90/" class="imagelink user_hover" title="0x90"><img
+class="gravatar" src="http://www.cheatography.com/images/users/0a728f714b1bb2dbb9eb7bd94d9c5d21.32.jpg" width="32" height="32" alt="0x90"></a>
+<a
+href="/emre/" class="imagelink user_hover" title="emre"><img
+class="gravatar" src="http://www.cheatography.com/images/users/0a18158e83ae5bd56c38b6cc4e4f353c.32.jpg" width="32" height="32" alt="emre"></a>
+<a
+href="/webpoobah/" class="imagelink user_hover" title="webpoobah"><img
+class="gravatar" src="http://www.cheatography.com/images/users/376a5e99062d6cdfe7d59d98d9629e69.32.jpg" width="32" height="32" alt="webpoobah"></a>
+<a
+href="/cartoonist/" class="imagelink user_hover" title="cartoonist"><img
+class="gravatar" src="http://www.cheatography.com/images/users/270785839f8a9c47adcdbd7e3e6d2628.32.jpg" width="32" height="32" alt="cartoonist"></a>
+<a
+href="/pedromarban/" class="imagelink user_hover" title="pedromarban"><img
+class="gravatar" src="http://www.cheatography.com/images/users/631aa92a9aea5ac59926cde5496d20a7.32.jpg" width="32" height="32" alt="pedromarban"></a>
+<a
+href="/dttk/" class="imagelink user_hover" title="dttk"><img
+class="gravatar" src="http://www.cheatography.com/images/users/a12afd381ade1a279360de7e2b206fac.32.jpg" width="32" height="32" alt="dttk"></a>
+<a
+href="/rbopilot/" class="imagelink user_hover" title="RboPilot"><img
+class="gravatar" src="http://www.cheatography.com/images/users/3b2c31137723c8926bee182d7e3744c1.32.jpg" width="32" height="32" alt="RboPilot"></a>
+<a
+href="/arpitchauhan/" class="imagelink user_hover" title="arpitchauhan"><img
+class="gravatar" src="http://www.cheatography.com/images/users/b0eaa55121d056cc928c1c7f0d9a3287.32.jpg" width="32" height="32" alt="arpitchauhan"></a>
+<a
+href="/onitek/" class="imagelink user_hover" title="onitek"><img
+class="gravatar" src="http://www.cheatography.com/images/users/cc069dcec2a2a21f5884a6d167a2e791.32.jpg" width="32" height="32" alt="onitek"></a>
+<a
+href="/crss1138/" class="imagelink user_hover" title="crss1138"><img
+class="gravatar" src="http://www.cheatography.com/images/users/82566e9441eec17bcccfafa02f79f4aa.32.jpg" width="32" height="32" alt="crss1138"></a>
+<a
+href="/pneumatix/" class="imagelink user_hover" title="pneumatix"><img
+class="gravatar" src="http://www.cheatography.com/images/users/8f94fed64e82dc38e1a1dc76b52c0806.32.jpg" width="32" height="32" alt="pneumatix"></a>
+<a
+href="/huyderman/" class="imagelink user_hover" title="Huyderman"><img
+class="gravatar" src="http://www.cheatography.com/images/users/75c2c53d1afcf959f1d01d1d4986cd08.32.jpg" width="32" height="32" alt="Huyderman"></a>
+<a
+href="/cpettit42/" class="imagelink user_hover" title="cpettit42"><img
+class="gravatar" src="http://www.cheatography.com/images/users/6e0a7aa356b6765d9c80fb24b76a91b2.32.jpg" width="32" height="32" alt="cpettit42"></a>
+<a
+href="/janslow/" class="imagelink user_hover" title="janslow"><img
+class="gravatar" src="http://www.cheatography.com/images/users/f8bc5a8898df95d52b989ded1b03946f.32.jpg" width="32" height="32" alt="janslow"></a>
+<a
+href="/rd5coding/" class="imagelink user_hover" title="rd5coding"><img
+class="gravatar" src="http://www.cheatography.com/images/users/93135eefe175bd1b3bb254d5a9ceee51.32.jpg" width="32" height="32" alt="rd5coding"></a>
+<a
+href="/luracast/" class="imagelink user_hover" title="Luracast"><img
+class="gravatar" src="http://www.cheatography.com/images/users/4cc993f592a3f2743c4714206666e925.32.jpg" width="32" height="32" alt="Luracast"></a>
+<a
+href="/imjoshholloway/" class="imagelink user_hover" title="imjoshholloway"><img
+class="gravatar" src="http://www.cheatography.com/images/users/66aeb5bfa7a4a761e2c83ad3da0dad1b.32.jpg" width="32" height="32" alt="imjoshholloway"></a>
+<a
+href="/davidlartey/" class="imagelink user_hover" title="DavidLartey"><img
+class="gravatar" src="http://www.cheatography.com/images/users/a1c50d10c05a9420fe96ae3be424c76e.32.jpg" width="32" height="32" alt="DavidLartey"></a>
+<a
+href="/schrodervictor/" class="imagelink user_hover" title="schrodervictor"><img
+class="gravatar" src="http://www.cheatography.com/images/users/3f66ce663380899b28e694de73750d8b.32.jpg" width="32" height="32" alt="schrodervictor"></a>
+<a
+href="/fire9/" class="imagelink user_hover" title="fire9"><img
+class="gravatar" src="http://www.cheatography.com/images/users/3d7a71f7933014edd5d8c3316e117a4e.32.jpg" width="32" height="32" alt="fire9"></a>
+<a
+href="/guslong/" class="imagelink user_hover" title="guslong"><img
+class="gravatar" src="http://www.cheatography.com/images/users/4571b25aad2c23ebef8daac0c2011aff.32.jpg" width="32" height="32" alt="guslong"></a>
+<a
+href="/mryang9118/" class="imagelink user_hover" title="mryang9118"><img
+class="gravatar" src="http://www.cheatography.com/images/users/2b493a05aa9545b3db55665dbb7aa209.32.jpg" width="32" height="32" alt="mryang9118"></a>
+<a
+href="/vintagecandy1/" class="imagelink user_hover" title="vintagecandy1"><img
+class="gravatar" src="http://www.cheatography.com/images/users/ce3369823340166505a57bd0b4db6302.32.jpg" width="32" height="32" alt="vintagecandy1"></a>
+<a
+href="/saji89/" class="imagelink user_hover" title="saji89"><img
+class="gravatar" src="http://www.cheatography.com/images/users/33ce78c13ac59bc5bf4b6cf2e36c2972.32.jpg" width="32" height="32" alt="saji89"></a>
+<a
+href="/bertrand/" class="imagelink user_hover" title="Bertrand"><img
+class="gravatar" src="http://www.cheatography.com/images/users/dba2719cba1ecc48606277d20589027e.32.jpg" width="32" height="32" alt="Bertrand"></a>
+<a
+href="/slucas/" class="imagelink user_hover" title="slucas"><img
+class="gravatar" src="http://www.cheatography.com/images/users/35569a38940594f3b848a3e6842ddd11.32.jpg" width="32" height="32" alt="slucas"></a>
+<a
+href="/fedesilva/" class="imagelink user_hover" title="fedesilva"><img
+class="gravatar" src="http://www.cheatography.com/images/users/7a42335ee58bcf7fa0f9a7b0bb94d79e.32.jpg" width="32" height="32" alt="fedesilva"></a>
+<a
+href="/sebbu/" class="imagelink user_hover" title="sebbu"><img
+class="gravatar" src="http://www.cheatography.com/images/users/f5c68c0b6ccafeae2b591cbbd63bf3e1.32.jpg" width="32" height="32" alt="sebbu"></a>
+<a
+href="/greatghoul/" class="imagelink user_hover" title="greatghoul"><img
+class="gravatar" src="http://www.cheatography.com/images/users/98156ca4d9d9229a2c967005966e8903.32.jpg" width="32" height="32" alt="greatghoul"></a>
+<a
+href="/gles/" class="imagelink user_hover" title="gLes"><img
+class="gravatar" src="http://www.cheatography.com/images/users/e2249457e6028bd74731bc79d4c71b67.32.jpg" width="32" height="32" alt="gLes"></a>
+<a
+href="/jasonlindberg/" class="imagelink user_hover" title="jasonlindberg"><img
+class="gravatar" src="http://www.cheatography.com/images/users/f2b125bb40625d3deb348c4265b8b27d.32.jpg" width="32" height="32" alt="jasonlindberg"></a>
+<a
+href="/maintainweb/" class="imagelink user_hover" title="maintainweb"><img
+class="gravatar" src="http://www.cheatography.com/images/users/420af7dff8142ae11246bf3c3cee9e4a.32.jpg" width="32" height="32" alt="maintainweb"></a>
+<a
+href="/rober1992/" class="imagelink user_hover" title="Rober1992"><img
+class="gravatar" src="http://www.cheatography.com/images/users/42bcf7bf9401cba1000abeaddd483ed0.32.jpg" width="32" height="32" alt="Rober1992"></a>
+<a
+href="/gamiclea/" class="imagelink user_hover" title="gamiclea"><img
+class="gravatar" src="http://www.cheatography.com/images/users/f1b3c7d0b48aee22c1ec3ba4498dbf88.32.jpg" width="32" height="32" alt="gamiclea"></a>
+<a
+href="/ryangannon/" class="imagelink user_hover" title="RyanGannon"><img
+class="gravatar" src="http://www.cheatography.com/images/users/3e176bb7e62f959568e67ef5aaeb8313.32.jpg" width="32" height="32" alt="RyanGannon"></a>
+<a
+href="/mishin/" class="imagelink user_hover" title="mishin"><img
+class="gravatar" src="http://www.cheatography.com/images/users/fc47e34663f359d08fdffd03098b0149.32.jpg" width="32" height="32" alt="mishin"></a>
+<a
+href="/marty/" class="imagelink user_hover" title="Marty"><img
+class="gravatar" src="http://www.cheatography.com/images/users/1f363d9908b83f41fa8964eb515afdaa.32.jpg" width="32" height="32" alt="Marty"></a>
+<a
+href="/kaa/" class="imagelink user_hover" title="KAA"><img
+class="gravatar" src="http://www.cheatography.com/images/users/d438d0147170f78f0d4aa0d1636930de.32.jpg" width="32" height="32" alt="KAA"></a>
+<a
+href="/provodnik/" class="imagelink user_hover" title="provodnik"><img
+class="gravatar" src="http://www.cheatography.com/images/users/3e2ca0f95c0c539ca6e72726741dab5c.32.jpg" width="32" height="32" alt="provodnik"></a>
+<a
+href="/wbbourne/" class="imagelink user_hover" title="Wbbourne"><img
+class="gravatar" src="http://www.cheatography.com/images/users/a9b61db9b493c4dfc4339800d6bcd876.32.jpg" width="32" height="32" alt="Wbbourne"></a>
+<a
+href="/naesk/" class="imagelink user_hover" title="naesk"><img
+class="gravatar" src="http://www.cheatography.com/images/users/7be668d3f885af900fa00bf3c41160aa.32.jpg" width="32" height="32" alt="naesk"></a>
+<a
+href="/loosh/" class="imagelink user_hover" title="loosh"><img
+class="gravatar" src="http://www.cheatography.com/images/users/797bec1452b28c3d9b2b7c3f78f8d32c.32.jpg" width="32" height="32" alt="loosh"></a>
+<a
+href="/powareverb/" class="imagelink user_hover" title="powareverb"><img
+class="gravatar" src="http://www.cheatography.com/images/users/041523b4d6098dd89609c84cd2523ef9.32.jpg" width="32" height="32" alt="powareverb"></a>
+<a
+href="/jdmyers/" class="imagelink user_hover" title="jdmyers"><img
+class="gravatar" src="http://www.cheatography.com/images/users/28141cf054ba9927be4cb2bee2c64187.32.jpg" width="32" height="32" alt="jdmyers"></a>
+<a
+href="/subcat7564/" class="imagelink user_hover" title="SubCat7564"><img
+class="gravatar" src="http://www.cheatography.com/images/users/2fa06095cb5409430328a03632d9dc0f.32.jpg" width="32" height="32" alt="SubCat7564"></a>
+<a
+href="/winter/" class="imagelink user_hover" title="Winter"><img
+class="gravatar" src="http://www.cheatography.com/images/users/d9b855a1466a5bb289792b1be012089c.32.jpg" width="32" height="32" alt="Winter"></a>
+<a
+href="/karthikeyansam/" class="imagelink user_hover" title="karthikeyansam"><img
+class="gravatar" src="http://www.cheatography.com/images/users/0731ed5cadace748d97ab736e9cf8605.32.jpg" width="32" height="32" alt="karthikeyansam"></a>
+<a
+href="/gabbbbb/" class="imagelink user_hover" title="GaBBBBB"><img
+class="gravatar" src="http://www.cheatography.com/images/users/bc75eeb69101a3994640c19f6e941ff4.32.jpg" width="32" height="32" alt="GaBBBBB"></a>
+<a
+href="/akuiraz/" class="imagelink user_hover" title="akuiraz"><img
+class="gravatar" src="http://www.cheatography.com/images/users/723a18b12c99a1e3fad679f39e53ea80.32.jpg" width="32" height="32" alt="akuiraz"></a>
+<a
+href="/shikee/" class="imagelink user_hover" title="shikee"><img
+class="gravatar" src="http://www.cheatography.com/images/users/71992cce351b405311843d34a725ebe5.32.jpg" width="32" height="32" alt="shikee"></a>
+<a
+href="/ouss-sk8/" class="imagelink user_hover" title="ouss_sk8"><img
+class="gravatar" src="http://www.cheatography.com/images/users/f00254141b8b52082d93d60ce4439a09.32.jpg" width="32" height="32" alt="ouss_sk8"></a>
+<a
+href="/nolan/" class="imagelink user_hover" title="nolan"><img
+class="gravatar" src="http://www.cheatography.com/images/users/fcb0deab318c6c2872d0fb1173317fe2.32.jpg" width="32" height="32" alt="nolan"></a>
+<a
+href="/senseful/" class="imagelink user_hover" title="senseful"><img
+class="gravatar" src="http://www.cheatography.com/images/users/2943ddd84bdb6aff301415c9581d9a7e.32.jpg" width="32" height="32" alt="senseful"></a>
+<a
+href="/turborider/" class="imagelink user_hover" title="turborider"><img
+class="gravatar" src="http://www.cheatography.com/images/users/565a16022e6d63014d8a33f591d96e0c.32.jpg" width="32" height="32" alt="turborider"></a>
+<a
+href="/manoelhc/" class="imagelink user_hover" title="manoelhc"><img
+class="gravatar" src="http://www.cheatography.com/images/users/710a543a34a181d528dab05d4550dfed.32.jpg" width="32" height="32" alt="manoelhc"></a>
+<a
+href="/anomalophobe/" class="imagelink user_hover" title="anomalophobe"><img
+class="gravatar" src="http://www.cheatography.com/images/users/0dc876f5a939b1276bd5f48a81463dfe.32.jpg" width="32" height="32" alt="anomalophobe"></a>
+<a
+href="/arnoldobr/" class="imagelink user_hover" title="arnoldobr"><img
+class="gravatar" src="http://www.cheatography.com/images/users/6341a63b1ad1b6e4dbbca8b0c350b5d0.32.jpg" width="32" height="32" alt="arnoldobr"></a>
+<a
+href="/gissehel/" class="imagelink user_hover" title="gissehel"><img
+class="gravatar" src="http://www.cheatography.com/images/users/8baecaad78100760d4eb9db3f8223024.32.jpg" width="32" height="32" alt="gissehel"></a>
+<a
+href="/lornajane/" class="imagelink user_hover" title="lornajane"><img
+class="gravatar" src="http://www.cheatography.com/images/users/1ddc8548cf18ee52a7a50c682e82dade.32.jpg" width="32" height="32" alt="lornajane"></a>
+<a
+href="/xcjjzh/" class="imagelink user_hover" title="xcjjzh"><img
+class="gravatar" src="http://www.cheatography.com/images/users/b80973cd0046f25f17f0cccdbe11db27.32.jpg" width="32" height="32" alt="xcjjzh"></a>
+<a
+href="/budedub/" class="imagelink user_hover" title="budedub"><img
+class="gravatar" src="http://www.cheatography.com/images/users/37f3b578fa474eaf15a32b18d52c8fe9.32.jpg" width="32" height="32" alt="budedub"></a>
+<a
+href="/samcollett/" class="imagelink user_hover" title="SamCollett"><img
+class="gravatar" src="http://www.cheatography.com/images/users/09688e680a78471b38d414247bb30aa5.32.jpg" width="32" height="32" alt="SamCollett"></a>
+<a
+href="/steinm/" class="imagelink user_hover" title="steinm"><img
+class="gravatar" src="http://www.cheatography.com/images/users/bb03168bcc4f7574d5fc065d1260bee0.32.jpg" width="32" height="32" alt="steinm"></a>
+<a
+href="/davechild/" class="imagelink user_hover" title="DaveChild"><img
+class="gravatar" src="http://www.cheatography.com/images/users/fd7e3b77a3f3007ff30d932b65084851.32.jpg" width="32" height="32" alt="DaveChild"></a>
+<a
+href="/citguy/" class="imagelink user_hover" title="CITguy"><img
+class="gravatar" src="http://www.cheatography.com/images/users/00405645c5fe2805e62c31576cf8cebc.32.jpg" width="32" height="32" alt="CITguy"></a>
+<a
+href="/cybertron/" class="imagelink user_hover" title="CyberTron"><img
+class="gravatar" src="http://www.cheatography.com/images/users/855c77a7879aa79fed36476c980eede3.32.jpg" width="32" height="32" alt="CyberTron"></a>
+<a
+href="/chris5marsh/" class="imagelink user_hover" title="chris5marsh"><img
+class="gravatar" src="http://www.cheatography.com/images/users/89cc09416fcdeeb160d0c4dc6b44d58a.32.jpg" width="32" height="32" alt="chris5marsh"></a>
+<a
+href="/blacklisted/" class="imagelink user_hover" title="blacklisted"><img
+class="gravatar" src="http://www.cheatography.com/images/users/ba9f2048d47fd19dce6d8ebca1cffaea.32.jpg" width="32" height="32" alt="blacklisted"></a>
+<a
+href="/nschurdell/" class="imagelink user_hover" title="nschurdell"><img
+class="gravatar" src="http://www.cheatography.com/images/users/f477ec87c630568f62b7b34f5a3b36a5.32.jpg" width="32" height="32" alt="nschurdell"></a>
+<a
+href="/michaelfox/" class="imagelink user_hover" title="michaelfox"><img
+class="gravatar" src="http://www.cheatography.com/images/users/0e67abb7e2d62de7b8c33fcdbbf95b80.32.jpg" width="32" height="32" alt="michaelfox"></a>
+<a
+href="/barry1/" class="imagelink user_hover" title="Barry1"><img
+class="gravatar" src="http://www.cheatography.com/images/users/b7b0cea4d02313b4cf7e0a8b38cdc91e.32.jpg" width="32" height="32" alt="Barry1"></a>
+<a
+href="/bigfox/" class="imagelink user_hover" title="bigfox"><img
+class="gravatar" src="http://www.cheatography.com/images/users/bb254be5d7cb6ab39ec58d1c93243b02.32.jpg" width="32" height="32" alt="bigfox"></a>
+</span></p><h2>Comments</h2><div
+class="commentblock" id="comment14"><p
+class="commenter">
+<a
+href="/doug/" class="imagelink"><img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/c6c02ef47bb2145bfce1c0025ff8d649.32.jpg" alt="Doug" width="32" height="32"></a>
+<a
+href="/doug/" class="user_hover">Doug</a>,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment14">10:02 28 Nov 11</a></p><p
+class="commentext">Your regex cheatsheet says ^ is &quot;Start of string&quot; and $ is &quot;End of string&quot;</p><div
+class="commentreply" id="reply_14"></div></div><div
+class="commentblock commentreply" id="comment18"><p
+class="commenter"><a
+href="/davechild/" class="imagelink"><img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/fd7e3b77a3f3007ff30d932b65084851.32.jpg" alt="DaveChild" width="32" height="32"></a> <a
+href="/davechild/" class="user_hover">DaveChild</a>, <a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment18">10:02 28 Nov 11</a></p><p
+class="commentext">Hi Doug. I've clarified that section. Thanks for the heads up :)</p></div><div
+class="commentblock commentreply" id="comment46"><p
+class="commenter"><a
+href="//" class="imagelink"><img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/d41d8cd98f00b204e9800998ecf8427e.32.jpg" alt="" width="32" height="32"></a> <a
+href="//" class="user_hover"></a>, <a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment46">10:02 28 Nov 11</a></p><p
+class="commentext">It looks unchanged to me. ^ still says it's &quot;start of string&quot; and $ still says &quot;end of string&quot;. They should be reversed, right?</p></div><div
+class="commentblock commentreply" id="comment47"><p
+class="commenter"><a
+href="//" class="imagelink"><img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/d41d8cd98f00b204e9800998ecf8427e.32.jpg" alt="" width="32" height="32"></a> <a
+href="//" class="user_hover"></a>, <a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment47">10:02 28 Nov 11</a></p><p
+class="commentext">Actually, I'm sorry, you're right! I was pretty confused there, sorry if I've confused anyone else.</p></div><div
+class="commentblock commentreply" id="comment48"><p
+class="commenter"><a
+href="/davechild/" class="imagelink"><img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/fd7e3b77a3f3007ff30d932b65084851.32.jpg" alt="DaveChild" width="32" height="32"></a> <a
+href="/davechild/" class="user_hover">DaveChild</a>, <a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment48">10:02 28 Nov 11</a></p><p
+class="commentext">No worries Keith - easy mistake to make!</p></div><div
+class="commentblock" id="comment73"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/8a1fd670082d4c77be0f6e9a1b3d777b.32.jpg" alt="Tom Hunter" width="32" height="32">
+Tom Hunter,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment73">10:02 28 Nov 11</a></p><p
+class="commentext">Can you tag this as 'regex'? Searching for regex on cheatography yields two other results, but not this one.</p><div
+class="commentreply" id="reply_73"></div></div><div
+class="commentblock" id="comment954"><p
+class="commenter">
+<a
+href="/doug/" class="imagelink"><img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/c6c02ef47bb2145bfce1c0025ff8d649.32.jpg" alt="Doug" width="32" height="32"></a>
+<a
+href="/doug/" class="user_hover">Doug</a>,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment954">22:52 12 Apr 12</a></p><p
+class="commentext">Would you add \Q... \E to the cheatsheet?</p><div
+class="commentreply" id="reply_954"></div></div><div
+class="commentblock" id="comment1212"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/a740a6fb373df180f8e5f973334c7755.32.jpg" alt="Jorge" width="32" height="32">
+Jorge,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment1212">12:16 4 May 12</a></p><p
+class="commentext">It would be nice to see the list of white space characters</p><div
+class="commentreply" id="reply_1212"></div></div><div
+class="commentblock" id="comment1255"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/df11a81b370676ec1ddead535ed50648.32.jpg" alt="Jeff" width="32" height="32">
+Jeff,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment1255">15:44 9 May 12</a></p><p
+class="commentext">Great resource!  Thanks for putting this together and sharing.</p><div
+class="commentreply" id="reply_1255"></div></div><div
+class="commentblock" id="comment1337"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/89acd12ab33adfb2cc5b58a2360a40bd.32.jpg" alt="david" width="32" height="32">
+david,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment1337">08:58 20 May 12</a></p><p
+class="commentext">What language/flavor is this?  Or I should also ask, if non is specified, what tends to be the default?  I'm specifically looking for php or javascript, and I know they're all mostly the same, but not 100%.<br
+/>
+<br
+/>
+Thanks!</p><div
+class="commentreply" id="reply_1337"></div></div><div
+class="commentblock" id="comment2071"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/28e6f586e093d0280f93c01024da8dad.32.jpg" alt="Chris" width="32" height="32">
+Chris,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment2071">09:19 7 Jun 12</a></p><p
+class="commentext">David, Regex is programming language neutral, as in, it doesn't matter if you are programming regex expressions in javascript, c#, c++, PHP, or even command line *nix, makes no difference. Only thing you have to watch out for is some programming languages may require different various regex characters to be escaped differently (so the programming language doesn't try to interpret it). Usually a backslash. For instance \\ means ONE backslash in many languages.</p><div
+class="commentreply" id="reply_2071"></div></div><div
+class="commentblock" id="comment2767"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/7b6b7d4558aa1e9b63d61333877ca019.32.jpg" alt="Andy Grosland" width="32" height="32">
+Andy Grosland,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment2767">09:45 28 Jun 12</a></p><p
+class="commentext">Very handy, thank you! <br
+/>
+<br
+/>
+Don't forget Perl ;-)</p><div
+class="commentreply" id="reply_2767"></div></div><div
+class="commentblock" id="comment3623"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/00047c82bfd9406a86a60c5ead6f8eff.32.jpg" alt="littleguy" width="32" height="32">
+littleguy,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment3623">15:23 6 Aug 12</a></p><p
+class="commentext">Great and useful stuff!</p><div
+class="commentreply" id="reply_3623"></div></div><div
+class="commentblock" id="comment4336"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/e21f29bf66d3f176620575ce379774ba.32.jpg" alt="Chilean" width="32" height="32">
+Chilean,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment4336">14:03 23 Aug 12</a></p><p
+class="commentext">Hi, I'm trying to learn REGEX, and I need to find this: &quot;Page 1 Of 60&quot;, ..... &quot;Page 50 of 60&quot;, But I can't find it using reg. expressions! :(. How would you do that? Thank you!</p><div
+class="commentreply" id="reply_4336"></div></div><div
+class="commentblock" id="comment4378"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/d9aa93228384daae030575d678932215.32.jpg" alt="kris w" width="32" height="32">
+kris w,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment4378">08:50 13 Sep 12</a></p><p
+class="commentext">Is there a cheat sheet to the cheat sheet? Is this in plain english anywhere?...&quot;negative lookahead&quot;..huh?</p><div
+class="commentreply" id="reply_4378"></div></div><div
+class="commentblock" id="comment4399"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/e4abb08449e6383c24685b1e9e1f5218.32.jpg" alt="Travis" width="32" height="32">
+Travis,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment4399">13:07 4 Oct 12</a></p><p
+class="commentext">@david, this cheat sheet is pretty neutral.  The most common flavor is Perl Compatible Regular Expressions (PCRE).  Javascript's engine is close to that and PHP also has Perl Compatible functions for Regex; they use the PREG prefix.  Most everything on this sheet should be supported by PHP's engine (I think POSIX character classes are not).  Javascript's engine isn't as featureful.  Some advanced features aren't supported, but all the basics are there.  If you need a multiline match and you can't use the flag, you can use an inverted class range such as [\s\S] in place of the . (dot) to match anything including newlines.<br
+/>
+<br
+/>
+@Chilean+kris w, You need to find a resource for learning Regular Expressions.  This cheat sheet is for reference, not learning.  Check out http://www.regular-expressions.info/</p><div
+class="commentreply" id="reply_4399"></div></div><div
+class="commentblock" id="comment4450"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/94a59c7bf9373222e8fc290b0702cbe5.32.jpg" alt="fsnow55" width="32" height="32">
+fsnow55,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment4450">16:17 22 Oct 12</a></p><p
+class="commentext">I was confused by the first comment (which was wrong, but you compounded the error with an acknowlegement).  ^ is the start of string or line. Period. <br
+/>
+<br
+/>
+Also, your cheat sheet is better organized than the more comprehensive  http://www.regular-expressions.info/<br
+/>
+since its more succinct. The latter has a 1-page summary but its too verbose.</p><div
+class="commentreply" id="reply_4450"></div></div><div
+class="commentblock" id="comment4508"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/d9aebcb2a9c03c08c4df73ae6bc6b617.32.jpg" alt="ty" width="32" height="32">
+ty,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment4508">12:50 22 Nov 12</a></p><p
+class="commentext">Nice sheet.</p><div
+class="commentreply" id="reply_4508"></div></div><div
+class="commentblock" id="comment4567"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/767934a648524da57388558217ad9c2d.32.jpg" alt="Rob" width="32" height="32">
+Rob,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment4567">11:47 24 Jan 13</a></p><p
+class="commentext">Is there a reason why the ']' character is not listed under metacharacters?  Doesn't that character require to be escaped if searched for?</p><div
+class="commentreply" id="reply_4567"></div></div><div
+class="commentblock" id="comment4551"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/e9f78a6386c87ba237c9c7c7b362c6c3.32.jpg" alt="Bill" width="32" height="32">
+Bill,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment4551">11:48 24 Jan 13</a></p><p
+class="commentext">Hey Dave.  Thanks for the cheat sheet.  You may want to change &quot;Not a or b or c&quot; when you describe the [^abc} negated character class, because in English, the negation is ambiguous.  It could mean &quot;neither a nor be nor c.&quot; Or the &quot;a&quot; could be the only negated disjunct.  You could mean (~a v (b v c)).</p><div
+class="commentreply" id="reply_4551"></div></div><div
+class="commentblock" id="comment4930"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/adb8d0c3a520d9b46b944f31fe62b1bd.32.jpg" alt="Edir" width="32" height="32">
+Edir,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment4930">09:17 15 Feb 13</a></p><p
+class="commentext">Could be added to the list.<br
+/>
+<br
+/>
+Case Conversion<br
+/>
+\l	Make next character lowercase <br
+/>
+\u	Make next character uppercase <br
+/>
+\L	Make entire string (up to \E) lowercase <br
+/>
+\U	Make entire string (up to \E) uppercase <br
+/>
+\u\L	Capitalize first char, lowercase rest (sentence)</p><div
+class="commentreply" id="reply_4930"></div></div><div
+class="commentblock" id="comment5021"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/798a2dc3d1905ea8f50cc497410f9257.32.jpg" alt="Gabe" width="32" height="32">
+Gabe,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment5021">17:16 26 Mar 13</a></p><p
+class="commentext">I have a database using regex. I am trying to use ^file to get all files with name file_,file ,file_name_date. but it is not working any help</p><div
+class="commentreply" id="reply_5021"></div></div><div
+class="commentblock" id="comment7207"><p
+class="commenter">
+<a
+href="/david-baird/" class="imagelink"><img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/af52bd77beae7664245334f8537cac43.32.jpg" alt="david.baird" width="32" height="32"></a>
+<a
+href="/david-baird/" class="user_hover">david.baird</a>,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment7207">18:59 15 Jul 13</a></p><p
+class="commentext">Is \x supported anywhere? I can't find examples of it in use searching the web. It also does not work in a script on my Macintosh, OSX 10.7.5 using the OS's perl installation.</p><div
+class="commentreply" id="reply_7207"></div></div><div
+class="commentblock" id="comment20496"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/abad9b839dfd71ae10d989b792ce0aa7.32.jpg" alt="Drew White" width="32" height="32">
+Drew White,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment20496">15:10 13 Feb 14</a></p><p
+class="commentext">I'm trying to come up with a regex string to filter results to a directory that includes a-zA-Z but that also includes an underscore ('_').  Do you know of a way to do this?</p><div
+class="commentreply" id="reply_20496"></div></div><div
+class="commentblock" id="comment7206"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/af52bd77beae7664245334f8537cac43.32.jpg" alt="David" width="32" height="32">
+David,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment7206">15:14 13 Feb 14</a></p><p
+class="commentext">Is \x supported anywhere? I can't seem to find where it is supported. E.g., perl on MacOS 10.7.5. Searching for on-line examples or help also fails, in that no one knows about it.</p><div
+class="commentreply" id="reply_7206"></div></div><div
+class="commentblock" id="comment7205"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/af52bd77beae7664245334f8537cac43.32.jpg" alt="David" width="32" height="32">
+David,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment7205">15:14 13 Feb 14</a></p><p
+class="commentext">Is \x (Regular Expressions Character Classes) supported anywhere? Is this a new class that has just been added, because I am unable to use it in working with IPV6 addresses. Searching for a string containing something like 2001::1a79 with a RegEx 2001::\x{1,4} will fail, but if I use 2001::[a-fA-F0-9]{1,4} will work.</p><div
+class="commentreply" id="reply_7205"></div></div><div
+class="commentblock" id="comment7155"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/833ff2c14e74f561f43a45f7f5279150.32.jpg" alt="David" width="32" height="32">
+David,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment7155">15:14 13 Feb 14</a></p><p
+class="commentext">\x is a term in &quot;Regular Expressions Character Classes&quot; for an hexadecimal digit. How does this compare to the \xhh &quot;Special Characters&quot;? Is it supported today?</p><div
+class="commentreply" id="reply_7155"></div></div><div
+class="commentblock" id="comment26126"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/dcdfce96411e9de97a8b99dd18f05b48.32.jpg" alt="Benoit" width="32" height="32">
+Benoit,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment26126">08:54 14 Feb 14</a></p><p
+class="commentext">It would be great to increase in some ways the --&gt;  :  &lt;---- in the <br
+/>
+&quot;(?:...) Passive (non-cÂ­aptÂ­uring) group&quot;  description. Just after the &quot;?&quot;, it is praticaly not visible.  Thanks!</p><div
+class="commentreply" id="reply_26126"></div></div><div
+class="commentblock" id="comment8523"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/9e7e9ef71d69be99fda6a46df1a2b06c.32.jpg" alt="Simon" width="32" height="32">
+Simon,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment8523">17:33 17 Feb 14</a></p><p
+class="commentext">This is a great cheat-sheet. Two minor niggles:<br
+/>
+* Would be great to hint on the characters hidden in the character classes (\s = [ \t\n\r\f], \d = [0-9], \w = [a-zA-Z_0-9])<br
+/>
+* I think possibly there's a mistake in the section &quot;Special Characters&quot; - \xxx is probably not the octal character xxx. See &quot;Character Classes&quot;: it should be \Oxxx (and by the way: why are \O and \x duplicated in &quot;Special Characters&quot; and &quot;Character Classes&quot;...)<br
+/>
+And I support Edir's request for a section &quot;Case Conversion&quot;.<br
+/>
+But again: great sheet, thanks!</p><div
+class="commentreply" id="reply_8523"></div></div><div
+class="commentblock" id="comment10224"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/6bd91ac668ce82ed8392d704045e57b3.32.jpg" alt="Sahana A V" width="32" height="32">
+Sahana A V,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment10224">17:48 17 Feb 14</a></p><p
+class="commentext">Thank you for the Regex cheat sheet :-)</p><div
+class="commentreply" id="reply_10224"></div></div><div
+class="commentblock" id="comment29312"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/11d588e0f7f3025f53c8a7fe001b585a.32.jpg" alt="Mervin" width="32" height="32">
+Mervin,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment29312">13:37 19 Apr 14</a></p><p
+class="commentext">Thank you. It would have been better if you would have included test, match, etc.</p><div
+class="commentreply" id="reply_29312"></div></div><div
+class="commentblock" id="comment29319"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/4ecfaf64e60514dd74cbc47a034cc907.32.jpg" alt="Bhaggs" width="32" height="32">
+Bhaggs,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment29319">11:33 21 Apr 14</a></p><p
+class="commentext">Does these support ereg too?</p><div
+class="commentreply" id="reply_29319"></div></div><div
+class="commentblock" id="comment29360"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/bb8cf7ce2b562603ba8cb9f76e0e2e1c.32.jpg" alt="yashawanth" width="32" height="32">
+yashawanth,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment29360">10:24 17 May 14</a></p><p
+class="commentext">what is mean by (.*?) please let me know as soon as possible ??</p><div
+class="commentreply" id="reply_29360"></div></div><div
+class="commentblock" id="comment29384"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/5fbd015a1887895b5162f7ecea7ae54b.32.jpg" alt="Roedy Green" width="32" height="32">
+Roedy Green,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment29384">20:57 26 May 14</a></p><p
+class="commentext">There are so many dialects of regex. The most important fact should be right up top, which dialects do you cover?</p><div
+class="commentreply" id="reply_29384"></div></div><div
+class="commentblock" id="comment29610"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/ec1b308fd21bb9b7f64d3a61e73d326b.32.jpg" alt="Ted" width="32" height="32">
+Ted,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment29610">16:34 13 Jun 14</a></p><p
+class="commentext">Can you please fix the pdf so it is able to download? Right now my browser (Google Chrome) only show a raw pdf instead of downloading it. Thank you very much :)</p><div
+class="commentreply" id="reply_29610"></div></div><div
+class="commentblock" id="comment29633"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/921aeb41a1cd5f436bd186b4e809d770.32.jpg" alt="William" width="32" height="32">
+William,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment29633">09:21 10 Jul 14</a></p><p
+class="commentext"> I agree with Roedy Green. I came here looking for specific a version of regex. This is still so helpful.</p><div
+class="commentreply" id="reply_29633"></div></div><div
+class="commentblock" id="comment29682"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/52f226e07feedb06305d412a33cc4f29.32.jpg" alt="Aaron" width="32" height="32">
+Aaron,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment29682">11:13 8 Sep 14</a></p><p
+class="commentext">Ted, when the PDF displays in Chrome, right-click in the page and select Save As.</p><div
+class="commentreply" id="reply_29682"></div></div><div
+class="commentblock" id="comment29710"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/26e3bb56c646041ca8b23c97a6e1209c.32.jpg" alt="jaya prakash" width="32" height="32">
+jaya prakash,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment29710">09:35 31 Oct 14</a></p><p
+class="commentext">Hi ,<br
+/>
+Can u help me to find regular expression --<br
+/>
+<br
+/>
+SELECT distinct col_1 FROM tablename<br
+/>
+WHERE (SUBSTR(col_1,-1,1)) = '5'<br
+/>
+<br
+/>
+need resuslt as abc-cxy-5<br
+/>
+<br
+/>
+not as abc-cxy-65<br
+/>
+not as abc-cxy-555<br
+/>
+not as abc-cxy-05545</p><div
+class="commentreply" id="reply_29710"></div></div><div
+class="commentblock" id="comment29731"><p
+class="commenter">
+<img
+style="margin: 0 8px 0 0;" src="http://www.cheatography.com/images/users/208efb51251590d32181558fb5549cab.32.jpg" alt="Ken Sanders" width="32" height="32">
+Ken Sanders,
+<a
+href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment29731">09:12 5 Nov 14</a></p><p
+class="commentext">Hello Jaya,<br
+/>
+MySQL supports regular expressions:<br
+/>
+select distinct col_1 <br
+/>
+from tablename <br
+/>
+where col_1<br
+/>
+REGEXP '[a-z]{3}-[a-z]{3}-5'</p><div
+class="commentreply" id="reply_29731"></div></div><h2>Add a Comment</h2><div
+id="reply_default"><div
+id="comment_form"><form
+novalidate class="pageForm" id="commentForm" method="POST" action="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/#comment_form">
+<input
+type="hidden" name="action" value="comment"/>
+<input
+type="hidden" name="spamkey" value="1197379313">
+<input
+type="text" name="website" id="comment_form_url" value="http://"><fieldset><legend>Your Comment</legend><div
+class="formrow"><p
+class="forminfo"><span>Please enter your name.</span></p><label
+for="commenter_name">Your Name</label><input
+required  type="text" id="commenter_name" name="commenter_name"><div
+class="clear"></div><ul
+class="error off"></ul><div
+class="clear"></div></div><div
+class="formrow"><p
+class="forminfo"><span>Please enter your email address</span></p><label
+for="commenter_email">Your Email Address</label><input
+required  type="email" id="commenter_email" name="commenter_email"><div
+class="clear"></div><ul
+class="error off"></ul><div
+class="clear"></div></div><div
+class="formrow"><p
+class="forminfo"><span>Please enter your Comment.</span></p><label
+for="comment_text">Your Comment</label><textarea cols="50" rows="5" name="comment_text" id="comment_text" required  id="comment_text" name="comment_text"></textarea><div
+class="clear"></div><ul
+class="error off"></ul><div
+class="clear"></div></div><div
+class="buttonrow"><button
+name="continue" id="continue" value="continue" type="submit" id="continue" name="continue"><div><span><strong>Post</strong> Your Comment</span></div></button><div
+class="clear"></div><ul
+class="error off"></ul><div
+class="clear"></div></div></fieldset></form></div></div> <script type="text/javascript">$(document).ready(function () {
+            $("#commentForm").validate({
+                unhighlight: function (el, error, valid, _orig) {
+                    if (el.id == 'sidebar_username') {
+                    }
+                    $(el).parent().find('p').addClass("valid");
+                    $(el).parent().find('p').removeClass("invalid");
+                    $(el).parent().find('ul.error').hide('slow');
+                },
+                highlight: function (el, error, valid, _orig) {
+                    $(el).parent().find('p').removeClass("valid");
+                    $(el).parent().find('p').addClass("invalid");
+                },
+                errorPlacement: function(error, el) {
+                    $(el).parent().find('ul.error').html('<li>' + $(error).text() + '</li>');
+                    $(el).parent().find('ul.error').show('slow');
+                    //$(el).parent().find('span').html($(error).text());
+                    return true;
+                }
+            });
+        });</script> <script type="text/javascript">function replyTo(reply_comment_id, thread) {
+        if (reply_comment_id == 0) {
+            // Move comment_form to reply_default
+            $("#comment_form").prependTo("#reply_default");
+            // Set comment_reply_id to 0
+            $("#comment_reply_id").val(0);
+            $('#replytext').hide();
+        } else {
+            // Move comment_form to reply_<reply_comment_id>
+            if (thread) {
+                $("#comment_form").prependTo("#comment_thread_" + reply_comment_id);
+            } else {
+                $("#comment_form").prependTo("#reply_" + reply_comment_id);
+            }
+            // Set comment_reply_id to <reply_comment_id>
+            $("#comment_reply_id").val(reply_comment_id);
+            $('#replytext').show();
+        }
+        return false;
+    }</script> </div><div
+class="triptych3"><div
+class="sidebar_box"><div
+class="sidebar_box_first_row"><h4>Cheatographer</h4></div><div
+class="sidebar_box_row">
+<a
+style="float: left; margin: 6px 10px 10px 0" href="/davechild/" class="imagelink"><img
+class="gravatar" style="vertical-align: middle;" src="http://www.cheatography.com/images/users/fd7e3b77a3f3007ff30d932b65084851.32.jpg" width="32" height="32" alt="DaveChild"></a><a
+href="/davechild/" class="user_hover">DaveChild</a>
+<br><a
+target="_blank" href="http://www.addedbytes.com">www.addedbytes.com</a></div><div
+class="clear"></div></div><div
+class="sidebar_box"><div
+class="sidebar_box_first_row"><h4>Cheat Sheet Language(s)</h4></div><div
+class="sidebar_box_row"><ul
+class="small_content_list"><li><a
+href="/language/en/">English</a></li></ul></div></div><div
+class="sidebar_box"><div
+class="sidebar_box_first_row"><h4>More by DaveChild</h4></div><div
+class="sidebar_box_row"><ul
+class="small_content_list"><li><a
+href="/davechild/cheat-sheets/linux-command-line/">Linux Command Line Cheat Sheet</a></li><li><a
+href="/davechild/cheat-sheets/css2/">CSS2 Cheat Sheet</a></li><li><a
+href="/davechild/cheat-sheets/mod-rewrite/">mod_rewrite Cheat Sheet</a></li><li><a
+href="/davechild/cheat-sheets/php/">PHP Cheat Sheet</a></li><li><a
+href="/davechild/cheat-sheets/wikipedia/">Wikipedia Cheat Sheet</a></li></ul></div></div><div
+class="sidebar_box"><div
+class="sidebar_box_first_row"><h4>Tags</h4></div><div
+class="sidebar_box_row">
+<a
+href="/tag/development/">development</a>, <a
+href="/tag/expressions/">expressions</a>, <a
+href="/tag/programming/">programming</a>, <a
+href="/tag/regex/">regex</a>, <a
+href="/tag/regular/">regular</a></div></div><div
+class="sidebar_box"><div
+class="sidebar_box_first_row"><h4>Related (shares tags with):</h4></div><div
+class="sidebar_box_row"><ul
+class="small_content_list"><li><a
+href="/jay-taylor/cheat-sheets/google-analytics-regular-expressions/">Google Analytics Regular Expressions Cheat Sheet</a> by <a
+href="/jay-taylor/" class="user_hover">Jay Taylor</a></li><li><a
+href="/mishin/cheat-sheets/perl-reference-card/">Perl Reference Card Cheat Sheet</a> by <a
+href="/mishin/" class="user_hover">mishin</a></li><li><a
+href="/davechild/cheat-sheets/php/">PHP Cheat Sheet</a> by <a
+href="/davechild/" class="user_hover">DaveChild</a></li></ul></div></div><div
+class="sidebar_box"><div
+class="sidebar_box_first_row"><h4>Thumbnail</h4></div><div
+class="sidebar_box_row" style="text-align: center;">
+<a
+href="#download_popup" onclick="trackDownloadPopup(); return false;" class="imagelink download_popup" style="position: relative;"><img
+style="-moz-box-shadow: 1px 1px 3px #666; -webkit-box-shadow: 1px 1px 3px #666; box-shadow: 1px 1px 3px #666; line-height: 0.1;" width="150" src="/storage/thumb/davechild_regular-expressions.600.jpg?last=1404064562" width="150"><span
+class="page_count" style="background-color: #F4D4DF">1 Page</span></a></div></div></div></div></div><div
+class="clear"></div></div></div></div><div
+class="clear"></div></div></div><div
+class="clear"></div><div
+id="footer"><div
+id="footer_inner"><div
+class="triptych1"><h2>About Cheatography</h2><div
+class="sidebar_box"><div
+class="sidebar_box_row">Cheatography is a collection of 642 cheat sheets and quick references for everything from sports to art, like the <a
+href="/davechild/cheat-sheets/regular-expressions/">Regular Expressions Cheat Sheet</a>. <a
+href="/about/">Find out more</a>.</div></div></div><div
+class="triptych2"><div
+class="sidebar_box footer_blog"><div
+class="sidebar_box_first_row"><h4><em
+style="float: right; font-weight: normal;">2nd May</em>On The Blog</h4></div><div
+class="sidebar_box_row sidebar_box_last_row"><strong
+style="display: block; padding: 10px 0;"><a
+href="/blog/cheat-sheet-statistics-with-google-analytics/">Cheat Sheet Statistics with Google Analytics!</a></strong>Want to know more about the people downloading your cheat sheets? No problem! You can now link your cheat sheets to your Google Analytics account!</div></div></div><div
+class="triptych3"><h2>Recent Activity</h2><div
+class="sidebar_box"><div
+class="sidebar_box_row footer_recent_activity_1"><a
+class="imagelink" style="float: left; margin: 5px 8px 5px 0;" href="nqramjets/"><img
+class="gravatar" src="http://www.cheatography.com/images/users/7607dc9eed1ffd2edaccdbcf0a504006.32.jpg" width="32" height="32" alt="nqramjets"></a> <a
+href="nqramjets/" class="user_hover">nqramjets</a> published <a
+href="/nqramjets/cheat-sheets/xml-1-0/">XML 1.0</a>.<br><span
+class="sidebar_event_date">59 mins 55 secs ago</span></div><div
+class="sidebar_box_row footer_recent_activity_2"><a
+class="imagelink" style="float: left; margin: 5px 8px 5px 0;" href="jwldk/"><img
+class="gravatar" src="http://www.cheatography.com/images/users/d8a09566c69bebf101df9cd56718448f.32.jpg" width="32" height="32" alt="jwldk"></a> <a
+href="jwldk/" class="user_hover">jwldk</a> updated <a
+href="/jwldk/cheat-sheets/my-vim-cheatsheet/">My VIM cheatsheet</a>.<br><span
+class="sidebar_event_date">11 hours 20 mins ago</span></div><div
+class="sidebar_box_row footer_recent_activity_3"><a
+class="imagelink" style="float: left; margin: 5px 8px 5px 0;" href="eldiego650/"><img
+class="gravatar" src="http://www.cheatography.com/images/users/28a4dc3dbff205879851df89091944bc.32.jpg" width="32" height="32" alt="Eldiego650"></a> <a
+href="eldiego650/" class="user_hover">Eldiego650</a> published <a
+href="/eldiego650/cheat-sheets/biology-1-2-final-exam/">Biology 1-2 Final Exam</a>.<br><span
+class="sidebar_event_date">1 day ago</span></div><div
+class="sidebar_box_row footer_recent_activity_4"><a
+class="imagelink" style="float: left; margin: 5px 8px 5px 0;" href="funthomas424242/"><img
+class="gravatar" src="http://www.cheatography.com/images/users/f8f392b6607e627d89adbbb0ac809e4c.32.jpg" width="32" height="32" alt="FunThomas424242"></a> <a
+href="funthomas424242/" class="user_hover">FunThomas424242</a> updated <a
+href="/funthomas424242/cheat-sheets/java-webstart/">Java Webstart</a>.<br><span
+class="sidebar_event_date">2 days 6 hours ago</span></div><div
+class="sidebar_box_row sidebar_box_last_row footer_recent_activity_5"><a
+class="imagelink" style="float: left; margin: 5px 8px 5px 0;" href="deleted-20196/"><img
+class="gravatar" src="http://www.cheatography.com/images/users/e0645e96446596e040dadd9c101ec23b.32.jpg" width="32" height="32" alt="[deleted]"></a> <a
+href="deleted-20196/" class="user_hover">[deleted]</a> published <a
+href="/fpulgari/cheat-sheets/guia-para-nuevos-socios/">Guia para nuevos socios</a>.<br><span
+class="sidebar_event_date">2 days 21 hours ago</span></div><div
+class="clear"></div></div></div><div
+class="clear"></div><div
+class="triptych1"><div
+class="sidebar_box"><div
+class="sidebar_box_first_row"><h4>Behind the Scenes</h4></div><div
+class="sidebar_box_row">If you have any problems, or just want to say hi, you can find us right here:</div><div
+class="sidebar_box_row"><div
+class="biptych1"><a
+class="imagelink" style="float: left; margin: 5px 8px 0 0;" href="davechild/"><img
+class="gravatar" src="http://www.cheatography.com/images/users/fd7e3b77a3f3007ff30d932b65084851.32.jpg" width="32" height="32" alt="DaveChild"></a> <a
+href="davechild/" class="user_hover" style="line-height: 42px;">DaveChild</a><div
+class="clear"></div></div><div
+class="biptych2"><a
+class="imagelink" style="float: left; margin: 5px 8px 0 0;" href="spaceduck/"><img
+class="gravatar" src="http://www.cheatography.com/images/users/e5f4dc698559e9cdd546c749924c2342.32.jpg" width="32" height="32" alt="SpaceDuck"></a> <a
+href="spaceduck/" class="user_hover" style="line-height: 42px;">SpaceDuck</a><div
+class="clear"></div></div></div><div
+class="clear"></div></div></div><div
+class="triptych2"><div
+class="sidebar_box"><div
+class="sidebar_box_first_row"><h4>Cheatography RSS Feeds</h4></div><ul><li
+class="icon_feed"><a
+href="/explore/new/rss/">Latest Cheat Sheets</a></li><li
+class="icon_feed"><a
+href="/blog/rss/">Latest Blog Posts</a></li></ul></div></div><div
+class="triptych3"><div
+class="imagelink addthis_toolbox addthis_default_style addthis_32x32_style" style="margin: 0 0 50px;" addthis:url="http://www.cheatography.com" addthis:title="Cheatography: Make and Share Free Cheat Sheets!"><h2 style="margin: 0 0 5px 0;">Share Cheatography!</h2><div
+class="padded">
+<a
+class="addthis_button_facebook"></a>
+<a
+class="addthis_button_twitter"></a>
+<a
+class="addthis_button_reddit"></a>
+<a
+class="addthis_button_stumbleupon"></a>
+<a
+class="addthis_button_favorites"></a>
+<a
+class="addthis_button_compact"></a>
+<a
+class="addthis_counter addthis_bubble_style"></a></div> <script type="text/javascript">var addthis_config = {
+                            "data_track_clickback":true,
+                            "services_exclude":'print',
+                            data_ga_property:'UA-4997759-8'
+                        };</script> <script async type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4db5226a16bf710d"></script> </div></div><div
+class="clear"></div><div
+class="legal"><div
+class="legal_left">
+&copy; 2011  - 2014 Cheatography.com &nbsp; | &nbsp; <a
+href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/">CC License</a> &nbsp; | &nbsp; <a
+href="/terms-and-conditions/">Terms</a> &nbsp; | &nbsp;  <a
+href="/privacy/">Privacy</a></div><div
+class="legal_right">
+An <a
+href="http://www.addedbytes.com/">Added Bytes</a> Website</div><div
+class="clear"></div></div><div
+class="clear"></div></div><div
+class="clear"></div></div><div
+class="clear"></div>
+ <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                    ga('create', 'UA-4997759-8', 'auto');
+                ga('send', 'pageview');</script> </div></div></body><head><link
+href="/scripts/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css"> <script type="text/javascript" src="/scripts/fancybox/jquery.fancybox.pack.js"></script> <script type="text/javascript" src="/scripts/jquery.cookie.js"></script> <script type="text/javascript" src="/scripts/jquery.formalize.min.js"></script> <script type="text/javascript" src="/scripts/jquery.hoverintent.js"></script> <script type="text/javascript" src="/scripts/jquery.tagsinput.min.js"></script> <script type="text/javascript" src="/scripts/jquery.matchheight.js"></script> <script type="text/javascript" src="/scripts/jquery.validation.min.js"></script> <script type="text/javascript" src="/scripts/jquery.hoverIntent.minified.js"></script> <script type="text/javascript" src="/scripts/chosen.jquery.min.js"></script> <link
+href='http://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'><!--[if lt IE 7]> <script type="text/javascript" src="http://www.cheatography.com/scripts/iepngfix.htc"></script> <style type="text/css">body {
+                behavior: url("http://www.cheatography.com/scripts/csshover.htc");
+            }</style><![endif]-->
+<!--[if IE 7]><style type="text/css"></style><![endif]--> <script type="text/javascript" src="/scripts/useful.min.js"></script> </head></html>
+
+<!-- http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/ from cache: davechild-cheat-sheets-regular-expressions-8d530de8150b8b7a21cf13038281ee25.cache -->
