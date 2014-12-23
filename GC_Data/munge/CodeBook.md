@@ -1,0 +1,28 @@
+# CodeBook
+by CJ  
+Dec 15th, 2014  
+
+#### Raw data source
+- The raw dataset is downloaded [here](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip )  
+- The detail description of raw data please check [link](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) here. Or Read README and features_info in the dataset package  
+
+#### Purpose of run_analysis.R script
+
+- Merges the training and the test sets to create one data set.
+- Extracts only the measurements on the mean and standard deviation for each measurement. 
+- Uses descriptive activity names to name the activities in the data set
+- Appropriately labels the data set with descriptive variable names. 
+- From the data set in step 4, creates a second, independent tidy data set with the average of each variable for          each activity and each subject.
+
+#### Cleaning Process of run_analysis.R script
+- Read X_train.txt from "./data/train" and save as `x_train`. Read x_text.txt from the "./data/test" folder and save as `x_test`. Concatenate x_train and x_test and save as `x_all` (10299x561). Remove x_train and x_test.
+-  Read y_train.txt from "./data/train" and save as `y_train`. Read y_text.txt from the "./data/test" folder and save as `y_test`. Concatenate y_train and y_test and save as `y_all` (10299x1). Remove y_train and y_test.
+- Read subject_train.txt from "./data/train" and save as `sub_train`. Read subject_text.txt from the "./data/test" folder and save as `sub_test`. Concatenate sub_train and sub_test and save as `sub_all` (10299x1). Remove sub_train and sub_test.
+- Read the features.txt file from the "/data" folder and store the data in a variable called `feature`. Extract only the measurements on the mean and standard deviation. This results in a indices list `meanStdIndices` (66*1). Get a subset of `x_all`(10299x61).
+- Remove the "()" in the coresponding feasures and save as `x_name`. Name `x_all` using `x_name`. 
+- Read the activity_labels.txt file from the "./data"" folder and save as `act`. Change second column of `act` to lower case
+- Transform the values of `y_all` according to the `act`.
+- Combine the `x_all`, `sub_all` and `y_all` by column and save as a new `x_all` (10299x68) data frame and name `y_all` and `sub_all` column with "activity" and "subject" respectively. The "subject" column contains integers that range from 1 to 30 inclusive; the "activity" column contains 6 kinds of activity names; the last 66 columns contain measurements that range from -1 to 1 exclusive.
+- Write the `x_all` out to **"merged_data.txt"**  file in current working directory.
+- Calculate the average of each variable for each activity and each subject and save as `result` (180*68). `result` contains the average of 66 features among 180 combination between 30 unique subjects and 6 unique activities. 
+- Write the `result` out to **"data_with_means.txt"** file in current working directory.
