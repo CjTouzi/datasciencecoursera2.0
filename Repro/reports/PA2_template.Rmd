@@ -25,9 +25,14 @@ The detail information of NOAA storm database is [here]("http://www.ncdc.noaa.go
 
 ```{r, echo=TRUE, results='hold', cache=TRUE}
 
+   file <- "D:/GitHub//datasciencecoursera2.0/Repro/reports/repdata-data-StormData.csv.bz2" 
+   databz <- bzfile(file, "r")
+   storm <- read.csv(databz)
+   unlink(databz)
+
 # read in the data
 # please change the following directory to your own data directory
- storm <- read.csv("D:/GitHub/datasciencecoursera/Repro/data/StormData.csv")    
+# storm <- read.csv("D:\GitHub\datasciencecoursera2.0\GC_Data\data\StormData.csv")    
 
 ```
 
