@@ -315,4 +315,4 @@ grid.arrange(p1, p2, p3, p4, main="Fig2: Harmful weather events for Economic in 
 
 ```
 
-[link]("http://rpubs.com/Cjtouzi/Weather") in Rpubs
+in Rpubs [link]("http://rpubs.com/Cjtouzi/Weather") 

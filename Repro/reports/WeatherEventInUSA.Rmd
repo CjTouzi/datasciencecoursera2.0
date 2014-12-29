@@ -1,0 +1,40 @@
+---
+title: "The WORST Weather Event in USA"
+author: "CJ"
+date: "Sunday, December 28, 2014"
+output: html_document
+---
+
+### Synopsis  
+
+Storms and other severe weather events can cause both public health and economic problems for communities and municipalities. Many severe events can result in fatalities, injuries, and property damage, and preventing such outcomes to the extent possible is a key concern. This report summaries the Top10 harmful weather events on population health or economics across the USA by exploring the U.S. National Oceanic and Atmospheric Administration's (NOAA) storm database. 
+
+### Data Processing  
+
+#### Data source
+
+The detail information of NOAA storm database is [here]("http://www.ncdc.noaa.gov/stormevents/ftp.jsp"). The data source in this report is from a comma-separated-value file available [here]("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2"). 
+
+```{r, echo=TRUE, results='hold', cache=TRUE}
+
+        ## Description of File to download
+        ## http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2
+        ##Download file into directory
+
+        file <- "D:/GitHub//datasciencecoursera2.0/Repro/data/repdata-data-StormData.csv.bz2" 
+        if (!file.exists(file)) {
+            url <- "http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2"
+           download.file(url, file,  method = "auto")
+        } else {message("StormData.csv.bz2.zip already exists")}        
+                        
+        databz <- bzfile(file, "r")
+        storm <- read.csv(databz)
+        head(storm)
+        unlink(databz)
+
+        # read in the data
+        # please change the following directory to your own data directory
+        # storm <- read.csv("D:\GitHub\datasciencecoursera2.0\GC_Data\data\StormData.csv")    
+
+```
+
