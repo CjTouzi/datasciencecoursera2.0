@@ -250,3 +250,4 @@ GC_Data/src/eda.R
 GC_Data/tests/1.R
 GC_Data/TODO
 Repro/diagnostics/1.R
+exploratory data/household_power_consumption.txt
