@@ -50,6 +50,127 @@ ppois(2,lambda = 500*0.01)
 
 
 
+# Asymtotics
+# law of large number in action 
+n <- 1000
+means <- cumsum(rnorm(n))/(1:n)
+plot(means,type="l")
+
+means <- cumsum(sample(0:1,n, replace=TRUE))/(1:n)
+plot(means,type="l")
+
+
+
+
+# confidence interval 
+
+library(UsingR)
+data(father.son)
+x <- father.son$sheight
+# infeet
+(mean(x)+c(-1,1)*qnorm(0.975)*sd(x)/sqrt(length(x)))/12
+
+# Wald confidence 
+binom.test(56,100)$conf.int
+
+
+# simulation 
+
+# central limit for small n
+n <-20
+pvals <- seq(0.1,0.9, by =0.05)
+nosim<-1000 
+coverage <- sapply(pvals, function(p){
+        phats <- rbinom(nosim, prob=p, size=n)/n
+        ll <- phats-qnorm(0.975)*sqrt(phats*(1-phats)/n)
+        ul <- phats+qnorm(0.975)*sqrt(phats*(1-phats)/n)
+        mean(ll<p & ul>p)
+        
+})
+
+plot(coverage,type="l")
+abline(h=0.95, col="red")
+
+# central limit for larger n
+n <-100
+pvals <- seq(0.1,0.9, by =0.05)
+nosim<-1000 
+coverage <- sapply(pvals, function(p){
+        phats <- rbinom(nosim, prob=p, size=n)/n
+        ll <- phats-qnorm(0.975)*sqrt(phats*(1-phats)/n)
+        ul <- phats+qnorm(0.975)*sqrt(phats*(1-phats)/n)
+        mean(ll<p & ul>p)
+        
+})
+
+plot(coverage,type="l")
+abline(h=0.95, col="red")
+
+# fix with Agresti/Coull interval 
+
+# (X+2)/(n+4)
+
+n <-20
+pvals <- seq(0.1,0.9, by =0.05)
+nosim<-1000 
+coverage <- sapply(pvals, function(p){
+        
+        # ading 2 secces and a failes  
+        phats <- (rbinom(nosim, prob=p, size=n)+2)/(n+4)
+        ll <- phats-qnorm(0.975)*sqrt(phats*(1-phats)/n)
+        ul <- phats+qnorm(0.975)*sqrt(phats*(1-phats)/n)
+        mean(ll<p & ul>p)
+        
+})
+
+plot(coverage,type="l", ylim=c(0.9,1), main="Agresti/Coull interval ")
+abline(h=0.95, col="red")
+
+
+# possion simulation 
+
+
+# small n
+# recommondation: for small lamda, don't use asymptotic interval 
+
+
+
+lambdavals <- seq(0.005,0.1,by=0.01)
+nosim<-1000 
+t <-100
+coverage <- sapply(
+        lambdavals , function(lambda){
+        
+        # ading 2 secces and a failes  
+        lhats <- rpois(nosim, lambda = lambda*t)/t
+        ll <- lhats-qnorm(0.975)*sqrt(lhats/t)
+        ul <- lhats+qnorm(0.975)*sqrt(lhats/t)
+        mean(ll<lambda & ul>lambda)
+        
+})
+
+plot(coverage,type="l", ylim=c(0,1), main="t=100", xlab="lamda")
+abline(h=0.95, col="red")
+
+
+# large n
+
+lambdavals <- seq(0.005,0.1,by=0.01)
+nosim<-1000 
+t <-1000
+coverage <- sapply(
+        lambdavals , function(lambda){
+                
+                # ading 2 secces and a failes  
+                lhats <- rpois(nosim, lambda = lambda*t)/t
+                ll <- lhats-qnorm(0.975)*sqrt(lhats/t)
+                ul <- lhats+qnorm(0.975)*sqrt(lhats/t)
+                mean(ll<lambda & ul>lambda)
+                
+        })
+
+plot(coverage,type="l", ylim=c(0,1), main="t=1000", xlab="lamda")
+abline(h=0.95, col="red")
 
 
 
