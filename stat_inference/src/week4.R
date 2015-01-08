@@ -64,5 +64,44 @@ table(p.adjust(pvalues,method="BH")<0.05, true.status)
 par(mfrow=c(1,2))
 plot(pvalues, p.adjust(pvalues,method="bonferroni"))
 
+# bootstraping 
+
+library(UsingR)
+library(ggplot2)
+data(father.son)
+x <- father.son$sheight
+n <- length(x)
+
+# number of bootstraping 
+B <- 10000
+
+# replace = TRUE
+resamples <- matrix(sample(x, n*B, replace=TRUE),B,n)
+
+dim(resamples)
+resamples.medians <- apply(resamples,1, median)
+sd(resamples.medians)
+quantile(resamples.medians,c(0.025,0.975))
+g <- ggplot(data.frame(resamples.medians = resamples.medians), aes(x= resamples.medians))
+g <- g+geom_histogram(color="black",fill="blue",binwidth=0.05)
+g        
+
+
+hist(resamples.medians, breaks=100)
+
+# permutation test & group comparisons
+
+subdata <- InsectSprays[InsectSprays$spray %in% c("B","C"),]
+y <- subdata$count
+group <- as.character(subdata$spray)
+test.stat <- function(w,g) mean(w[g=="B"])-mean(w[g=="C"])
+observed.stat <- test.stat(y, group)        
+        
+permutations <- sapply(1:10000, function(i) test.stat(y,sample(group)))        
+hist(permutations)
+
+observed.stat
+mean(permutations > observed.stat)
+
 
 
