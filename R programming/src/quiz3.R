@@ -16,3 +16,6 @@ x <- with(mtcars, tapply(hp, cyl, mean))
 x[[3]]-x[[1]]
 debug(ls)
 ls
+
+
+data(mtcars)
