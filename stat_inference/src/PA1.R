@@ -3,8 +3,11 @@ library(ggplot2)
 lambda <-0.2 
 n<-1000 # Number of simulations simulations
 m<-40 # Number of  exponentials.
-sd.theo=1/lambda/sqrt(m)
-mn.theo=1/lambda
+
+# therotical values of sd and mean
+
+tsd <- 1/lambda
+tmn <- 1/lambda
 
 
 # mean of simulation 

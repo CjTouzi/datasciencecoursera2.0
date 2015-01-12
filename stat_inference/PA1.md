@@ -1,14 +1,6 @@
----
-title: ' Exponential Distribution and Central Limit Theorem'
-author: "CJ"
-date: "Thursday, January 08, 2015"
-output:
-  html_document:
-    fig_caption: yes
-    keep_md: yes
-    theme: united
-    toc: yes
----
+#  Exponential Distribution and Central Limit Theorem
+CJ  
+Thursday, January 08, 2015  
 
 ### Overview
 
@@ -18,7 +10,8 @@ In this project we investigate the exponential distribution and compare it with 
 
 Firstly, calucate the theoretical values of exponential mean and standard deviation. When `lambda`= 0.2, both mean and standard deviation equal to `5`.  
 
-```{r, echo=TRUE, results='hold', cache=TRUE}
+
+```r
 lambda <-0.2 
 # therotical values of sd and mean
 tsd <- 1/lambda
@@ -26,12 +19,17 @@ tsd
 tmn <- 1/lambda
 tmn
 ```
+
+```
+## [1] 5
+## [1] 5
+```
  
 Now, we generate 1000 averages of 40 random exponentials. In the chunk, a function called `exp.means` generate a vector of size ns contains the average of `ne` expontials.  
 
 
-```{r, echo=TRUE, results='hold', cache=TRUE}
 
+```r
 lambda <-0.2 
 n<-1000 # Number of simulations simulations
 m<-40 # Number of  exponentials.
@@ -47,13 +45,12 @@ exp.means <- function(ne,ns,lambda,seed){
 } 
 
 mns <- exp.means(40,1000,lambda, 1000)
-
 ```
 
 Plot the histogram of a thousand of simulated means and compare the average of these means with its theoretical value.
 
-```{r, echo=TRUE, results='hold', cache=TRUE}
 
+```r
 library(ggplot2)
 
 g <- ggplot(mns, aes(x=mns)) 
@@ -81,8 +78,9 @@ hist+ geom_vline(aes(xintercept=smn),color="red", linetype="dashed", size=1)+
         geom_vline(aes(xintercept=tmn),color="blue", linetype="dashed", size=1)+
         annotate("text", x = notex, y = notey+5, 
                  label = paste("theoretical mean:",  as.character(round(tmn,2))), color="blue")
-
 ```
+
+![](PA1_files/figure-html/unnamed-chunk-3-1.png) 
 
 
 
