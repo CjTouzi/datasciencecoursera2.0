@@ -14,6 +14,18 @@ exp.means <- function(ne,ns,lambda,seed){
         
 } 
 
+
+exps <- function(ne,ns,lambda,seed, FUN=mean){
+        
+        set.seed(seed)
+        mns=NULL
+        for (i in 1:ns) mns=c(mns, FUN(rexp(ne,lambda))) 
+        data.frame(mns)
+        
+        
+} 
+mns <- exps(40,1000,lambda, 1000, mean)
+
 class(mns)
 mns <- exp.means(40,1000,lambda, 1000)
 

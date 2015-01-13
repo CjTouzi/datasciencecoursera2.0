@@ -1,0 +1,267 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textbf{{#1}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={CJ},
+            pdftitle={Appendix of Exponential Distribution and Central Limit Theorem},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+\setlength{\droptitle}{-2em}
+  \title{Appendix of Exponential Distribution and Central Limit Theorem}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{CJ}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{Thursday, January 08, 2015}
+
+
+
+
+\begin{document}
+
+\maketitle
+
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\subsubsection{Simulation}\label{simulation}
+
+Firstly, calculate the theoretical values of exponential mean and
+standard deviation. When \texttt{lambda}= 0.2, both mean and standard
+deviation equal to \texttt{5}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda <-}\FloatTok{0.2} 
+
+\CommentTok{# therotical values of sd and mean}
+\NormalTok{tsd <-}\StringTok{ }\DecValTok{1}\NormalTok{/lambda; tmn <-}\StringTok{ }\DecValTok{1}\NormalTok{/lambda}
+
+\NormalTok{tmn;tsd}
+\end{Highlighting}
+\end{Shaded}
+
+Function \texttt{exps} generate a vector of size \texttt{n} contains
+transformation of \texttt{m} exponentials. For example, here we use
+function \texttt{mean}, which returns a vector of means of \texttt{m}
+exponetials.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda <-}\FloatTok{0.2}
+
+\NormalTok{n<-}\DecValTok{1000} \CommentTok{# Number of simulations simulations}
+
+\NormalTok{m<-}\DecValTok{40} \CommentTok{# Number of  exponentials.}
+
+\NormalTok{exps<-}\StringTok{ }\NormalTok{function(ne,ns,lambda,seed, }\DataTypeTok{FUN=}\NormalTok{mean)\{        }
+        \KeywordTok{set.seed}\NormalTok{(seed)}
+        \NormalTok{x=}\OtherTok{NULL}
+        \NormalTok{for (i in }\DecValTok{1}\NormalTok{:ns) x=}\KeywordTok{c}\NormalTok{(x, }\KeywordTok{FUN}\NormalTok{(}\KeywordTok{rexp}\NormalTok{(ne,lambda))) }
+        \KeywordTok{data.frame}\NormalTok{(x)       }
+\NormalTok{\} }
+\NormalTok{mns <-}\StringTok{ }\KeywordTok{exps}\NormalTok{(}\DecValTok{40}\NormalTok{,}\DecValTok{1000}\NormalTok{,lambda, }\DecValTok{1000}\NormalTok{, mean)}
+\NormalTok{vars <-}\StringTok{ }\KeywordTok{exps}\NormalTok{(}\DecValTok{40}\NormalTok{,}\DecValTok{1000}\NormalTok{,lambda,}\DecValTok{1000}\NormalTok{, }\DataTypeTok{FUN=}\NormalTok{var)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Sample Mean versus Theoretical
+Mean}\label{sample-mean-versus-theoretical-mean}
+
+Plot the histogram of a thousand of simulated means
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{# average of means}
+\NormalTok{smn <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(mns$x); smn}
+
+\CommentTok{# standard error}
+\NormalTok{sse <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(mns$x)/}\KeywordTok{sqrt}\NormalTok{(n); sse}
+
+\CommentTok{# plot histogram}
+\NormalTok{g1 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mns, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x)) }
+
+\NormalTok{myhist<-}\StringTok{ }\NormalTok{function(g, bw,title) \{        }
+        \NormalTok{hist <-}\StringTok{ }\NormalTok{g+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth=}\NormalTok{bw, }\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{, }\DataTypeTok{fill=}\StringTok{"white"}\NormalTok{)+}
+\StringTok{                }\KeywordTok{ggtitle}\NormalTok{(title)+}
+\StringTok{                }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{lineheight=}\NormalTok{.}\DecValTok{8}\NormalTok{, }\DataTypeTok{face=}\StringTok{"bold"}\NormalTok{))+}
+\StringTok{                }\KeywordTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{)+}
+\StringTok{                }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Count"}\NormalTok{)}
+        \NormalTok{hist }
+\NormalTok{\}}
+
+\NormalTok{hist1 <-}\StringTok{ }\KeywordTok{myhist}\NormalTok{(g1, }\FloatTok{0.1}\NormalTok{, }\DataTypeTok{title=}\StringTok{"Fig1: Sample Mean versus Theoretical Mean"}\NormalTok{)}
+
+\CommentTok{# add annotation }
+\NormalTok{notex <-}\StringTok{ }\DecValTok{6}\NormalTok{; notey <-}\StringTok{ }\DecValTok{70}
+\NormalTok{hist1+}\StringTok{ }\KeywordTok{geom_vline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xintercept=}\NormalTok{smn),}\DataTypeTok{color=}\StringTok{"red"}\NormalTok{, }\DataTypeTok{linetype=}\StringTok{"dashed"}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{)+}
+\StringTok{        }\KeywordTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\DataTypeTok{x =} \NormalTok{notex, }\DataTypeTok{y =} \NormalTok{notey, }
+                 \DataTypeTok{label =} \KeywordTok{paste}\NormalTok{(}\StringTok{"sample mean:"}\NormalTok{, }\KeywordTok{as.character}\NormalTok{(}\KeywordTok{round}\NormalTok{(smn,}\DecValTok{2}\NormalTok{))), }\DataTypeTok{color=}\StringTok{"red"}\NormalTok{)+}
+\StringTok{        }\KeywordTok{geom_vline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xintercept=}\NormalTok{tmn),}\DataTypeTok{color=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{linetype=}\StringTok{"dashed"}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{)+}
+\StringTok{        }\KeywordTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\DataTypeTok{x =} \NormalTok{notex, }\DataTypeTok{y =} \NormalTok{notey}\DecValTok{+5}\NormalTok{, }
+                 \DataTypeTok{label =} \KeywordTok{paste}\NormalTok{(}\StringTok{"theoretical mean:"}\NormalTok{,  }\KeywordTok{as.character}\NormalTok{(}\KeywordTok{round}\NormalTok{(tmn,}\DecValTok{2}\NormalTok{))), }\DataTypeTok{color=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+As we can see from \texttt{Fig1}, the center of sample means is very
+close to the theoretical mean with a standard error 0.02558013.
+
+\subsubsection{Sample Variance versus Theoretical
+Variance}\label{sample-variance-versus-theoretical-variance}
+
+Plot the histogram of a thousand of simulated variances
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{# average of variances}
+\NormalTok{mv <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(vars$x);mv}
+
+\CommentTok{# standard error}
+\NormalTok{sse <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(vars$x)/}\KeywordTok{sqrt}\NormalTok{(n); sse}
+
+\CommentTok{# plot histogram}
+\NormalTok{g2 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(vars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x)) }
+
+\NormalTok{hist2 <-}\StringTok{ }\KeywordTok{myhist}\NormalTok{(g2, }\DecValTok{1}\NormalTok{, }\DataTypeTok{title=}\StringTok{"Fig2: Sample Variance versus Theoretical Variance"}\NormalTok{)}
+
+\CommentTok{# add annotation }
+
+\NormalTok{notex <-}\StringTok{ }\DecValTok{50}\NormalTok{; notey <-}\StringTok{ }\DecValTok{45}
+
+\NormalTok{hist2+}\StringTok{ }\KeywordTok{geom_vline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xintercept=}\NormalTok{mv),}\DataTypeTok{color=}\StringTok{"red"}\NormalTok{, }\DataTypeTok{linetype=}\StringTok{"dashed"}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{)+}
+\StringTok{        }\KeywordTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\DataTypeTok{x =} \NormalTok{notex, }\DataTypeTok{y =} \NormalTok{notey, }
+                 \DataTypeTok{label =} \KeywordTok{paste}\NormalTok{(}\StringTok{"sample variance:"}\NormalTok{, }\KeywordTok{as.character}\NormalTok{(}\KeywordTok{round}\NormalTok{(mv,}\DecValTok{2}\NormalTok{))), }\DataTypeTok{color=}\StringTok{"red"}\NormalTok{)+}
+\StringTok{        }\KeywordTok{geom_vline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xintercept=}\NormalTok{tsd^}\DecValTok{2}\NormalTok{),}\DataTypeTok{color=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{linetype=}\StringTok{"dashed"}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{)+}
+\StringTok{        }\KeywordTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\DataTypeTok{x =} \NormalTok{notex, }\DataTypeTok{y =} \NormalTok{notey}\DecValTok{+5}\NormalTok{, }
+                 \DataTypeTok{label =} \KeywordTok{paste}\NormalTok{(}\StringTok{"theoretical variance:"}\NormalTok{,  }\KeywordTok{as.character}\NormalTok{(}\KeywordTok{round}\NormalTok{(tsd^}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))), }\DataTypeTok{color=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Nomarlization}\label{nomarlization}
+
+Here we normalize both sample mean and variance and compare with the
+standard normal distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{normalize <-}\StringTok{ }\NormalTok{function(x, xbar, ste)\{        }
+        \NormalTok{(x-xbar)/ste       }
+\NormalTok{\} }
+
+\NormalTok{Nmns <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{normalize}\NormalTok{(mns$x, }\KeywordTok{mean}\NormalTok{(mns$x), }\KeywordTok{sd}\NormalTok{(mns$x))); }\KeywordTok{names}\NormalTok{(Nmns) <-}\StringTok{ "x"}
+\NormalTok{Nv <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{normalize}\NormalTok{(vars,}\KeywordTok{mean}\NormalTok{(vars$x), }\KeywordTok{sd}\NormalTok{(vars$x))); }\KeywordTok{names}\NormalTok{(Nmns) <-}\StringTok{ "x"}
+\end{Highlighting}
+\end{Shaded}
+
+Plot both distributions of sample mean and variance and overlay with the
+standard normal distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{require}\NormalTok{(gridExtra)}
+
+\CommentTok{# plot histogram}
+\NormalTok{g3 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Nmns, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x)) }
+\NormalTok{g4 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Nv, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x)) }
+
+\CommentTok{# plot density + standard normal distribution }
+\NormalTok{myNormPlot <-}\StringTok{ }\NormalTok{function(fh, title)\{        }
+        \NormalTok{g<-}\StringTok{ }\NormalTok{fh+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{..density..), }\DataTypeTok{binwidth=}\FloatTok{0.2}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"black"}\NormalTok{, }\DataTypeTok{fill=}\StringTok{"white"}\NormalTok{)+}
+\StringTok{        }\KeywordTok{ggtitle}\NormalTok{(title)+}
+\StringTok{        }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{lineheight=}\NormalTok{.}\DecValTok{8}\NormalTok{, }\DataTypeTok{face=}\StringTok{"bold"}\NormalTok{))+}
+\StringTok{        }\KeywordTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{)+}
+\StringTok{        }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{)+}
+\StringTok{        }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =} \NormalTok{dnorm, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{)+}
+\StringTok{        }\KeywordTok{xlim}\NormalTok{(-}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+        \NormalTok{g}
+        
+\NormalTok{\} }
+
+\NormalTok{g3 <-}\StringTok{ }\KeywordTok{myNormPlot}\NormalTok{(g3,}\StringTok{"(a) Normalized Sample Mean"}\NormalTok{)}
+\NormalTok{g4 <-}\StringTok{ }\KeywordTok{myNormPlot}\NormalTok{(g4,}\StringTok{"(b) Normalized Sample Variance"}\NormalTok{)}
+
+\KeywordTok{grid.arrange}\NormalTok{(g3, g4, }\DataTypeTok{ncol=}\DecValTok{2}\NormalTok{, }
+             \DataTypeTok{main=}\KeywordTok{textGrob}\NormalTok{(}\StringTok{"Fig3: Comparison with Standard Normal"}\NormalTok{,}
+                           \DataTypeTok{gp =} \KeywordTok{gpar}\NormalTok{(}\DataTypeTok{fontsize =} \DecValTok{14}\NormalTok{, }
+                                     \DataTypeTok{fontface =} \StringTok{"bold"}\NormalTok{))}
+             \NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}
