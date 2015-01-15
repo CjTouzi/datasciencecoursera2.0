@@ -39,7 +39,7 @@ lines(xVals, p2[,3])
 summary(fit)
 
 mean(x)
-b1 <- -5.3445 +qt(0.975, length(x)-2)*0.5591
+b1 <- -5.3445 -qt(0.975, length(x)-2)*0.5591
 b1
 b0 <- 37.2851+ qt(0.975, length(x)-2)* 1.8776
 b1 * 3+ b0
@@ -57,6 +57,6 @@ help(mtcars)
 
 x <- 2* mtcars$wt; y <- mtcars$mpg
 fit <- lm(y ~ x)
-
+summary(fit)
 
 

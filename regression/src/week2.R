@@ -84,8 +84,10 @@ plot(x,y, frame=FALSE,
      xlab="Carat", ylab="Dollars", 
      pch=21, col="black", bg="lightblue",cex=2)
 abline(fit,lwd=2)
-lines(xVals, p1[,2]); lines(xVals, p1[,3])
-lines(xVals, p2[,2]);lines(xVals, p1[,3])
+lines(xVals, p1[,2])
+lines(xVals, p1[,3])
+lines(xVals, p2[,2])
+lines(xVals, p2[,3])
 
 # multivariable linear models 
 
