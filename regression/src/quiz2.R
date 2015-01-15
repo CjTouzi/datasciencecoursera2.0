@@ -12,18 +12,21 @@ summary(fit)
 
 
 res <- resid(lm(y~x))
+sqrt(sum(res^2))/sqrt(7)
+
 class(res)
 
 
 # Q3 ------------------------------------------------------------------
 
+# confidence interval is the confidence for the average 
+
 data(mtcars)
 x <- mtcars$wt; y <- mtcars$mpg
 fit <- lm(y ~ x)
 xVals <- seq(min(x), max(x), by=.01)
-newdata <- data.frame(x=xVals)
-p1 <- predict(fit, newdata, interval= "confidence")
-p2 <- predict(fit,newdata, interval ="prediction")
+newdata <- data.frame(x=mean(x))
+predict(fit, newdata, interval= "confidence")
 
 
 plot(x,y, frame=FALSE, 
@@ -52,11 +55,36 @@ help(mtcars)
 # Q5 ----------------------------------------------------------------------
 
 
+# predication interval is the confidence interval for one data, taking account the rand 
+data(mtcars)
+x <- mtcars$wt; y <- mtcars$mpg
+fit <- lm(y ~ x)
+xVals <- seq(min(x), max(x), by=.01)
+newdata <- data.frame(x=3)
+
+
+predict(fit,newdata, interval ="prediction")
 
 # Q6 ----------------------------------------------------------------------
 
-x <- 2* mtcars$wt; y <- mtcars$mpg
+data(mtcars)
+
+x <- 0.5*mtcars$wt; y <- mtcars$mpg
+
+fit <- lm(y ~ x)
+xVals <- seq(min(x), max(x), by=.01)
+newdata <- data.frame(x=1)
+
+summary(fit)
+-10.689-qt(0.975,length(x)-2)*1.118
+
+
+# Q9 ----------------------------------------------------------------------
+data(mtcars)
+x <- mtcars$wt; y <- mtcars$mpg
 fit <- lm(y ~ x)
 summary(fit)
+1/(1-0.7528)
+
 
 
