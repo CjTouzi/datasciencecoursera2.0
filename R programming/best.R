@@ -19,23 +19,19 @@ best <- function(state, outcome) {
         # [23] "Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia" 
         
         
-        outcome.list <- c("heart attack","pneumonia","heart failure")
-        grepl(outcome,outcome.list)
+        outcome.list <- c("heart attack","pneumonia","heart failure")        
         
-        if (outcome==){
-               
+        
+        
+        outcomeList <- c("heart attack","pneumonia","heart failure")
+        
+        if (! outcome %in% outcomeList) {
                 
+                stop("invalid outcome") 
                 
-                
-        }
-        if (outcome==){
-               
         }
         
-        if (outcome==){
-                
-        }
-        stop("invalid outcome")
+       
                 
         ## Check that state and outcome are valid
         ## Return hospital name in that state with lowest 30-day death rate

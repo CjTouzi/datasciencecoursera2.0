@@ -16,7 +16,7 @@ hist(outcome[, 11])
 source("best.R")
 best("NY", "hert attack")
 
-outcomeList <- c("heart attack","pneumonia","heart failure")
+
 
 "heart" %in% outcomeList
 
