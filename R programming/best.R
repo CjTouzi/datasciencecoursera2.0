@@ -10,8 +10,8 @@
 
 best <- function(state, outcome) {
         
-        library(dplyr)
         ## Read outcome data
+        
         data <- read.csv("./outcome-of-care-measures.csv", colClasses = "character")
         
         # [11] "Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack" 
@@ -19,21 +19,31 @@ best <- function(state, outcome) {
         # [23] "Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia" 
         
         
-        outcome.list <- c("heart attack","pneumonia","heart failure")        
+        ## Check that state and outcome are valid
+        outcome.list <- c("heart attack","pneumonia","heart failure")  
         
         
-        
-        outcomeList <- c("heart attack","pneumonia","heart failure")
-        
-        if (! outcome %in% outcomeList) {
+        if (! outcome %in%  outcome.list) {
                 
                 stop("invalid outcome") 
                 
         }
         
-       
-                
-        ## Check that state and outcome are valid
-        ## Return hospital name in that state with lowest 30-day death rate
+        state.list <- unique(data$State)
         
+        if (! state %in% state.list) {
+            
+            stop("invalid state") 
+            
+        }
+        
+        
+        names(data) <- tolower(names(data))
+        outcome<- paste0("hospital.30.day.death..mortality..rates.from.",sub(" ",".",outcome))
+        
+        
+        
+        database <- data[data$state == state,]
+        database$hospital.name[which.min(database[,outcome])]
+ 
 }
