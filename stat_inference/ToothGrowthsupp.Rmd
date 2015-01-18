@@ -1,0 +1,99 @@
+---
+title: "Tooth Growth Supplement"
+author: "CJ"
+date: "Sunday, January 18, 2015"
+output: html_document
+---
+
+
+Code Chucks for Tooth Growth.
+
+```{r, echo=TRUE,results='hold',cache=TRUE}
+print("Chuck 1")
+library(datasets)
+data(ToothGrowth)
+?ToothGrowth
+str(ToothGrowth)
+
+```
+
+
+
+```{r, echo=TRUE, results='hold',cache=TRUE}
+print("Chuck 2")
+
+# factorising dose 
+ToothGrowth$dose <- factor(ToothGrowth$dose)
+
+# summarize the data
+summary(ToothGrowth)
+with(ToothGrowth, table(dose,supp))
+
+# NA data
+print("number of NAs"); sum(is.na(ToothGrowth))
+
+```
+
+
+```{r, echo=TRUE, results='hold',cache=TRUE}
+
+print("Chuck 3")
+par(mfrow=c(1,2))
+boxplot(len ~ dose, data = ToothGrowth, main="(a) Dose",xlab="mg", ylab="length(mm)")
+boxplot(len ~ supp, data = ToothGrowth, main="(b) Supp")
+
+```
+
+
+
+```{r, echo=TRUE, results='hold',cache=TRUE}
+
+print("Chuck 4")
+par(mfrow=c(1,1))
+boxplot(len ~ dose*supp, data = ToothGrowth,ylab="length(mm)")
+
+
+```
+
+
+
+```{r, echo=TRUE, results='hold',cache=TRUE}
+
+print("Chuck 5")
+with(ToothGrowth, pairwise.t.test(len,dose, pool.sd=FALSE))
+
+```
+
+
+```{r, echo=TRUE, results='hold',cache=TRUE}
+
+print("Chuck 6")
+with(ToothGrowth, t.test(len~supp))
+
+```
+
+
+
+```{r, echo=TRUE, results='hold',cache=TRUE}
+
+print("Chuck 7")
+levels <- levels(ToothGrowth$dose);levels
+
+# t-test regarding dose grouped by supp
+
+re <- lapply(1:length(levels), function(i) 
+    with(ToothGrowth,
+         t.test(len[dose==levels[[i]]]~supp[dose==levels[[i]]])
+         )
+    )
+
+lapply(1:3, function(i) re[[i]]$conf.int)
+
+```
+
+
+
+
+
+
+
