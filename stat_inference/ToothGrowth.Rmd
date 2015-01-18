@@ -1,0 +1,137 @@
+---
+title: "Tooth Growth"
+author: "CJ"
+date: "Sunday, January 18, 2015"
+output: html_document
+---
+
+
+### About the data
+
+In the second part of the project, we analyze the ToothGrowth data in the R datasets package. The data is the length of odontoblasts (teeth) in each of 10 guinea pigs at each of three dose levels of Vitamin C (0.5, 1, and 2 mg) with each of two delivery methods (orange juice or ascorbic acid).
+
+
+### Basic inferential data analysis
+We load the data and perform some basic exploratory data analyses.
+
+
+```{r, echo=FALSE, results='hold',cache=TRUE}
+print("Chuck 1")
+
+library(datasets)
+data(ToothGrowth)
+?ToothGrowth
+str(ToothGrowth)
+
+```
+
+We encode dose as a factor and summarize the data. 
+
+```{r, echo=FALSE, results='hold',cache=TRUE}
+print("Chuck 2")
+
+# factorising dose 
+ToothGrowth$dose <- factor(ToothGrowth$dose)
+
+# summarize the data
+summary(ToothGrowth)
+with(ToothGrowth, table(dose,supp))
+
+# NA data
+print("number of NAs"); sum(is.na(ToothGrowth))
+
+```
+
+The tooth length is between `4.2~33.90` with a mean `18.81` overall. There is no `NA` data and `10` observations with each dose level and delivery method. 
+
+Now boxplot the tooth lengths vs dosage and delivery methods respectively. 
+
+```{r, echo=FALSE, results='hold',cache=TRUE}
+print("Chuck 3")
+par(mfrow=c(1,2))
+boxplot(len ~ dose, data = ToothGrowth, main="(a) Dose",xlab="mg", ylab="length(mm)")
+boxplot(len ~ supp, data = ToothGrowth, main="(b) Supp")
+
+```
+
+As shown the above figure, generally, the tooth length increase as the rise of Vc dose regardless of Supp. And there seems no significant improvement on tooth length when performing different delivery methods. In latter section, we choose to use T-test on these on assumptions due to the small sample size. 
+
+Now, let's see the boxplot with each dose level and delivery method.
+
+
+```{r, echo=FALSE, results='hold',cache=TRUE}
+print("Chuck 4")
+par(mfrow=c(1,1))
+boxplot(len ~ dose*supp, data = ToothGrowth,ylab="length(mm)")
+
+
+```
+
+At first glance, orange Juice seems to perform better at the lower dosages, but has a similar result to Vitamin C at the 2.0mg dosage. 
+
+### Hypotheses
+
+We will examine 3 Null Hypotheses in this sections:
+
+1. Different level of Vc dosage have the same effect on tooth length.
+2. Orange Juice (OJ) and Vitamin C (VC) have the same effect on tooth length.
+3. OJ and VC have the same effect on tooth length when the dosage is the same. 
+
+
+#### Hypothesis 1: Different level of Vc dosage have the same effect on tooth length.
+
+Here we group the data by three levels of dosage and perform T-test between each pair of dosage(0.5~1. 1~2, 0.5~2). 
+
+```{r, echo=FALSE, results='hold',cache=TRUE}
+print("Chuck 5")
+with(ToothGrowth, pairwise.t.test(len,dose, pool.sd=FALSE))
+
+```
+
+As we can see, the p-value in each pair is much more smaller than 0.05, which indicates that we could reject the Null Hypotheses in 95% confidence interval. In other words, levels of Vc dosage do have significant effect on tooth length in 95% confidence interval.
+
+#### Hypothesis 2: Orange Juice (OJ) and Vitamin C (VC) have the same effect on tooth length.
+
+Now, let's perform the t-test to the second hypothsis. Here, we group the data by two deliveray methods. 
+
+```{r, echo=FALSE, results='hold',cache=TRUE}
+print("Chuck 6")
+with(ToothGrowth, t.test(len~supp))
+
+```
+
+The result shows that 95% confidence interval `( -0.1710156, 7.5710156)` contains zero, which suggest that we are not able to reject the Null Hypothesis. Or say that Orange Juice (OJ) and Vitamin C (VC) do have the same effect on tooth length with in 95% confidence interval. 
+
+#### Hypothesis 3: OJ and VC have the same effect on tooth length when the dosage is the same. 
+
+Hypothesis 3 contains three sub hypotheses, which is OJ and VC have the same effect on tooth length regarding three levels of dosage. Here we check three sub hypotheses using 95% confidence interval. 
+
+```{r, echo=FALSE, results='hold',cache=TRUE}
+print("Chuck 7")
+levels <- levels(ToothGrowth$dose);levels
+
+# t-test regarding dose grouped by supp
+
+re <- lapply(1:length(levels), function(i) 
+    with(ToothGrowth,
+         t.test(len[dose==levels[[i]]]~supp[dose==levels[[i]]])
+         )
+    )
+
+lapply(1:3, function(i) re[[i]]$conf.int)
+
+```
+As the result shows that we would reject the Null hypothese at `"0.5"` and `"1.0"` dosage levels but fail to reject the Null hypothesis at `"2.0"` levels. The T-tests confirm our initial impression that orange Juice seems to perform better at the lower dosages, but has a similar result to Vitamin C at the 2.0mg dosage.
+
+
+### Conclusions
+
+In summary, in 95% confidence interval, different level of Vc dosage have effect on tooth length. And in general orange Juice (OJ) and Vitamin C (VC) have the same effect on tooth length. Finally, at `"0.5"` and `"1.0"` dosage levels, OJ and VC show different effects on tooth but simliar effect at `"2.0"`
+
+
+
+
+
+
+
+
