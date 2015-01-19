@@ -2,7 +2,7 @@
 title: "Tooth Growth Supplement"
 author: "CJ"
 date: "Sunday, January 18, 2015"
-output: html_document
+output: pdf_document
 ---
 
 
@@ -42,6 +42,10 @@ par(mfrow=c(1,2))
 boxplot(len ~ dose, data = ToothGrowth, main="(a) Dose",xlab="mg", ylab="length(mm)")
 boxplot(len ~ supp, data = ToothGrowth, main="(b) Supp")
 
+print("Chuck 4")
+par(mfrow=c(1,1))
+boxplot(len ~ dose*supp, data = ToothGrowth,ylab="length(mm)")
+
 ```
 
 
@@ -49,17 +53,6 @@ boxplot(len ~ supp, data = ToothGrowth, main="(b) Supp")
 ```{r, echo=TRUE, results='hold',cache=TRUE}
 
 print("Chuck 4")
-par(mfrow=c(1,1))
-boxplot(len ~ dose*supp, data = ToothGrowth,ylab="length(mm)")
-
-
-```
-
-
-
-```{r, echo=TRUE, results='hold',cache=TRUE}
-
-print("Chuck 5")
 with(ToothGrowth, pairwise.t.test(len,dose, pool.sd=FALSE))
 
 ```
@@ -67,7 +60,7 @@ with(ToothGrowth, pairwise.t.test(len,dose, pool.sd=FALSE))
 
 ```{r, echo=TRUE, results='hold',cache=TRUE}
 
-print("Chuck 6")
+print("Chuck 5")
 with(ToothGrowth, t.test(len~supp))
 
 ```
@@ -76,7 +69,7 @@ with(ToothGrowth, t.test(len~supp))
 
 ```{r, echo=TRUE, results='hold',cache=TRUE}
 
-print("Chuck 7")
+print("Chuck 6")
 levels <- levels(ToothGrowth$dose);levels
 
 # t-test regarding dose grouped by supp

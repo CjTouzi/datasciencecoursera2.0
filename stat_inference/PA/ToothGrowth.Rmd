@@ -2,7 +2,7 @@
 title: "Tooth Growth"
 author: "CJ"
 date: "Sunday, January 18, 2015"
-output: html_document
+output: pdf_document
 ---
 
 
@@ -16,7 +16,7 @@ We load the data and perform some basic exploratory data analyses.
 
 
 ```{r, echo=FALSE, results='hold',cache=TRUE}
-print("Chuck 1")
+# print("Chuck 1")
 
 library(datasets)
 data(ToothGrowth)
@@ -28,7 +28,7 @@ str(ToothGrowth)
 We encode dose as a factor and summarize the data. 
 
 ```{r, echo=FALSE, results='hold',cache=TRUE}
-print("Chuck 2")
+# print("Chuck 2")
 
 # factorising dose 
 ToothGrowth$dose <- factor(ToothGrowth$dose)
@@ -47,27 +47,18 @@ The tooth length is between `4.2~33.90` with a mean `18.81` overall. There is no
 Now boxplot the tooth lengths vs dosage and delivery methods respectively. 
 
 ```{r, echo=FALSE, results='hold',cache=TRUE}
-print("Chuck 3")
+# print("Chuck 3")
 par(mfrow=c(1,2))
 boxplot(len ~ dose, data = ToothGrowth, main="(a) Dose",xlab="mg", ylab="length(mm)")
 boxplot(len ~ supp, data = ToothGrowth, main="(b) Supp")
-
-```
-
-As shown the above figure, generally, the tooth length increase as the rise of Vc dose regardless of Supp. And there seems no significant improvement on tooth length when performing different delivery methods. In latter section, we choose to use T-test on these on assumptions due to the small sample size. 
-
-Now, let's see the boxplot with each dose level and delivery method.
-
-
-```{r, echo=FALSE, results='hold',cache=TRUE}
-print("Chuck 4")
+# print("Chuck 4")
 par(mfrow=c(1,1))
-boxplot(len ~ dose*supp, data = ToothGrowth,ylab="length(mm)")
+boxplot(len ~ dose*supp, data = ToothGrowth,ylab="length(mm)", main="Dose & Supp")
 
 
 ```
 
-At first glance, orange Juice seems to perform better at the lower dosages, but has a similar result to Vitamin C at the 2.0mg dosage. 
+As shown in `Dose`, generally, the tooth length increase as the rise of Vc dose regardless of Supp. And there seems no significant improvement on tooth length when performing different delivery methods (Figure `Supp`). In latter section, we choose to use T-test on these on assumptions due to the small sample size. At first glance of figure `Dose & Supp`, orange Juice seems to perform better at the lower dosages, but has a similar result to Vitamin C at the 2.0mg dosage. 
 
 ### Hypotheses
 
@@ -83,7 +74,7 @@ We will examine 3 Null Hypotheses in this sections:
 Here we group the data by three levels of dosage and perform T-test between each pair of dosage(0.5~1. 1~2, 0.5~2). 
 
 ```{r, echo=FALSE, results='hold',cache=TRUE}
-print("Chuck 5")
+# print("Chuck 4")
 with(ToothGrowth, pairwise.t.test(len,dose, pool.sd=FALSE))
 
 ```
@@ -95,7 +86,7 @@ As we can see, the p-value in each pair is much more smaller than 0.05, which in
 Now, let's perform the t-test to the second hypothsis. Here, we group the data by two deliveray methods. 
 
 ```{r, echo=FALSE, results='hold',cache=TRUE}
-print("Chuck 6")
+# print("Chuck 5")
 with(ToothGrowth, t.test(len~supp))
 
 ```
@@ -107,7 +98,7 @@ The result shows that 95% confidence interval `( -0.1710156, 7.5710156)` contain
 Hypothesis 3 contains three sub hypotheses, which is OJ and VC have the same effect on tooth length regarding three levels of dosage. Here we check three sub hypotheses using 95% confidence interval. 
 
 ```{r, echo=FALSE, results='hold',cache=TRUE}
-print("Chuck 7")
+# print("Chuck 6")
 levels <- levels(ToothGrowth$dose);levels
 
 # t-test regarding dose grouped by supp
