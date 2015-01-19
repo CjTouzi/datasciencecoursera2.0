@@ -30,6 +30,13 @@ library(car)
 fit <- lm(Fertility ~., data=swiss)
 vif(fit)
 
+
+
+
+# How to do nested model testing in R -------------------------------------
+
+
 fit1 <- lm(Fertility ~ Agriculture, data=swiss)
 fit3 <- update(fit,Fertility ~ Agriculture+Examination+Education, data=swiss)
 fit5 <- update(fit,Fertility ~ Agriculture+Examination+Education+Catholic+Infant.Mortality, data=swiss)
+anova(fit1,fit3,fit5)
