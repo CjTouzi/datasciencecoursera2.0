@@ -74,3 +74,11 @@ g4 <- sin(2 * pi * notes4[5] * t)
 chord <- c4 + e4 + g4 + rnorm(n, 0, 0.3)
 x <- sapply(notes4, function(freq) sin(2 * pi * freq * t))
 fit <- lm(chord ~ x - 1)
+
+plot(c(0, 9), c(0, 1.5), xlab = "Note", ylab = "Coef^2", axes = FALSE, frame = TRUE, type = "n")
+axis(2)
+axis(1, at = 1 : 8, labels = c("c4", "d4", "e4", "f4", "g4", "a4", "b4", "c5"))
+for (i in 1 : 8) abline(v = i, lwd = 3, col = grey(.8))
+lines(c(0, 1 : 8, 9), c(0, coef(fit)^2, 0), type = "l", lwd = 3, col = "red")
+
+a <- fft(chord); plot(Re(a)^2, type = "l")
