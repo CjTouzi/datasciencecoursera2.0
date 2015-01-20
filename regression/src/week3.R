@@ -30,8 +30,8 @@ library(car)
 fit <- lm(Fertility ~., data=swiss)
 vif(fit)
 
-
-
+tem <- summary(fit)
+tem$sigma
 
 # How to do nested model testing in R -------------------------------------
 
