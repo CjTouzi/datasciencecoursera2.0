@@ -8,6 +8,9 @@ mtcars[,fl] <- lapply(fl, function(fl) {factor(mtcars[,fl])})
 mtcars$brand <- make.names(rownames(mtcars))
 mtcars$gpm <- 1/mtcars$mpg
 str(mtcars)
+gpmwt <- lm(gpm ~ wt, data = mtcars); gpmwt
+
+
 
 # Exploratory Analysis
 # panel.smooth function is built in.
