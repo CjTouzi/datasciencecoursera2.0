@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)https://www.otexts.org/fpp -->
+<html lang="en" dir="ltr" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:og="http://ogp.me/ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content=" Forecasting: principles and practice" about="/fpp" property="dc:title">
+<meta about="/fpp" property="sioc:num_replies" content="0" datatype="xsd:integer">
+<link rel="shortcut icon" href="https://www.otexts.org/sites/default/files/favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="next" href="https://www.otexts.org/fpp/1">
+<link rel="shortlink" href="https://www.otexts.org/node/1">
+<meta name="Generator" content="Drupal 7 (http://drupal.org)">
+<script type="text/javascript" async="" src="./Forecasting principles and practice_files/ga.js"></script><script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({
+showProcessingMessages: false, 
+messageStyle: "simple",
+tex2jax: { 
+  	inlineMath: [['$','$'], ['\\(','\\)']],
+  	displayMath: [ ['$$','$$'], ['\[','\]'] ],
+  	processEscapes: true
+  	},
+  jax: ["input/TeX", "output/SVG"],
+  TeX: { 
+    Macros: {
+      RR: "{\\textbf{R}}",
+      bm: ["{\\boldsymbol{#1}}",1],
+      pred: ["{\\hat{#1}_{#2|#3}}",3],
+      damped: "{_\\text{d}}",
+      AICc: "{\\text{AIC$_{\\text{c}}$}}",
+      pounds: "{\\it\\unicode{xA3}}"
+    },
+    noErrors: { disabled: true }
+  },
+  SVG: {
+    undefinedFamily: "STIXGeneral, 'Arial Unicode MS', serif"
+  }
+});
+</script><link rel="canonical" href="./Forecasting principles and practice_files/Forecasting principles and practice.html">
+<title> Forecasting: principles and practice | OTexts</title>
+<style type="text/css" media="all">@import url("https://www.otexts.org/modules/system/system.base.css?mzrtpu");
+@import url("https://www.otexts.org/modules/system/system.menus.css?mzrtpu");
+@import url("https://www.otexts.org/modules/system/system.messages.css?mzrtpu");
+@import url("https://www.otexts.org/modules/system/system.theme.css?mzrtpu");</style>
+<style type="text/css" media="all">@import url("https://www.otexts.org/sites/all/modules/footnotes/footnotes.css?mzrtpu");
+@import url("https://www.otexts.org/modules/book/book.css?mzrtpu");
+@import url("https://www.otexts.org/modules/comment/comment.css?mzrtpu");
+@import url("https://www.otexts.org/modules/field/theme/field.css?mzrtpu");
+@import url("https://www.otexts.org/sites/all/modules/mollom/mollom.css?mzrtpu");
+@import url("https://www.otexts.org/modules/node/node.css?mzrtpu");
+@import url("https://www.otexts.org/modules/search/search.css?mzrtpu");
+@import url("https://www.otexts.org/modules/user/user.css?mzrtpu");
+@import url("https://www.otexts.org/sites/all/modules/video_filter/video_filter.css?mzrtpu");
+@import url("https://www.otexts.org/modules/forum/forum.css?mzrtpu");
+@import url("https://www.otexts.org/sites/all/modules/views/css/views.css?mzrtpu");
+@import url("https://www.otexts.org/sites/all/modules/caption_filter/caption-filter.css?mzrtpu");</style>
+<link type="text/css" rel="stylesheet" href="./Forecasting principles and practice_files/css" media="all">
+<link type="text/css" rel="stylesheet" href="./Forecasting principles and practice_files/css(1)" media="all">
+<link type="text/css" rel="stylesheet" href="./Forecasting principles and practice_files/css(2)" media="all">
+<style type="text/css" media="all">@import url("https://www.otexts.org/sites/all/modules/amazon/amazon.css?mzrtpu");
+@import url("https://www.otexts.org/sites/all/modules/ctools/css/ctools.css?mzrtpu");
+@import url("https://www.otexts.org/sites/all/modules/dhtml_menu/dhtml_menu.css?mzrtpu");
+@import url("https://www.otexts.org/sites/all/modules/geshifilter/geshifilter.css?mzrtpu");
+@import url("https://www.otexts.org/sites/all/modules/panels/css/panels.css?mzrtpu");
+@import url("https://www.otexts.org/sites/all/modules/typogrify/typogrify.css?mzrtpu");
+@import url("https://www.otexts.org/sites/all/modules/og_menu/og_menu.css?mzrtpu");</style>
+<style type="text/css" media="all">@import url("https://www.otexts.org/sites/all/themes/business/style.css?mzrtpu");
+@import url("https://www.otexts.org/sites/default/files/color/business-dd5ccdc7/colors.css?mzrtpu");
+@import url("https://www.otexts.org/sites/default/files/google_fonts.css?mzrtpu");</style>
+<style type="text/css" media="all">@import url("https://www.otexts.org/sites/default/files/css_injector/css_injector_2.css?mzrtpu");
+@import url("https://www.otexts.org/sites/default/files/css_injector/css_injector_3.css?mzrtpu");
+@import url("https://www.otexts.org/sites/default/files/css_injector/css_injector_4.css?mzrtpu");
+@import url("https://www.otexts.org/sites/default/files/css_injector/css_injector_5.css?mzrtpu");
+@import url("https://www.otexts.org/sites/default/files/css_injector/css_injector_6.css?mzrtpu");
+@import url("https://www.otexts.org/sites/default/files/css_injector/css_injector_7.css?mzrtpu");
+@import url("https://www.otexts.org/sites/default/files/css_injector/css_injector_8.css?mzrtpu");</style>
+<script type="text/javascript" src="./Forecasting principles and practice_files/jquery.js"></script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/jquery.once.js"></script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/drupal.js"></script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/admin_devel.js"></script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/caption-filter.js"></script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/dhtml_menu.js"></script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/MathJax.js"></script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/panels.js"></script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/googleanalytics.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-27933797-2"]);_gaq.push(["_setDomainName", "none"]);_gaq.push(["_setAllowLinker", true]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/superfish.js"></script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/supersubs.js"></script>
+<script type="text/javascript" src="./Forecasting principles and practice_files/sfmenu.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"business","theme_token":"F4Tufw3TCWw5oOOeQy85zDmBE2w5nnCefpraMD7_ybM","js":{"misc\/jquery.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/admin_menu\/admin_devel\/admin_devel.js":1,"sites\/all\/modules\/caption_filter\/js\/caption-filter.js":1,"sites\/all\/modules\/dhtml_menu\/dhtml_menu.js":1,"\/sites\/all\/libraries\/mathjax\/MathJax.js?config=TeX-AMS-MML_HTMLorMML":1,"sites\/all\/modules\/panels\/js\/panels.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"0":1,"sites\/all\/themes\/business\/js\/superfish.js":1,"sites\/all\/themes\/business\/js\/supersubs.js":1,"sites\/all\/themes\/business\/js\/sfmenu.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/modules\/footnotes\/footnotes.css":1,"modules\/book\/book.css":1,"modules\/comment\/comment.css":1,"modules\/field\/theme\/field.css":1,"sites\/all\/modules\/mollom\/mollom.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/video_filter\/video_filter.css":1,"modules\/forum\/forum.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/caption_filter\/caption-filter.css":1,"https:\/\/fonts.googleapis.com\/css?family=Droid+Sans\u0026subset=latin":1,"https:\/\/fonts.googleapis.com\/css?family=Droid+Sans+Mono\u0026subset=latin":1,"https:\/\/fonts.googleapis.com\/css?family=Droid+Serif\u0026subset=latin":1,"sites\/all\/modules\/amazon\/amazon.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/dhtml_menu\/dhtml_menu.css":1,"sites\/all\/modules\/geshifilter\/geshifilter.css":1,"sites\/all\/modules\/panels\/css\/panels.css":1,"sites\/all\/modules\/typogrify\/typogrify.css":1,"sites\/all\/modules\/og_menu\/og_menu.css":1,"sites\/all\/themes\/business\/style.css":1,"sites\/all\/themes\/business\/color\/colors.css":1,"public:\/\/google_fonts.css":1,"public:\/\/css_injector\/css_injector_2.css":1,"public:\/\/css_injector\/css_injector_3.css":1,"public:\/\/css_injector\/css_injector_4.css":1,"public:\/\/css_injector\/css_injector_5.css":1,"public:\/\/css_injector\/css_injector_6.css":1,"public:\/\/css_injector\/css_injector_7.css":1,"public:\/\/css_injector\/css_injector_8.css":1}},"dhtmlMenu":{"nav":"open","animation":{"effects":{"height":"height","opacity":"opacity"},"speed":500},"effects":{"siblings":"close-same-tree","children":"none","remember":0},"filter":{"type":"blacklist","list":[]}},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip","trackDomainMode":"2","trackCrossDomains":["otexts.com","otexts.org"]},"ogContext":{"groupType":"node","gid":"89"}});
+//--><!]]>
+</script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+<!--[if lt IE 9]><script src="/sites/all/themes/business/js/html5.js"></script><![endif]-->
+</head>
+<body class="html not-front not-logged-in one-sidebar sidebar-first page-node page-node- page-node-1 node-type-book og-context og-context-node og-context-node-89">
+    
+<div id="wrap">
+
+  <header id="header" class="clearfix" role="banner">
+
+    <div>
+             <div id="logo">
+        <a href="https://www.otexts.org/" title="Home"><img src="./Forecasting principles and practice_files/Mainlogo.png" alt="Home"></a>
+        </div>
+            <hgroup id="sitename">
+        <h2><a href="https://www.otexts.org/" title="Home"></a></h2>
+        <p></p><!--site slogan-->
+      </hgroup>
+    </div>
+    <nav id="navigation" class="clearfix" role="navigation">
+      <div id="main-menu">
+        <ul class="menu sf-js-enabled sf-shadow"><li class="first leaf dhtml-menu" id="dhtml_menu-962"><a href="https://www.otexts.org/" title="">Home</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-967"><a href="https://www.otexts.org/books">Books</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-2941"><a href="https://www.otexts.org/authors" title="All the OTexts authors">Authors</a></li>
+<li class="dhtml-menu collapsed start-collapsed" id="dhtml_menu-961"><a href="https://www.otexts.org/about" class="sf-with-ul">About<span class="sf-sub-indicator"> »</span></a><ul class="menu sf-js-enabled sf-shadow" style="float: none; width: 16em; display: none; visibility: hidden;"><li class="first leaf dhtml-menu" id="dhtml_menu-2959" style="white-space: normal; float: left; width: 100%;"><a href="https://www.otexts.org/about" title="" style="float: none; width: auto;">Our vision</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-2955" style="white-space: normal; float: left; width: 100%;"><a href="https://www.otexts.org/about/for-readers" style="float: none; width: auto;">OTexts for readers</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-963" style="white-space: normal; float: left; width: 100%;"><a href="https://www.otexts.org/about/for-authors" style="float: none; width: auto;">OTexts for authors</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-3031" style="white-space: normal; float: left; width: 100%;"><a href="https://www.otexts.org/about/who-we-are" style="float: none; width: auto;">Who we are</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-3640" style="white-space: normal; float: left; width: 100%;"><a href="https://www.otexts.org/about/book-citation" style="float: none; width: auto;">Book citation</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-3128" style="white-space: normal; float: left; width: 100%;"><a href="https://otexts.desk.com/" title="" style="float: none; width: auto;">Frequently asked questions</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-3350" style="white-space: normal; float: left; width: 100%;"><a href="http://otexts.uservoice.com/" title="" style="float: none; width: auto;">Feedback and requests</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-2957" style="white-space: normal; float: left; width: 100%;"><a href="https://www.otexts.org/about/contact" style="float: none; width: auto;">Contact</a></li>
+</ul></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-3227"><a href="https://www.otexts.org/donation">Donation</a></li>
+</ul>      </div>
+    </nav><!-- end main-menu -->
+  </header>
+  
+  <div class="region region-header">
+  <div id="block-search-form" class="block block-search">
+
+      
+  <div class="content">
+    <form action="./Forecasting principles and practice_files/Forecasting principles and practice.html" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
+      <h2 class="element-invisible">Search form</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label class="element-invisible" for="edit-search-block-form--2">Search </label>
+ <input title="Enter the terms you wish to search for." type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" class="form-text">
+</div>
+<div class="form-actions form-wrapper" id="edit-actions"><input type="submit" id="edit-submit" name="op" value="Search" class="form-submit"></div><input type="hidden" name="form_build_id" value="form-BSDbu04OK80RxmMJ-PkY21EIVqfbDF9qEPiO8-7G7ts">
+<input type="hidden" name="form_id" value="search_block_form">
+</div>
+</div></form>  </div>
+  
+</div> <!-- /.block -->
+</div>
+ <!-- /.region -->
+
+  
+  <div id="main">
+    <section id="post-content" role="main">
+    <div id="breadcrumbs"><h2 class="element-invisible">You are here</h2><nav class="breadcrumb"><a href="https://www.otexts.org/">Home</a> »  Forecasting: principles and practice</nav></div>                <h1 class="page-title"> Forecasting: principles and practice</h1>                    <div class="region region-content">
+  <div id="block-system-main" class="block block-system">
+
+      
+  <div class="content">
+                            
+      
+    
+  <div class="content node-book">
+    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Welcome to our online textbook on forecasting. This textbook is intended to provide a comprehensive introduction to forecasting methods and to present enough information about each method for readers to be able to use them sensibly. We don’t attempt to give a thorough discussion of the theoretical details behind each method, although the references at the end of each chapter will fill in many of those details. The book is written for three audiences: (1)&nbsp;people finding themselves doing forecasting in business when they may not have had any formal training in the area; (2)&nbsp;undergraduate students studying business; (3)&nbsp;MBA students doing a forecasting elective. We use it ourselves for a second-year subject for students undertaking a Bachelor of Commerce degree at Monash University, Australia.</p>
+
+<p>For most sections, we only assume that readers are familiar with algebra, and high school mathematics should be sufficient background. Readers who have completed an introductory course in statistics will probably want to skip some of <a href="http://otexts.com/fpp/2/">Chapters 2</a> <a href="http://otexts.com/fpp/4/">and 4</a>. There are a couple of sections which require knowledge of matrices, but these are flagged.</p>
+
+<p>At the end of each chapter we provide a list of “further reading”. In general, these lists comprise suggested textbooks that provide a more advanced or detailed treatment of the subject. Where there is no suitable textbook, we suggest journal articles that provide more information.</p>
+
+<p>We use R throughout the book and we intend students to learn how to forecast with R. R is free and available on almost every operating system. It is a wonderful tool for all statistical analysis, not just for forecasting. See <a href="http://otexts.com/fpp/using-r/">Using R</a>
+for instructions on installing and using R. The book is different from other forecasting textbooks in several ways.</p>
+
+<ul>
+<li>It is free and online, making it accessible to a wide audience.</li>
+<li>It uses R, which is free, open-source, and extremely powerful software.</li>
+<li>It is continuously updated. You don’t have to wait until the next edition for errors to be removed or new methods to be discussed. We
+will update the book frequently.</li>
+<li>There are dozens of real data examples taken from our own consulting practice. We have worked with hundreds of businesses and
+organizations helping them with forecasting issues, and this experience has contributed directly to many of the examples given
+here, as well as guiding our general philosophy of forecasting.</li>
+<li>We emphasise graphical methods more than most forecasters. We use graphs to explore the data, analyse the validity of the models
+fitted and present the forecasting results.</li>
+</ul>
+
+<p>Use the table of contents on the right to browse the book. If you have any comments or suggestions on what is here so far, feel free to <a href="http://www.otexts.org/book/fpp">add them on the book page</a>.</p>
+
+<p>Happy forecasting!<br>
+<a href="http://robjhyndman.com/">Rob J Hyndman</a><br>
+<a href="http://georgeathanasopoulos.com/">George Athanasopoulos</a><br>
+May 2012.</p>
+</div></div></div>  <div id="book-navigation-1" class="book-navigation">
+    <ul class="menu"><li class="first collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-318-1"><a href="https://www.otexts.org/fpp/1">1 Getting started</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-319-1"><a href="https://www.otexts.org/fpp/1/1">What can be forecast?</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-320-1"><a href="https://www.otexts.org/fpp/1/2">Forecasting, planning and goals</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-405-1"><a href="https://www.otexts.org/fpp/1/3">Determining what to forecast</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-406-1"><a href="https://www.otexts.org/fpp/1/4">Forecasting data and methods</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-408-1"><a href="https://www.otexts.org/fpp/1/5">Some case studies</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-409-1"><a href="https://www.otexts.org/fpp/1/6">The basic steps in a forecasting task</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-410-1"><a href="https://www.otexts.org/fpp/1/7">The statistical forecasting perspective</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-411-1"><a href="https://www.otexts.org/fpp/1/8">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1267-1"><a href="https://www.otexts.org/fpp/1/9">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-412-1"><a href="https://www.otexts.org/fpp/2">2 The forecaster's toolbox</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-413-1"><a href="https://www.otexts.org/fpp/2/1">Graphics</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-414-1"><a href="https://www.otexts.org/fpp/2/2">Numerical data summaries</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-520-1"><a href="https://www.otexts.org/fpp/2/3">Some simple forecasting methods</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-522-1"><a href="https://www.otexts.org/fpp/2/4">Transformations and adjustments</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-523-1"><a href="https://www.otexts.org/fpp/2/5">Evaluating forecast accuracy</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-524-1"><a href="https://www.otexts.org/fpp/2/6">Residual diagnostics</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-525-1"><a href="https://www.otexts.org/fpp/2/7">Prediction intervals</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-527-1"><a href="https://www.otexts.org/fpp/2/8">Exercises</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1243-1"><a href="https://www.otexts.org/fpp/2/9">Further reading</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-526-1"><a href="https://www.otexts.org/fpp/2/a">The forecast package in R</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-528-1"><a href="https://www.otexts.org/fpp/3">3 Judgmental forecasts</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-1244-1"><a href="https://www.otexts.org/fpp/3/1">Introduction</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1245-1"><a href="https://www.otexts.org/fpp/3/2">Beware of limitations</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1246-1"><a href="https://www.otexts.org/fpp/3/3">Key principles</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1247-1"><a href="https://www.otexts.org/fpp/3/4">The Delphi method</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1248-1"><a href="https://www.otexts.org/fpp/3/5">Forecasting by analogy</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1249-1"><a href="https://www.otexts.org/fpp/3/6">Scenario forecasting</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1250-1"><a href="https://www.otexts.org/fpp/3/7">New product forecasting</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1251-1"><a href="https://www.otexts.org/fpp/3/8">Judgmental adjustments</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1252-1"><a href="https://www.otexts.org/fpp/3/9">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-324-1"><a href="https://www.otexts.org/fpp/4">4 Simple regression</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-325-1"><a href="https://www.otexts.org/fpp/4/1">The simple linear model</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-529-1"><a href="https://www.otexts.org/fpp/4/2">Least squares estimation</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-530-1"><a href="https://www.otexts.org/fpp/4/3">Regression and correlation</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-531-1"><a href="https://www.otexts.org/fpp/4/4">Evaluating the regression model</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-532-1"><a href="https://www.otexts.org/fpp/4/5">Forecasting with regression</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-533-1"><a href="https://www.otexts.org/fpp/4/6">Statistical inference</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-534-1"><a href="https://www.otexts.org/fpp/4/7">Non-linear functional forms</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-536-1"><a href="https://www.otexts.org/fpp/4/8">Regression with time series data</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-535-1"><a href="https://www.otexts.org/fpp/4/9">Summary of notation and terminology</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1253-1"><a href="https://www.otexts.org/fpp/4/10">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1254-1"><a href="https://www.otexts.org/fpp/4/11">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-537-1"><a href="https://www.otexts.org/fpp/5">5 Multiple regression</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-538-1"><a href="https://www.otexts.org/fpp/5/1">Introduction to multiple linear regression</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-539-1"><a href="https://www.otexts.org/fpp/5/2">Some useful predictors</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-540-1"><a href="https://www.otexts.org/fpp/5/3">Selecting predictors</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-541-1"><a href="https://www.otexts.org/fpp/5/4">Residual diagnostics</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-542-1"><a href="https://www.otexts.org/fpp/5/5">Matrix formulation</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-543-1"><a href="https://www.otexts.org/fpp/5/6">Non-linear regression</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-544-1"><a href="https://www.otexts.org/fpp/5/7">Correlation, causation and forecasting</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1255-1"><a href="https://www.otexts.org/fpp/5/8">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1256-1"><a href="https://www.otexts.org/1256">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-605-1"><a href="https://www.otexts.org/fpp/6">6 Time series decomposition</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-606-1"><a href="https://www.otexts.org/fpp/6/1">Time series components</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-607-1"><a href="https://www.otexts.org/fpp/6/2">Moving averages</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-608-1"><a href="https://www.otexts.org/fpp/6/3">Classical decomposition</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-609-1"><a href="https://www.otexts.org/fpp/6/4">X-12-ARIMA decomposition</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-610-1"><a href="https://www.otexts.org/fpp/6/5">STL decomposition</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-611-1"><a href="https://www.otexts.org/fpp/6/6">Forecasting with decomposition</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1257-1"><a href="https://www.otexts.org/fpp/6/7">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1258-1"><a href="https://www.otexts.org/fpp/6/8">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-612-1"><a href="https://www.otexts.org/fpp/7">7 Exponential smoothing</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-614-1"><a href="https://www.otexts.org/fpp/7/1">Simple exponential smoothing</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-615-1"><a href="https://www.otexts.org/fpp/7/2">Holt's linear trend method</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-616-1"><a href="https://www.otexts.org/fpp/7/3">Exponential trend method</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-617-1"><a href="https://www.otexts.org/fpp/7/4">Damped trend methods</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-618-1"><a href="https://www.otexts.org/fpp/7/5">Holt-Winters seasonal method</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-619-1"><a href="https://www.otexts.org/fpp/7/6">A taxonomy of exponential smoothing methods</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-613-1"><a href="https://www.otexts.org/fpp/7/7">Innovations state space models for exponential smoothing</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1268-1"><a href="https://www.otexts.org/fpp/7/8">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1269-1"><a href="https://www.otexts.org/fpp/7/9">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-620-1"><a href="https://www.otexts.org/fpp/8">8 ARIMA models</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-621-1"><a href="https://www.otexts.org/fpp/8/1">Stationarity and differencing</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-622-1"><a href="https://www.otexts.org/fpp/8/2">Backshift notation</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-623-1"><a href="https://www.otexts.org/fpp/8/3">Autoregressive models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-624-1"><a href="https://www.otexts.org/fpp/8/4">Moving average models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-625-1"><a href="https://www.otexts.org/fpp/8/5">Non-seasonal ARIMA models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-626-1"><a href="https://www.otexts.org/fpp/8/6">Estimation and order selection</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-627-1"><a href="https://www.otexts.org/fpp/8/7">ARIMA modelling in R</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-628-1"><a href="https://www.otexts.org/fpp/8/8">Forecasting</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-629-1"><a href="https://www.otexts.org/fpp/8/9">Seasonal ARIMA models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-630-1"><a href="https://www.otexts.org/fpp/8/10">ARIMA vs ETS</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1259-1"><a href="https://www.otexts.org/fpp/8/11">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1260-1"><a href="https://www.otexts.org/fpp/8/12">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-1261-1"><a href="https://www.otexts.org/fpp/9">9 Advanced forecasting methods</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-1262-1"><a href="https://www.otexts.org/fpp/9/1">Dynamic regression models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1263-1"><a href="https://www.otexts.org/fpp/9/2">Vector autoregressions</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1264-1"><a href="https://www.otexts.org/fpp/9/3">Neural network models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1265-1"><a href="https://www.otexts.org/fpp/9/4">Forecasting hierarchical or grouped time series</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1266-1"><a href="https://www.otexts.org/fpp/9/5">Further reading</a></li>
+</ul></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1270-1"><a href="https://www.otexts.org/fpp/data">10 Data</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1273-1"><a href="https://www.otexts.org/fpp/using-r">12 Using R</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1272-1"><a href="https://www.otexts.org/fpp/resources">13 Resources</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1271-1"><a href="https://www.otexts.org/fpp/reviews">14 Reviews</a></li>
+</ul>
+        <div class="page-links clearfix">
+                          <a href="https://www.otexts.org/fpp/1" class="page-next" title="Go to next page">1 Getting started ›</a>
+          </div>
+    
+  </div>
+  </div>
+
+      <footer>
+          </footer>
+  
+    </div>
+  
+</div> <!-- /.block -->
+</div>
+ <!-- /.region -->
+  </section> <!-- /#main -->
+  
+      <aside id="sidebar" role="complementary" class="sidebar clearfix">
+      <div class="region region-sidebar-first">
+  <div id="block-views-testingview-block" class="block block-views">
+
+        <h2>Book information</h2>
+    
+  <div class="content">
+    <div class="view view-testingview view-id-testingview view-display-id-block view-dom-id-921b366747a42d0ec3951677fd0fa584">
+        
+  
+  
+      <div class="view-content">
+      <div class="view-grouping"><div class="view-grouping-header"><a href="https://www.otexts.org/book/fpp"><img typeof="foaf:Image" src="./Forecasting principles and practice_files/fpp5.jpg" width="220" height="124" alt=""></a></div><div class="view-grouping-content"><div class="view-grouping"><div class="view-grouping-header"><a href="https://www.otexts.org/book/fpp">About this book</a></div><div class="view-grouping-content"><div class="view-grouping"><div class="view-grouping-header"><a href="https://www.otexts.org/book/fpp#disqus_thread">Feedback on this book</a></div><div class="view-grouping-content">  <h3><a href="https://www.otexts.org/book/fpp#printed_copy" class="buylink">Buy a printed copy</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first">
+      
+  <div class="views-field views-field-field-full-name">        <div class="field-content"><a href="https://www.otexts.org/profile-main/4">Rob J Hyndman</a></div>  </div>  
+  <div class="views-field views-field-field-picture">        <div class="field-content"><a href="https://www.otexts.org/profile-main/4"><img typeof="foaf:Image" src="./Forecasting principles and practice_files/Hyndman_0.png" width="100" height="100" alt=""></a></div>  </div>  </div>
+  <div class="views-row views-row-2 views-row-even views-row-last">
+      
+  <div class="views-field views-field-field-full-name">        <div class="field-content"><a href="https://www.otexts.org/profile-main/128">George Athana­sopou­los</a></div>  </div>  
+  <div class="views-field views-field-field-picture">        <div class="field-content"><a href="https://www.otexts.org/profile-main/128"><img typeof="foaf:Image" src="./Forecasting principles and practice_files/Athanasopoulos.png" width="100" height="100" alt=""></a></div>  </div>  </div>
+</div></div></div></div></div></div>    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+  
+</div> <!-- /.block -->
+<div id="block-book-navigation" class="block block-book">
+
+        <h2><a href="./Forecasting principles and practice_files/Forecasting principles and practice.html" class="book-title active">Forecasting: principles and practice</a></h2>
+    
+  <div class="content">
+    <ul class="menu"><li class="first collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-318-2"><a href="https://www.otexts.org/fpp/1">Getting started</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-319-2"><a href="https://www.otexts.org/fpp/1/1">What can be forecast?</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-320-2"><a href="https://www.otexts.org/fpp/1/2">Forecasting, planning and goals</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-405-2"><a href="https://www.otexts.org/fpp/1/3">Determining what to forecast</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-406-2"><a href="https://www.otexts.org/fpp/1/4">Forecasting data and methods</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-408-2"><a href="https://www.otexts.org/fpp/1/5">Some case studies</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-409-2"><a href="https://www.otexts.org/fpp/1/6">The basic steps in a forecasting task</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-410-2"><a href="https://www.otexts.org/fpp/1/7">The statistical forecasting perspective</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-411-2"><a href="https://www.otexts.org/fpp/1/8">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1267-2"><a href="https://www.otexts.org/fpp/1/9">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-412-2"><a href="https://www.otexts.org/fpp/2">The forecaster's toolbox</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-413-2"><a href="https://www.otexts.org/fpp/2/1">Graphics</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-414-2"><a href="https://www.otexts.org/fpp/2/2">Numerical data summaries</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-520-2"><a href="https://www.otexts.org/fpp/2/3">Some simple forecasting methods</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-522-2"><a href="https://www.otexts.org/fpp/2/4">Transformations and adjustments</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-523-2"><a href="https://www.otexts.org/fpp/2/5">Evaluating forecast accuracy</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-524-2"><a href="https://www.otexts.org/fpp/2/6">Residual diagnostics</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-525-2"><a href="https://www.otexts.org/fpp/2/7">Prediction intervals</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-527-2"><a href="https://www.otexts.org/fpp/2/8">Exercises</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1243-2"><a href="https://www.otexts.org/fpp/2/9">Further reading</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-526-2"><a href="https://www.otexts.org/fpp/2/a">The forecast package in R</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-528-2"><a href="https://www.otexts.org/fpp/3">Judgmental forecasts</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-1244-2"><a href="https://www.otexts.org/fpp/3/1">Introduction</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1245-2"><a href="https://www.otexts.org/fpp/3/2">Beware of limitations</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1246-2"><a href="https://www.otexts.org/fpp/3/3">Key principles</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1247-2"><a href="https://www.otexts.org/fpp/3/4">The Delphi method</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1248-2"><a href="https://www.otexts.org/fpp/3/5">Forecasting by analogy</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1249-2"><a href="https://www.otexts.org/fpp/3/6">Scenario forecasting</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1250-2"><a href="https://www.otexts.org/fpp/3/7">New product forecasting</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1251-2"><a href="https://www.otexts.org/fpp/3/8">Judgmental adjustments</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1252-2"><a href="https://www.otexts.org/fpp/3/9">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-324-2"><a href="https://www.otexts.org/fpp/4">Simple regression</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-325-2"><a href="https://www.otexts.org/fpp/4/1">The simple linear model</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-529-2"><a href="https://www.otexts.org/fpp/4/2">Least squares estimation</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-530-2"><a href="https://www.otexts.org/fpp/4/3">Regression and correlation</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-531-2"><a href="https://www.otexts.org/fpp/4/4">Evaluating the regression model</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-532-2"><a href="https://www.otexts.org/fpp/4/5">Forecasting with regression</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-533-2"><a href="https://www.otexts.org/fpp/4/6">Statistical inference</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-534-2"><a href="https://www.otexts.org/fpp/4/7">Non-linear functional forms</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-536-2"><a href="https://www.otexts.org/fpp/4/8">Regression with time series data</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-535-2"><a href="https://www.otexts.org/fpp/4/9">Summary of notation and terminology</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1253-2"><a href="https://www.otexts.org/fpp/4/10">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1254-2"><a href="https://www.otexts.org/fpp/4/11">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-537-2"><a href="https://www.otexts.org/fpp/5">Multiple regression</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-538-2"><a href="https://www.otexts.org/fpp/5/1">Introduction to multiple linear regression</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-539-2"><a href="https://www.otexts.org/fpp/5/2">Some useful predictors</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-540-2"><a href="https://www.otexts.org/fpp/5/3">Selecting predictors</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-541-2"><a href="https://www.otexts.org/fpp/5/4">Residual diagnostics</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-542-2"><a href="https://www.otexts.org/fpp/5/5">Matrix formulation</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-543-2"><a href="https://www.otexts.org/fpp/5/6">Non-linear regression</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-544-2"><a href="https://www.otexts.org/fpp/5/7">Correlation, causation and forecasting</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1255-2"><a href="https://www.otexts.org/fpp/5/8">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1256-2"><a href="https://www.otexts.org/1256">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-605-2"><a href="https://www.otexts.org/fpp/6">Time series decomposition</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-606-2"><a href="https://www.otexts.org/fpp/6/1">Time series components</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-607-2"><a href="https://www.otexts.org/fpp/6/2">Moving averages</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-608-2"><a href="https://www.otexts.org/fpp/6/3">Classical decomposition</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-609-2"><a href="https://www.otexts.org/fpp/6/4">X-12-ARIMA decomposition</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-610-2"><a href="https://www.otexts.org/fpp/6/5">STL decomposition</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-611-2"><a href="https://www.otexts.org/fpp/6/6">Forecasting with decomposition</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1257-2"><a href="https://www.otexts.org/fpp/6/7">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1258-2"><a href="https://www.otexts.org/fpp/6/8">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-612-2"><a href="https://www.otexts.org/fpp/7">Exponential smoothing</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-614-2"><a href="https://www.otexts.org/fpp/7/1">Simple exponential smoothing</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-615-2"><a href="https://www.otexts.org/fpp/7/2">Holt's linear trend method</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-616-2"><a href="https://www.otexts.org/fpp/7/3">Exponential trend method</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-617-2"><a href="https://www.otexts.org/fpp/7/4">Damped trend methods</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-618-2"><a href="https://www.otexts.org/fpp/7/5">Holt-Winters seasonal method</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-619-2"><a href="https://www.otexts.org/fpp/7/6">A taxonomy of exponential smoothing methods</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-613-2"><a href="https://www.otexts.org/fpp/7/7">Innovations state space models for exponential smoothing</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1268-2"><a href="https://www.otexts.org/fpp/7/8">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1269-2"><a href="https://www.otexts.org/fpp/7/9">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-620-2"><a href="https://www.otexts.org/fpp/8">ARIMA models</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-621-2"><a href="https://www.otexts.org/fpp/8/1">Stationarity and differencing</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-622-2"><a href="https://www.otexts.org/fpp/8/2">Backshift notation</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-623-2"><a href="https://www.otexts.org/fpp/8/3">Autoregressive models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-624-2"><a href="https://www.otexts.org/fpp/8/4">Moving average models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-625-2"><a href="https://www.otexts.org/fpp/8/5">Non-seasonal ARIMA models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-626-2"><a href="https://www.otexts.org/fpp/8/6">Estimation and order selection</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-627-2"><a href="https://www.otexts.org/fpp/8/7">ARIMA modelling in R</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-628-2"><a href="https://www.otexts.org/fpp/8/8">Forecasting</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-629-2"><a href="https://www.otexts.org/fpp/8/9">Seasonal ARIMA models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-630-2"><a href="https://www.otexts.org/fpp/8/10">ARIMA vs ETS</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1259-2"><a href="https://www.otexts.org/fpp/8/11">Exercises</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1260-2"><a href="https://www.otexts.org/fpp/8/12">Further reading</a></li>
+</ul></li>
+<li class="collapsed dhtml-menu collapsed start-collapsed" id="dhtml_menu-1261-2"><a href="https://www.otexts.org/fpp/9">Advanced forecasting methods</a><ul class="menu"><li class="first leaf dhtml-menu" id="dhtml_menu-1262-2"><a href="https://www.otexts.org/fpp/9/1">Dynamic regression models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1263-2"><a href="https://www.otexts.org/fpp/9/2">Vector autoregressions</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1264-2"><a href="https://www.otexts.org/fpp/9/3">Neural network models</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1265-2"><a href="https://www.otexts.org/fpp/9/4">Forecasting hierarchical or grouped time series</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1266-2"><a href="https://www.otexts.org/fpp/9/5">Further reading</a></li>
+</ul></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1270-2"><a href="https://www.otexts.org/fpp/data">Data</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1273-2"><a href="https://www.otexts.org/fpp/using-r">Using R</a></li>
+<li class="leaf dhtml-menu" id="dhtml_menu-1272-2"><a href="https://www.otexts.org/fpp/resources">Resources</a></li>
+<li class="last leaf dhtml-menu" id="dhtml_menu-1271-2"><a href="https://www.otexts.org/fpp/reviews">Reviews</a></li>
+</ul>  </div>
+  
+</div> <!-- /.block -->
+</div>
+ <!-- /.region -->
+    </aside>  <!-- /#sidebar-first -->
+    
+  <div class="clear"></div>
+  
+    
+  <!--END footer -->
+  
+    <div class="clear"></div>
+  <div id="copyright">
+          Copyright © 2015, OTexts. <span class="credits" style="font-weight:bold;font-size:120%;"><a href="http://www.otexts.org/about">About</a> - <a href="http://otexts.desk.com/customer/portal/emails/new">Contact</a> - <a href="https://otexts.desk.com/">Help</a> - <a href="http://twitter.com/OTexts0">Twitter</a> - <a href="http://www.otexts.org/tos">Terms of Service</a> - <a href="http://www.otexts.org/privacy">Privacy Policy</a> </span>
+          </div>
+  </div>
+  
+</div><iframe id="rdbIndicator" width="100%" height="270" border="0" src="./Forecasting principles and practice_files/indicator.html" style="display: none; border: 0; position: fixed; left: 0; top: 0; z-index: 2147483647"></iframe></body></html>

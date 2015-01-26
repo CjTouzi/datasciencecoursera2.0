@@ -1,0 +1,531 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0070)http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#ooberr -->
+<html><!-- InstanceBegin template="/Templates/all.dwt" codeOutsideHTMLIsLocked="false" --><!-- DW6 --><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Random forests - classification description</title>
+<style type="text/css">
+<!--
+-->
+</style>
+<style type="text/css">
+<!--
+.style15 {font-family: Symbol}
+-->
+</style>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="./Random forests - classification description_files/3col_rightNav.css" type="text/css">
+<!-- InstanceParam name="OptionalRegion1" type="boolean" value="true" -->
+</head>
+<body> 
+<div id="masthead"> 
+  <h1 id="siteName">Random Forests<br>
+  Leo Breiman and Adele Cutler</h1>
+  <p> Random Forests(tm) is a trademark of Leo Breiman and
+Adele Cutler and is licensed exclusively to Salford
+Systems for the commercial release of the software.<br>
+ Our trademarks also include RF(tm), RandomForests(tm),
+    RandomForest(tm) and Random Forest(tm).</p>
+  <h1>    <p>
+    </p></h1>
+  <div id="globalNav"> 
+    <div id="globalLink">
+		<!-- InstanceBeginEditable name="EditRegion3" --> 
+		<a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm"><span class="style14">classification/clustering</span></a><span class="style11">|</span><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/reg_home.htm"><span class="style12">regression</span></a><span class="style11">|</span><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/surv_home.htm"><span class="style12">survival analysis</span></a> <br><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm"><span class="style14">description</span></a><span class="style11">|</span><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_manual.htm"><span class="style13">manual</span></a><span class="style11">|</span><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_software.htm"><span class="style13">code</span></a><span class="style11">|</span><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_papers.htm"><span class="style13">papers</span></a><span class="style11">|</span><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_graphics.htm"><span class="style13">graphics</span></a><span class="style11">|</span><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_philosophy.htm"><span class="style13">philosophy</span></a><span class="style11">|</span><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_copyright.htm"><span class="style13">copyright</span></a><span class="style11">|</span><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_contact.htm"><span class="style13">contact us</span></a> 
+
+		<!-- InstanceEndEditable --></div> 
+  </div> 
+</div> 
+<!-- InstanceBeginEditable name="EditRegion1" --> 
+<div>
+<div class="story">
+    <h2>Contents</h2>
+    <p>
+	<a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#intro" class="heading">Introduction</a><br>
+          <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#overview">Overview</a></span><br>
+          <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#features">Features of random forests </a></span><br>
+          <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#remarks">Remarks</a></span><br>
+	<a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#workings" class="heading">How Random Forests work</a><br>
+          <span class="style4"><a href="./Random forests - classification description_files/Random forests - classification description.html">The oob error estimate</a></span><br>
+          <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#varimp">Variable importance</a></span><br>
+          <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#giniimp">Gini importance</a></span><br>
+          <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#inter">Interactions</a></span><br>
+          <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#prox">Proximities</a></span><br>
+          <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#scaling">Scaling</a></span><br>
+	      <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#prototype">Prototypes</a></span><br>
+	      <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#missing1">Missing values for the training set</a></span><br>
+		  <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#missing2">Missing values for the test set</a></span><br>
+		  <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#mislabel">Mislabeled cases</a></span><br>
+		  <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#outliers">Outliers</a></span><br>
+		  <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#unsup">Unsupervised learning</a></span><br>
+		  <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#balance">Balancing prediction error</a></span><br>
+		  <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#novel">Detecting novelties</a></span><br>
+	<a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#micro" class="heading">A case study - microarray data</a><br>
+  	    <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#micro1">Classification mode </a></span><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#micro2">Variable importance </a></span><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#micro3">Using important variables </a></span><br>
+		<span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#micro4">Variable interactions</a></span><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#micro5">Scaling the data </a></span><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#micro6">Prototypes </a></span><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#micro7">Outliers</a></span><br>
+	<a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#dna" class="heading">A case study - dna data</a><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#dna1">Missing values in the training set</a></span><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#dna2">Missing values in the test set</a></span><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#dna3">Mislabeled cases</a></span><br>
+	<a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#cluster" class="heading">Case Studies for unsupervised learning</a><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#clust1">Clustering microarray data</a></span><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#clust2">Clustering dna data</a></span><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#clust3">Clustering glass data</a></span><br>
+        <span class="style4"><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#clust4">Clustering spectral data</a></span><br>
+  <a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#papers" class="heading">References</a>  </p>
+<h2><a name="intro"></a>Introduction </h2>
+<p>This section gives a brief overview of random forests and some comments about the features of the method.</p>
+<h3><a name="overview"></a>Overview </h3>
+
+      <p>We assume that the user knows about the construction of single classification trees. Random Forests grows many classification trees. To classify a new object from an input vector, put the input vector down each of the trees in the forest. Each tree gives a classification, and we say the tree "votes" for that class. The forest chooses the classification having the most votes (over all the trees in the forest). </p>
+      <p>Each tree is grown as follows: 
+      </p>
+      <ol>
+        <li>    If the number of cases in the training set is N, sample N cases at random - but <em>with replacement</em>, from the original data. This sample will be the training set for growing the tree. </li>
+        <li>If there are M input variables, a number m&lt;&lt;M is specified such that at each node, m variables are selected at random out of the M and the best split on these m is used to split the node. The value of m is held constant during the forest growing. </li>
+        <li>Each tree is grown to the largest extent possible. There is no pruning. </li>
+      </ol>
+      <p>In the original paper on random forests, it was shown that the forest error rate depends on two things: </p>
+      <ul>
+        <li> The <em>correlation </em>between any two trees in the forest. Increasing the correlation increases the forest error rate. </li>
+        <li>The <em>strength </em>of each individual tree in the forest. A tree with a low error rate is a strong classifier. Increasing the strength of the individual trees decreases the forest error rate. </li>
+      </ul>
+      <p>Reducing m reduces both the correlation and the strength. Increasing it increases both. Somewhere in between is an "optimal" range of m - usually quite wide. Using the oob error rate (see below) a value of m in the range can quickly be found. This is the only adjustable parameter to which random forests is somewhat sensitive. </p>
+      <h3><a name="features"></a>Features of Random Forests </h3>
+      <ul>
+        <li>It is unexcelled in accuracy among current algorithms.
+        </li><li>It runs efficiently on large data bases.
+        </li><li>It can handle thousands of input variables without variable deletion. 
+		</li><li>It gives estimates of what variables are important in the classification. 
+        </li><li>It generates an internal unbiased estimate of the generalization error as the forest building progresses. 
+        </li><li>It has an effective method for estimating missing data and maintains accuracy when a large proportion of the data are missing. 
+        </li><li>It has methods for balancing error in class population unbalanced data sets. 
+        </li><li>Generated forests can be saved for future use on other data. 
+        </li><li>Prototypes are computed that give information about the relation between the variables and the classification.
+        </li><li>It computes proximities between pairs of cases that can be used in clustering, locating outliers, or (by scaling) give interesting views of the data.
+        </li><li>The capabilities of the above can be extended to unlabeled data, leading to unsupervised clustering, data views and outlier detection. 
+        </li><li>It offers an experimental method for detecting variable interactions. 
+        </li>
+      </ul>
+ 	<h3><a name="remarks"></a>Remarks </h3>
+    <p>Random forests does not overfit. You can run as many trees as you want. It is fast. 
+	Running on a data set with 50,000 cases and 100 variables, it produced 100 trees in 11 
+	minutes on a 800Mhz machine. For large data sets the major memory requirement is the 
+	storage of the data itself, and three integer arrays with the same dimensions as the data. 
+	If proximities are calculated, storage requirements grow as the number of cases times the 
+	number of trees. </p>
+<h2><a name="workings"></a>How random forests work </h2>
+    <p>To understand and use the various options, further information about how they are 
+	computed is useful. Most of the options depend on  two data objects generated by random forests.</p>
+    <p><em>W</em>hen the training set for the current tree is drawn by sampling with replacement, about 
+	one-third of the cases are left out of the sample. This <strong><a href="./Random forests - classification description_files/Random forests - classification description.html">oob (out-of-bag) 
+	data</a></strong> is used to get a running unbiased estimate of the classification error as trees are 
+	added to the forest. It is also used to get estimates of variable importance. </p>
+    <p><em>A</em>fter each tree is built, all of the data are run down the tree, 
+	and <strong><a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#prox">proximities</a></strong> are computed for each pair of cases. 
+	If two cases occupy the same terminal node, their proximity is increased by one. At the end of the 
+	run, the proximities are normalized by dividing by the number of trees. Proximities are used in 
+	replacing missing data, locating outliers, and producing illuminating low-dimensional views of the data. </p>
+    <h3><a name="ooberr"></a>The out-of-bag (oob) error estimate </h3>
+    <p>In random forests, there is no need for cross-validation or a separate test set to 
+	get an unbiased estimate of the test set error. It is estimated internally, during the 
+	run, as follows: </p>
+    <p>Each tree is constructed using a different bootstrap sample from the original data. 
+	About one-third of the cases are left out of the bootstrap sample and not used in the 
+	construction of the kth tree. </p>
+    <p>Put each case left out in the construction of the kth tree down the kth tree to get 
+	a classification. In this way, a test set classification is obtained for each case 
+	in about one-third of the trees. At the end of the run, take j to be the class that got 
+	most of the votes every time case n was oob. The proportion of times that j is not equal 
+	to the true class of n averaged over all cases is the oob error estimate. 
+	This has proven to be unbiased in many tests. </p>
+	
+	<h3><a name="varimp"></a>Variable importance </h3>
+<p>In every tree grown in the forest, put down the oob cases and count 
+the number of votes cast for the correct class. Now randomly permute 
+the values of variable m in the oob cases and put these cases down 
+the tree. Subtract the number of votes for the correct class in the 
+variable-m-permuted oob data  from the number of votes for the correct class in the untouched 
+oob data. The average of this number over all trees in the forest is 
+the raw importance score for variable m. </p>
+<p>If the values of this score from tree to tree are independent, then 
+the standard error can be computed by a standard computation. 
+The correlations of these scores between trees have been computed for 
+a number of data sets and proved to be quite low, therefore we compute 
+standard errors in the classical way, divide the raw score by its standard 
+error to get a z-score, ands assign a significance level to the z-score 
+assuming normality.</p>
+<p>If the number of variables is very large, forests can be run once with all the variables, then run again using only the most important variables from the first run. </p>
+<p>For each case, consider all the trees for which it is oob. Subtract the percentage of votes for the correct class in the variable-m-permuted oob data from the percentage of votes for the correct class in the untouched oob data. This is the local importance score for variable m for this case, and is used in the graphics program <a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_graphics.htm">RAFT</a>. </p>
+<h3><a name="giniimp"></a>Gini importance </h3>
+	<p>
+	Every time a split of a node is made on variable m the gini impurity 
+	criterion for the two descendent nodes is less than the parent node. 
+	Adding up the gini decreases for each individual variable over all 
+	trees in the forest gives a fast variable importance that is often 
+	very consistent with the permutation importance measure.</p>
+
+	<h3><a name="inter"></a>Interactions</h3>
+	<p>
+	The operating definition of interaction used is that variables m and k 
+	interact if a split on one variable, say m, in a tree makes a split on 
+	k either systematically less possible or more possible. The implementation 
+	used is based on the gini values g(m) for each tree in the forest. These 
+	are ranked for each tree and for each two variables, the absolute difference 
+	of their ranks are averaged over all trees. 
+	</p><p>
+	This number is also computed under the hypothesis that the two variables are 
+	independent of each other and the latter subtracted from the former. A large 
+	positive number implies that a split on one variable inhibits a split on the 
+	other and conversely. This is an experimental procedure whose conclusions 
+	need to be regarded with caution. It has been tested on only a few data sets.</p>
+
+	<h3><a name="prox"></a>Proximities</h3>
+<p>These are one of the most useful tools in random forests. The proximities originally 
+formed a NxN matrix. After a tree is grown,
+put all of the data, both training and oob, down the tree. If cases k and n are in the 
+same terminal node increase their proximity by one. At the end, normalize the proximities 
+by dividing by the number of trees.
+</p><p>
+Users noted that with large data sets, they could not fit an NxN matrix into fast memory. 
+A modification reduced the required memory size to NxT where T is the number of trees in 
+the forest. 
+To speed up the computation-intensive scaling and iterative missing value replacement, the 
+user is given the option of retaining only the nrnn largest proximities to each case.
+</p><p>
+When a test set is present, the proximities of each case in the test set with each case 
+in the training set can also be computed. The amount of additional computing 
+ is moderate.</p>
+  <h3><a name="scaling"></a>Scaling</h3>
+<p>
+The proximities between cases n and k form a matrix {prox(n,k)}. From their definition, 
+it is easy to show that this matrix is symmetric, positive definite and bounded above by 
+1, with the diagonal elements equal to 1. It follows that the values 1-prox(n,k)
+are squared distances in a Euclidean space of dimension not greater than the number of 
+cases. For more background on scaling see "Multidimensional Scaling" by T.F. Cox and M.A. Cox.
+</p><p> Let prox(-,k) be the average of prox(n,k) over the 1st coordinate, prox(n,-) be the average 
+of prox(n,k) over the 2nd coordinate, and prox(-,-) the average over both coordinates. Then the matrix
+</p><ul>cv(n,k)=.5*(prox(n,k)-prox(n,-)-prox(-,k)+prox(-,-))</ul>
+    
+    <p>is the matrix of inner products of the distances and is also positive definite symmetric. 
+  Let the eigenvalues of cv be <em><font face="Symbol">l</font>(j)</em>
+and the eigenvectors <em><font face="Symbol">n</font><sub>j</sub>(n).</em> Then the vectors
+</p><ul><p><em>x(n) = (<font face="Symbol"><span class="style15">Ö</span>l</font>(1)</em>
+    <em><font face="Symbol">n<sub>1</sub></font>(n)</em> , <em><font face="Symbol"><span class="style15">Ö</span>l</font>(2)</em> <em><font face="Symbol">n<sub>2</sub></font>(n) , ...,)</em>    </p></ul> 
+    <p> have squared distances between them equal to 1-prox(n,k). The values of <em><font face="Symbol"><span class="style15">Ö</span>l</font>(j)</em> <em><font face="Symbol">n</font><sub>j</sub>(n)</em> are referred to as the jth scaling coordinate. 
+    </p><p>In metric scaling, the idea is to approximate the vectors <em>x(n)</em> by the first few scaling coordinates. This is done in random forests by extracting  the largest few eigenvalues of the cv matrix, and their corresponding eigenvectors . The two dimensional plot of the ith scaling coordinate vs. the jth often gives useful information about the data. The most useful is usually the graph of the 2nd vs. the 1st. 
+    </p><p>Since the eigenfunctions are the top few of an NxN matrix, the computational burden may be time consuming. We advise taking nrnn considerably smaller than the sample size to make this computation faster. </p>
+    <p>There are more accurate ways of projecting distances down into low dimensions, for instance the Roweis and Saul algorithm. But the nice performance, so far, of metric scaling has kept us from implementing more accurate projection algorithms. Another consideration is speed. Metric scaling is the fastest current algorithm for projecting down. </p>
+    <p>Generally three or four scaling coordinates are sufficient to give good pictures of the data. Plotting the second scaling coordinate versus the first usually gives the most illuminating view. </p>
+<h3><a name="prototype"></a>Prototypes</h3>
+<p>Prototypes are a way of getting a picture of how the variables relate to the classification.  
+For the jth class, we find the case that has the
+largest number of class j cases among its k nearest neighbors, determined using the proximities. 
+Among these k cases we find the median, 25th
+percentile, and 75th percentile for each variable.  The
+medians are the prototype for class j and the quartiles give an estimate of is
+stability. 
+For the second prototype, we 
+repeat the procedure but only consider cases that are not among the original k, and so on. 
+When we ask for prototypes to be output to the screen or saved to a file, prototypes for continuous 
+variables are standardized by subtractng the 5th percentile and dividing by the difference between 
+the 95th and 5th percentiles. 
+For categorical variables, the prototype is the most frequent value. 
+When we ask for prototypes to be output to the screen or saved to a file, all frequencies are given for categorical variables.
+</p>
+
+<h3><a name="missing1"></a>Missing value replacement for the training set</h3><br>
+Random forests has two ways of replacing missing values. The <a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_manual.htm#l7">first way</a> is fast. If the mth variable is not categorical, the method computes the median of all values of this variable in class j, then it uses this value to replace all missing values of the mth variable in class j. If the mth variable is categorical, the replacement is the most frequent non-missing value in class j. 
+These replacement values are called fills. 
+<p>The <a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_manual.htm#l7">second way</a> of replacing missing values is computationally more expensive but has given better performance than the first, even with large amounts of missing data. It replaces missing values only in the training set. It begins by doing a rough and inaccurate filling in of the missing values. Then it does a forest run and computes proximities. </p>
+    <p>If x(m,n) is a missing continuous value, estimate its fill as an average over the non-missing values of the mth variables weighted by the proximities between the nth case and the non-missing value case. If it is a missing categorical variable, replace it by the most frequent non-missing value where frequency is weighted by proximity. </p>
+    <p>Now iterate-construct a forest again using these newly filled in values, find new fills and iterate again. Our experience is that 4-6 iterations are enough. </p>
+    <h3><a name="missing2"></a>Missing value replacement for the test set</h3>
+<p>When there is a test set, there are two different methods of replacement depending on whether labels exist for the test set. 
+</p><p>If they do, then the fills derived from the training set are used as replacements. If labels no not exist, then each case in the test set is replicated nclass times (nclass= number of classes). The first replicate of a case is assumed to be class 1 and the class one fills used to replace missing values. The 2nd replicate is assumed class 2 and the class 2 fills used on it. </p>
+<p>This augmented test set is run down the tree. In each set of replicates, the one receiving the most votes determines the class of the original case. </p>
+
+<h3><a name="mislabel"></a>Mislabeled cases</h3>
+<p>
+    The training sets are often formed by using human judgment to assign labels. In some areas this leads to a high frequency of mislabeling. Many of the mislabeled cases can be detected using the outlier measure. An example is given in the <a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#dna3">DNA case study</a>. </p>
+<h3><a name="outliers"></a>Outliers</h3>
+<p>
+    Outliers are generally defined as cases that are removed from the main body of the data. Translate this as: outliers are cases whose proximities to all other cases in the data are generally small. A useful revision is to define outliers relative to their class. Thus, an outlier in class j is a case whose proximities to all other class j cases are small. </p>
+    <p>Define the average proximity from case n in class j to the rest of the training data class j as: </p>
+    <p><img src="./Random forests - classification description_files/formula1.jpg" width="228" height="62"></p>
+    <p>The raw outlier measure for case n is defined as </p>
+    <p><img src="./Random forests - classification description_files/formula2.jpg" width="134" height="41"></p>
+    <p>This will be large if the average proximity is small. Within each class find the median of these raw measures, and their absolute deviation from the median. Subtract the median from each raw measure, and divide by the absolute deviation to arrive at the final outlier measure. </p>
+<h3><a name="unsup"></a>Unsupervised learning</h3>
+<p>
+    In unsupervised learning the data consist of a set of <strong>x </strong>-vectors of the same dimension with no class labels or response variables. There is no figure of merit to optimize, leaving the field open to ambiguous conclusions. The usual goal is to cluster the data - to see if it falls into different piles, each of which can be assigned some meaning. </p>
+    <p>The approach in random forests is to consider the original data as class 1 and to create a synthetic second class of the same size that will be labeled as class 2. The synthetic second class is created by sampling at random from the univariate distributions of the original data. Here is how a single member of class two is created - the first coordinate is sampled from the N values {x(1,n)}. The second coordinate is sampled independently from the N values {x(2,n)}, and so forth. </p>
+    <p>Thus, class two has the distribution of independent random variables, each one having the same univariate distribution as the corresponding variable in the original data. Class 2 thus destroys the dependency structure in the original data. But now, there are two classes and this artificial two-class problem can be  run through random forests. This allows all of the random forests options to be applied to the original unlabeled data set. </p>
+    <p>If the oob misclassification rate in the two-class problem is, say, 40% or more, it implies that the <strong>x </strong>-variables look too much like independent variables to random forests. The dependencies do not have a large role and not much discrimination is taking place. If the misclassification rate is lower, then the dependencies are playing an important role. </p>
+    <p>Formulating it as a two class problem has a number of payoffs. Missing values can be replaced effectively. Outliers can be found. Variable importance can be measured. Scaling can be performed (in this case, if the original data had labels, the unsupervised scaling often retains the structure of the original scaling). But the most important payoff is the possibility of clustering. </p>
+<h3><a name="balance"></a>Balancing prediction error</h3>
+<p>
+    In some data sets, the prediction error between classes is highly unbalanced. Some classes have a low prediction error, others a high. This occurs usually when one class is much larger than another. Then random forests, trying to minimize overall error rate, will keep the error rate low on the large class while letting the smaller classes have a larger error rate. For instance, in drug discovery, where a given molecule is classified as active or not, it is common to have the actives outnumbered by 10 to 1, up to 100 to 1. In these situations the error rate on the interesting class (actives) will be very high. </p>
+    <p>The user can detect the imbalance by outputs the error rates for the individual classes. To illustrate 20 dimensional synthetic data is used. Class 1 occurs in one spherical Gaussian, class 2 on another. A training set of 1000 class 1's and 50 class 2's is generated, together with a test set of 5000 class 1's and 250 class 2's. </p>
+    <p>The final output of a forest of 500 trees on this data is: </p>
+    <pre>500 3.7 0.0 78.4 </pre>
+    <p>There is a low overall test set error (3.73%) but class 2 has over 3/4 of its cases misclassified. </p>
+    <p>The error can balancing can be done by setting different weights for the classes. </p>
+    <p>The higher the weight a class is given, the more its error rate is decreased. A guide as to what weights to give is to make them inversely proportional to the class populations. So set weights to 1 on class 1, and 20 on class 2, and run again. The output is: </p>
+    <pre>500 12.1 12.7 0.0 </pre>
+    <p>The weight of 20 on class 2 is too high. Set it to 10 and try again, getting: </p>
+    <pre>500 4.3 4.2 5.2 </pre>
+    <p>This is pretty close to balance. If exact balance is wanted, the weight on class 2 could be jiggled around a bit more. </p>
+    <p>Note that in getting this balance, the overall error rate went up. This is the usual result - to get better balance, the overall error rate will be increased. </p>
+<h3><a name="novel"></a>Detecting novelties</h3>
+<p>
+    The outlier measure for the test set can be used to find novel cases not fitting well into any previously established classes. </p>
+    <p>The satimage data is used to illustrate. There are 4435 training cases, 2000 test cases, 36 variables and 6 classes. </p>
+    <p>In the experiment five cases were selected at equal intervals in the test set. Each of these cases was made a "novelty" by replacing each variable in the case by the value of the same variable in a randomly selected training case. The run is done using <strong>noutlier </strong>=2, <strong>nprox </strong>=1. The output of the run is graphed below: </p>
+    <p><img src="./Random forests - classification description_files/fig6.jpg" width="400" height="350">     
+    </p><p>This shows that using an established training set, test sets can be run down and checked for novel cases, rather than running the training set repeatedly. The training set results can be stored so that test sets can be run through the forest without reconstructing it. 
+    </p><p>This method of checking for novelty is experimental. It may not distinguish novel cases on other data. For instance, it does not distinguish novel cases in the dna test data. </p>
+	<h2><a name="micro"></a>A case study-microarray data  </h2>
+
+    <p>To give an idea of the capabilities of random forests, we illustrate them on an early microarray lymphoma data set with 81 cases, 3 classes, and 4682 variables corresponding to gene expressions. </p>
+	<h3><a name="micro1"></a>Classification mode</h3>
+
+    <p>To do a straight classification run, use the settings: </p>
+<pre>        parameter(
+c               DESCRIBE DATA
+     1          mdim=4682, nsample0=81, nclass=3, maxcat=1,
+     1          ntest=0, labelts=0, labeltr=1,
+c
+c               SET RUN PARAMETERS
+     2          mtry0=150, ndsize=1, jbt=1000, look=100, lookcls=1,
+     2          jclasswt=0, mdim2nd=0, mselect=0, iseed=4351,
+c
+c               SET IMPORTANCE OPTIONS
+     3          imp=0, interact=0, impn=0, impfast=0,
+c
+c               SET PROXIMITY COMPUTATIONS
+     4          nprox=0, nrnn=5,
+c
+c               SET OPTIONS BASED ON PROXIMITIES
+     5          noutlier=0, nscale=0, nprot=0,
+c
+c               REPLACE MISSING VALUES  
+     6          code=-999, missfill=0,  mfixrep=0, 
+c
+c               GRAPHICS
+     7          iviz=1,
+c
+c               SAVING A FOREST
+     8          isaverf=0, isavepar=0, isavefill=0, isaveprox=0,
+c
+c               RUNNING A SAVED FOREST
+     9          irunrf=0, ireadpar=0, ireadfill=0, ireadprox=0)
+
+	</pre>
+    Note: since the sample size is small, for reliability 1000 trees are grown using mtry0=150. The results are not sensitive to mtry0 over the range 50-200. Since look=100, the oob results are output every 100 trees in terms of percentage misclassified <p></p>
+    <pre>    100 2.47 
+    200 2.47 
+    300 2.47 
+    400 2.47 
+    500 1.23 
+    600 1.23 
+    700 1.23 
+    800 1.23 
+    900 1.23 
+    1000 1.23 
+	</pre>
+    <p>(note: an error rate of 1.23% implies 1 of the 81 cases was misclassified,) </p>
+	<h3><a name="micro2"></a>Variable importance </h3>
+    <p>The <a href="http://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#varimp">variable importances</a> are critical. 
+	The run computing importances is done by switching <strong>imp </strong>=0 to 
+	<strong>imp </strong>=1 in the above parameter list. The output has four columns: </p>
+<pre>	gene number 
+	the raw importance score 
+	the z-score obtained by dividing the raw score by its standard error 
+	the significance level.</pre>
+    <p>The highest 25 gene importances are listed sorted by their z-scores. To get the output on a disk file, put <strong>impout </strong>=1, and give a name to the corresponding output file. If <strong>impout </strong> is put equal to 2 the results are written to screen and you will see a display similar to that immediately below:	
+    </p><pre>gene       raw     z-score  significance
+number    score
+  667     1.414     1.069     0.143
+  689     1.259     0.961     0.168
+  666     1.112     0.903     0.183
+  668     1.031     0.849     0.198
+  682     0.820     0.803     0.211
+  878     0.649     0.736     0.231
+ 1080     0.514     0.729     0.233
+ 1104     0.514     0.718     0.237
+  879     0.591     0.713     0.238
+  895     0.519     0.685     0.247
+ 3621     0.552     0.684     0.247
+ 3529     0.650     0.683     0.247
+ 3404     0.453     0.661     0.254
+  623     0.286     0.655     0.256
+ 3617     0.498     0.654     0.257
+  650     0.505     0.650     0.258
+  645     0.380     0.644     0.260
+ 3616     0.497     0.636     0.262
+  938     0.421     0.635     0.263
+  915     0.426     0.631     0.264
+  669     0.484     0.626     0.266
+  663     0.550     0.625     0.266
+  723     0.334     0.610     0.271
+  685     0.405     0.605     0.272
+ 3631     0.402     0.603     0.273
+</pre>
+	<h3><a name="micro3"></a>Using important variables </h3>
+    <p>Another useful option is to do an automatic rerun using only those variables that were most important in the original run. Say we want to use only the 15 most important variables found in the first run in the second run. Then in the options change <strong>mdim2nd=0 </strong> to <strong>mdim2nd=15 </strong>, keep <strong>imp=1 </strong> and compile. Directing output to screen, you will see the same output as above for the first run plus the following output for the second run. Then the importances are output for the 15 variables used in the 2nd run. </p>
+	<pre>    gene         raw       z-score    significance
+   number       score
+    3621 		6.235 		2.753 		0.003 
+    1104 		6.059 		2.709 		0.003 
+    3529 		5.671 		2.568 		0.005 
+     666 		7.837 		2.389 		0.008 
+    3631 		4.657 		2.363 		0.009 
+     667 		7.005 		2.275 		0.011 
+     668 		6.828 		2.255 		0.012 
+     689 		6.637 		2.182 		0.015 
+     878 		4.733 		2.169 		0.015 
+     682 		4.305 		1.817 		0.035 
+     644 		2.710 		1.563 		0.059 
+     879 		1.750 		1.283 		0.100 
+     686 		1.937 		1.261 		0.104 
+    1080 		0.927 		0.906 		0.183 
+     623 		0.564 		0.847 		0.199 
+	</pre>
+	<h3><a name="micro4"></a>Variable interactions</h3>
+    <p>Another option is looking at interactions between variables. If variable m1 is correlated with variable m2 then a split on m1 will decrease the probability of a nearby split on m2 . The distance between splits on any two variables is compared with their theoretical difference if the variables were independent. The latter is subtracted from the former-a large resulting value is an indication of a repulsive interaction. To get this output, change <strong>interact </strong>=0 to <strong>interact=1 </strong> leaving <strong>imp </strong>=1 and <strong>mdim2nd </strong>=10. </p>
+    <p>The output consists of a code list: telling us the numbers of the genes corresponding to id. 1-10. The interactions are rounded to the closest integer and given in the matrix following two column list that tells which gene number is number 1 in the table, etc. </p>
+<pre>		
+     1   2   3   4   5   6   7   8   9  10 <p></p>
+ 1   0  13   2   4   8  -7   3  -1  -7  -2 <p></p>
+ 2  13   0  11  14  11   6   3  -1   6   1 <p></p>
+ 3   2  11   0   6   7  -4   3   1   1  -2 <p></p>
+ 4   4  14   6   0  11  -2   1  -2   2  -4 <p></p>
+ 5   8  11   7  11   0  -1   3   1  -8   1 <p></p>
+ 6  -7   6  -4  -2  -1   0   7   6  -6  -1 <p></p>
+ 7   3   3   3   1   3   7   0  24  -1  -1 <p></p>
+ 8  -1  -1   1  -2   1   6  24   0  -2  -3 <p></p>
+ 9  -7   6   1   2  -8  -6  -1  -2   0  -5 <p></p>
+10  -2   1  -2  -4   1  -1  -1  -3  -5   0 <p></p>
+</pre>	
+    <p>There are large interactions between gene 2 and genes 1,3,4,5 and between 7 and 8. </p>
+		<h3><a name="micro5"></a>Scaling the data</h3>
+    <p>The wish of every data analyst is to get an idea of what the data looks like. There is an excellent way to do this in random forests. </p>
+    <p>Using metric scaling the proximities can be projected down onto a low dimensional Euclidian space using "canonical coordinates". D canonical coordinates will project onto a D-dimensional space. To get 3 canonical coordinates, the options are as follows: </p>
+
+    <pre>        parameter(
+c               DESCRIBE DATA
+     1          mdim=4682, nsample0=81, nclass=3, maxcat=1,
+     1          ntest=0, labelts=0, labeltr=1,
+c
+c               SET RUN PARAMETERS
+     2          mtry0=150, ndsize=1, jbt=1000, look=100, lookcls=1,
+     2          jclasswt=0, mdim2nd=0, mselect=0, iseed=4351,
+c
+c               SET IMPORTANCE OPTIONS
+     3          imp=0, interact=0, impn=0, impfast=0,
+c
+c               SET PROXIMITY COMPUTATIONS
+     4          nprox=1, nrnn=50,
+c
+c               SET OPTIONS BASED ON PROXIMITIES
+     5          noutlier=0, nscale=3, nprot=0,
+c
+c               REPLACE MISSING VALUES  
+     6          code=-999, missfill=0, mfixrep=0, 
+c
+c               GRAPHICS
+     7          iviz=1,
+c
+c               SAVING A FOREST
+     8          isaverf=0, isavepar=0, isavefill=0, isaveprox=0,
+c
+c               RUNNING A SAVED FOREST
+     9          irunrf=0, ireadpar=0, ireadfill=0, ireadprox=0)
+
+</pre>
+    <p>Note that <strong>imp </strong> and <strong>mdim2nd </strong>have been set back to zero and <strong>nscale </strong>set equal to 3. <strong>nrnn </strong>is set to 50 which instructs the program to compute the 50 largest proximities for each case. Set <strong>iscaleout</strong>=1. Compiling gives an output with nsample rows and these columns giving case id, true class, predicted class and 3 columns giving the values of the three scaling coordinates. Plotting the 2nd canonical coordinate vs. the first gives: </p>
+    <p><img src="./Random forests - classification description_files/scatterplot.jpeg" width="300" height="300">
+    </p><p>The three classes are very distinguishable. Note: if one tries to get this result by any of the present clustering algorithms, one is faced with the job of constructing a distance measure between pairs of points in 4682-dimensional space - a low payoff venture. The plot above, based on proximities, illustrates their intrinsic connection to the data. 
+	</p><h3><a name="micro6"></a>Prototypes</h3>
+    <p>Two prototypes are computed for each class in the microarray data </p>
+    <p>The settings are <strong>mdim2nd=15, nprot=2, imp=1, nprox=1, nrnn=20. </strong><strong></strong>The values of the variables are normalized to be between 0 and 1. Here is the graph    </p>
+    <p><img src="./Random forests - classification description_files/prototype.jpeg" width="600" height="500"> 
+    </p><p>    
+    </p><h3><a name="micro7"></a>Outliers </h3>
+    <p>An outlier is a case whose proximities to all other cases are small. Using this idea, a measure of outlyingness is computed for each case in the training sample. This measure is different for the different classes. Generally, if the measure is greater than 10, the case should be carefully inspected. Other users have found a lower threshold more useful. To compute the measure, set <strong>nout </strong>=1, and all other&nbsp;options to zero. Here is a plot of the measure: </p>
+    <p><img src="./Random forests - classification description_files/fig3.jpg" width="372" height="400"></p>
+    <p>There are two possible outliers-one is the first case in class 1, the second is the first case in class 2. </p>
+    <h2><a name="dna"></a>A case study-dna data</h2>
+    <p>There are other options in random forests that we illustrate using the dna data set. There are 60 variables, all four-valued categorical, three classes, 2000 cases in the training set and 1186 in the test set. 
+	This is a classic machine learning data set and is described more fully in the 1994 book "Machine learning, Neural and Statistical Classification" editors Michie, D., Spiegelhalter, D.J. and Taylor, C.C. </p>
+    <p>This data set is interesting as a case study because the categorical nature of the prediction variables makes many other methods, such as nearest neighbors, difficult to apply. </p>
+<h3><a name="dna1"></a>Missing values in the training set</h3><br>
+    <p>To illustrate the options for missing value fill-in, runs were done on the dna data after deleting 10%, 20%, 30%, 40%, and 50% of the set data at random. Both methods <strong>missfill</strong>=1 and <strong>mfixrep</strong>=5 were used. The results are given in the graph below. </p>
+    <p><img src="./Random forests - classification description_files/fig4.jpg" width="375" height="400"></p>
+    <p>It is remarkable how effective the <strong>mfixrep</strong> process is. Similarly effective results have been obtained on other data sets. Here <strong>nrnn</strong>=5 is used. Larger values of <strong>nrnn</strong> do not give such good results. </p>
+    <p>At the end of the replacement process, it is advisable that the completed training set be downloaded by setting <strong>idataout </strong>=1. </p>
+    <h3><a name="dna2"></a>Missing values in the test set</h3>
+    <p>In v5, the only way to replace missing values in the test set is to set <strong>missfill </strong>=2 with nothing else on. Depending on whether the test set has labels or not, missfill uses different strategies. In both cases it uses the fill values obtained by the run  on the training set. </p>
+    <p>We measure how good the fill of the test set is by seeing what error rate it assigns to the training set (which has no missing). If the test set is drawn from the same distribution as the training set, it gives an error rate of 3.7%. As the proportion of missing increases, using a fill drifts the distribution of the test set away from the training set and the test set error rate will increase. </p>
+    <p>We can check the accuracy of the fill for no labels by using the dna data, setting labelts=0, but then checking the error rate between the classes filled in and the true labels. </p>
+    <pre>missing% labelts=1 labelts=0 
+  10       4.9       5.0 
+  20       8.1       8.4 
+  30      13.4      13.8 
+  40      21.4      22.4 
+  50      30.4      31.4 
+	</pre>
+    <p>There is only a small loss in not having the labels to assist the fill. </p>
+<h3><a name="dna3"></a>Mislabeled Cases</h3>
+    <p></p>
+    <p>The DNA data base has 2000 cases in the training set, 1186 in the test set, and 60 variables, all of which are four-valued categorical variables. In the training set, one hundred cases are chosen at random and their class labels randomly switched. The outlier measure is computed and is graphed below with the black squares representing the class-switched cases </p>
+    <p>Select the threshold as 2.73. Then 90 of the 100 cases with altered classes have outlier measure exceeding this threshold. Of the 1900 unaltered cases, 62 exceed threshold. </p>
+    <p><img src="./Random forests - classification description_files/fig5.jpg" width="341" height="400">
+    </p><p>    
+    </p><h2><a name="cluster"></a>Case studies for unsupervised learning</h2><br>
+    <h3><a name="clust1"></a>Clustering microarray data</h3>
+    <p>We give some examples of the effectiveness of unsupervised clustering in retaining the structure of the unlabeled data. The scaling for the microarray data has this picture: </p>
+    <p><img src="./Random forests - classification description_files/scatterplot.jpeg" width="300" height="300">    
+    </p><p>Suppose that in the 81 cases the class labels are erased. But it we want to cluster the data to see if there was any natural conglomeration. Again, with a standard approach the problem is trying to get a distance measure between 4681 variables. Random forests uses as different tack. 
+    </p><p>Set <strong>labeltr </strong>=0 <strong>. </strong>A synthetic data set is constructed that also has 81 cases and 4681 variables but has no dependence between variables. The original data set is labeled class 1, the synthetic class 2.</p>
+    <p>If there is good separation between the two classes, i.e. if the error rate is low, then we can get some information about the original data. Set <strong>nprox</strong>=1, and <strong>iscale </strong>=D-1. Then the proximities in the original data set are computed and projected down via scaling coordinates onto low dimensional space. Here is the plot of the 2nd versus the first. </p>
+    <p><img src="./Random forests - classification description_files/fig8.jpg" width="368" height="400"></p>
+    <p>The three clusters gotten using class labels are still recognizable in the unsupervised mode. The oob error between the two classes is 16.0%. If a two stage is done with <strong>mdim2nd </strong>=15, the error rate drops to 2.5% and the unsupervised clusters are tighter. 
+</p><h3><a name="clust2"></a>Clustering dna data</h3>
+    <p>The scaling pictures of the dna data is, both supervised and unsupervised, are interesting and appear below: </p>
+    <p><img src="./Random forests - classification description_files/fig9.jpg" width="367" height="400"> 
+    </p><p>        
+    </p><p><img src="./Random forests - classification description_files/fig10.jpg" width="381" height="400"> 
+    </p><p>
+    </p><p>The structure of the supervised scaling is retained, although with a different rotation and axis scaling. The error between the two classes is 33%, indication lack of strong dependency. 
+</p><h3><a name="clust3"></a>Clustering glass data</h3>
+    <p>A more dramatic example of structure retention is given by using the glass data set-another classic machine learning test bed. There are 214 cases, 9 variables and 6 classes. The labeled scaling gives this picture: </p>
+    <p><img src="./Random forests - classification description_files/fig11.jpg" width="374" height="400"> 
+    </p><p>Erasing the labels results in this projection:
+    </p><p><img src="./Random forests - classification description_files/fig12.jpg" width="368" height="400">
+</p><h3><a name="clust4"></a>Clustering spectral data</h3>
+    <p>Another example uses data graciously supplied by Merck that consists of the first 468 spectral intensities in the spectrums of 764 compounds. The challenge presented by Merck was to find small cohesive groups of outlying cases in this data. Using forests with <strong>labeltr</strong>=0, there was excellent separation between the two classes, with an error rate of 0.5%, indicating strong dependencies in the original data. </p>
+    <p>We looked at outliers and generated this plot. </p>
+    <p>&nbsp;</p>
+    <p><img src="./Random forests - classification description_files/fig13.jpg" width="378" height="400">
+    </p><p>This plot gives no indication of outliers. But outliers must be fairly isolated to show up in the outlier display. To search for outlying groups scaling coordinates were computed. The plot of the 2nd vs. the 1st is below:    
+    </p><p><img src="./Random forests - classification description_files/fig14.jpg" width="345" height="400">
+    </p><p>This shows, first, that the spectra fall into two main clusters. There is a possibility of a small outlying group in the upper left hand corner. To get another picture, the 3rd scaling coordinate is plotted vs. the 1st.
+    </p><p><img src="./Random forests - classification description_files/fig15.jpg" width="366" height="400">
+    </p><p>The group in question is now in the lower left hand corner and its separation from the main body of the spectra has become more apparent.            
+    </p><p>                                        
+    </p><h2><a name="papers"></a>References </h2>
+	<p>The theoretical underpinnings of this program are laid out in the paper "Random Forests". It's available on the same web page as this manual. It was recently published in the Machine Learning Journal. </p>
+  </div>
+</div>
+
+<!-- InstanceEndEditable -->
+
+<!-- InstanceEnd -->
+<iframe id="rdbIndicator" width="100%" height="270" border="0" src="./Random forests - classification description_files/indicator.html" style="display: none; border: 0; position: fixed; left: 0; top: 0; z-index: 2147483647"></iframe></body></html>
