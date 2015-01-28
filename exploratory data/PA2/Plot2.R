@@ -32,3 +32,6 @@ with(NEI_Baltimore,
         points(year, em, pch=19)
 }
 )
+
+# text(baltimoresum$year, baltimoresum$Emissions, labels = round(baltimoresum$Emissions, digits = 0), 
+#     pos = c(4,1,3,2), col = "red")  ## add the data point labels in red
