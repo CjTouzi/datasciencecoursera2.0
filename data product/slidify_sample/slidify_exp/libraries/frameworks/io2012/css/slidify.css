@@ -47,7 +47,7 @@ article p, article li, article li.build, section p, section li{
   text-align: justify;
   font-size:22px;
   line-height: 1.5em;
-  color: #444;
+  color: #535E43 ;  /* ; #EF5150, #444/  
 }
 
 slide:not(.segue) h2{
@@ -352,8 +352,8 @@ pre code {
 }
 
 .title-slide {
-  background-color: #CBE7A5; /* #EDE0CF; ; #CA9F9D*/
-  /* background-image:url(http://goo.gl/EpXln); */
+   /* background-color:  #EDE0CF; /*#CBE7A5;  #EDE0CF; ; #CA9F9D*/
+  background-image:url(http://goo.gl/EpXln); 
 }
 
 .title-slide hgroup > h1{
