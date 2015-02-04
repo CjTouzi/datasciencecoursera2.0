@@ -251,3 +251,5 @@ GC_Data/tests/1.R
 GC_Data/TODO
 Repro/diagnostics/1.R
 exploratory data/household_power_consumption.txt
+exploratory data/Source_Classification_Code.rds
+exploratory data/summarySCC_PM25.rds
