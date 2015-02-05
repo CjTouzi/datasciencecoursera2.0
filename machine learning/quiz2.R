@@ -81,7 +81,7 @@ testing = adData[-inTrain,]
 
 str(adData)
 ss <- training[,grep('^IL', x = names(training) )]
-preProc <- preProcess(ss, method='pca', thresh = 0.9, outcome = training$diagnosis)
+preProc <- preProcess(ss, method='pca', thresh = 0.8, outcome = training$diagnosis)
 preProc$numComp
 
 
