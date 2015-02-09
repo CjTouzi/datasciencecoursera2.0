@@ -1,11 +1,11 @@
 library(shiny)
 
 shinyUI(fluidPage(
-  titlePanel("stockVis"),
-  
+    
+  titlePanel("decomposition"),
   sidebarLayout(
     sidebarPanel(
-      helpText("Select a stock to examine. 
+      helpText("kljkj; Select a stock to examine. 
         Information will be collected from yahoo finance."),
     
       textInput("symb", "Symbol", "SPY"),
