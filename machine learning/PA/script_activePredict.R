@@ -40,20 +40,23 @@ rm(inTrain,nas,build)
 
 ##  classification problem
 
-# reproducible
+
 set.seed(123)
 
 # random forest model
 Mod1 <- train(classe ~ ., method = "rf", 
                data = train, importance = T, 
-               trControl = trainControl(method = "cv", number = 2))
+               trControl = trainControl(method = "cv", number = 3))
 
 Mod1$finalModel
 
+save(Mod1, file = "Mod1.rda")
+
 # out-of-sample errors
 pred1 <- predict(Mod1, val)
-confusionMatrix(pred1, val$classe)
+cm1 <- confusionMatrix(pred1, val$classe)
 
+cm1
 
 
 # boost fitting model
@@ -61,26 +64,66 @@ Mod2 <- train(classe ~ .,
                   method = "gbm", 
                   data = train, 
                   verbose = F, 
-                  trControl = trainControl(method = "cv", number = 2))
+                  trControl = trainControl(method = "cv", number = 3))
 
-Mod2$finalModel
+Mod1$results
+
+
+save(Mod2, file = "Mod2.rda")
 
 # out-of-sample errors
 pred2 <- predict(Mod2, val)
-confusionMatrix(pred2, val$classe)
+cm2 <- confusionMatrix(pred2, val$classe)
+
+par(mfrow=c(1,2))
+
+plot(cm1$byClass, main="random forest", xlim=c(0.99, 1.001))
+text(cm1$byClass[,1]+0.0005, cm1$byClass[,2], labels=LETTERS[1:5], cex= 0.7)
+plot(cm2$byClass, main="boosting", xlim=c(0.95, 1.001))
+text(cm2$byClass[,1]+0.0015, cm2$byClass[,2], labels=LETTERS[1:5], cex= 0.7)
+
+
+# comapre with random forest and booting model
+
+# random forest model has better out-of-sample accuracy
+
+# predict the test sample using random forest 
+
+load("./test.RData")
+test$classe <- as.character(predict(Mod1, test))
+
+test$classe
+
+
+# write prediction files
+pml_write_files = function(x){
+        n = length(x)
+        for(i in 1:n){
+                filename = paste0("./predict/problem_id_", i, ".txt")
+                write.table(x[i], file = filename, quote = FALSE, row.names = FALSE, col.names = FALSE)
+        }
+}
+pml_write_files(test$classe)
 
 
 
 # Fit a model that combines predictors
 
-predDF <- data.frame(pred1, pred2, classe =val$classe)
-combModFit <- train(classe ~.,method="gam",data=predDF)
+# predDF <- data.frame(pred1, pred2, classe =val$classe)
+# combModFit <- train(classe ~.,method="gam",data=predDF)
+# 
+# plot(combPred)
+# plot(pred2)
+# plot(pred1)
 
+# the prediction values by comb predictor concentrated in A & B ???  
 
-# predicting on validation data set
-combPred <- predict(combModFit, predDF)
-levels(combPred)
-confusionMatrix(combPred, predDF$classe)
+# # predicting on validation data set
+# combPred <- predict(combModFit, predDF)
+# 
+# 
+# levels(combPred)
+# confusionMatrix(combPred, predDF$classe)
 
 
 
@@ -91,5 +134,7 @@ length(rfPred)
 rest$c
 confusionMatrix(rfPred, test$classe)
 
+save(Mod1,file="./Mod1.RData")
+save(Mod2,file="./Mod2.RData")
 
 
