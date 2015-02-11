@@ -2,80 +2,116 @@
 
 library(quantmod)
 
+fromDate <- '2005-01-01'
+endDate <- '2014-04-12'
+symbol <- "STI"
 
-ret <- getSymbols("COKE", src='yahoo', index.class=c("POSIXt","POSIXct"), from='1990-01-01')
-x <- get(ret)
 
-# change to monthly data
-mx <- to.monthly(x)
+ret <- getSymbols(symbol, src='yahoo', 
+                  index.class=c("POSIXt","POSIXct"), 
+                  from=fromDate, to=endDate)
 
-# monthly time serious open price 
-ts1 <- ts(Op(mx),frequency = 12)
+x <- to.monthly(get(ret))
+
+
+# weekly time serious open price 
+ts1 <- ts(Op(x),frequency = 12)
+
+
 
 # decompose monthly open price
-deco <- decompose(ts1)
+#seasonality assumed multiplicative 
+deco <- decompose(ts1, filter = NULL)
 
 
-# use rchart to plot 
-library(rCharts)
+library(manipulate)
 
-class(as.Date(index(mx),format= "%m %y"))
-class(index(mx))
-df <- data.frame(date=format(index(mx),"%Y-%m"), 
+myPlot <-function(v1){
+        par(mfrow=c(4,1))
+        plot(deco$x)
+        abline(v=v1, col="blue")
+        plot(deco$trend)
+        abline(v=v1, col="blue")
+        plot(deco$seasonal)
+        abline(v=v1, col="blue")
+        plot(deco$random)
+        abline(v=v1, col="blue")
+        
+}
+
+manipulate(
+        myPlot(v1),
+        v1=slider(0,5,step=0.1))
+
+
+
+
+df <- data.frame(date=index(wx), 
                  data=deco$seasonal)
 
-par(mfrow=c(1,2))
+class(index(wx))
 
 h1 <- hPlot(
         x = "date", 
         y = "data", 
         data = df, 
-        type = "line")
+        type = "scatter")
 
 h1$xAxis(
         type = "addTimeAxis",
-        inputFormat = "%Y-%m",
-        outputFormat = "%Y-%m"
+        inputFormat = "%Y-%m-%d",
+        outputFormat = "%Y-%m-%d"
 )
 h1
 
 
 
 
-summary(deco$seasonal)
-entry <- quantile(deco$seasonal, c(0.95, 0.05))
 
-par(mfrow=c(1,2))
-
-plot(deco$seasonal)
-abline(h=entry, col="red")
-deco <- decompose(ts1)
-
-plot(decompose(ts1),xlab="Years+1")
-
-
-
-
-
-
-
-
-library(rCharts)
-h <- Highcharts$new()
-h$xAxis(categories = c('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
-h$yAxis(list(list(title = list(text = 'Rainfall'))
-             , list(title = list(text = 'Temperature'), opposite = TRUE)
-             , list(title = list(text = 'Sea Pressure'), opposite = TRUE))
-)
-h$series(name = 'Rainfall', type = 'column', color = '#4572A7',
-         data = c(49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4))
-h$series(name = 'Temperature', type = 'spline', color = '#89A54E',
-         data = c(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6),
-         yAxis = 1)
-
-h$series(name = 'Sea-Level Pressure', type = 'spline', color = '#AA4643',
-         data = c(1016, 1016, 1015.9, 1015.5, 1012.3, 1009.5, 1009.6, 1010.2, 1013.1, 1016.9, 1018.2, 1016.7),
-         yAxis = 2)
-h
-
+# plot(Re(fft(deco$seasonal))^2)
+# 
+# plot(ts1/deco$seasonal)
+# 
+# # use rchart to plot 
+# library(rCharts)
+# 
+# # nomalize seasonal signal
+# 
+# normalize <- function(vec) {
+#         
+#         (vec-mean(vec))/(max(vec)-min(vec))
+#         
+#         
+# }
+# 
+# 
+# myplot1 <- function(vl){
+#         
+#         
+#         
+#         
+# }
+# 
+# 
+# deco$seasonal_nor <- normalize(deco$seasonal)
+# 
+# 
+# df <- data.frame(date=index(wx), 
+#                  data=deco$seasonal_nor)
+# 
+# class(index(wx))
+# 
+# h1 <- hPlot(
+#         x = "date", 
+#         y = "data", 
+#         data = df, 
+#         type = "scatter")
+# 
+# h1$xAxis(
+#         type = "addTimeAxis",
+#         inputFormat = "%Y-%m-%d",
+#         outputFormat = "%Y-%m-%d"
+# )
+# h1
+# 
+# 

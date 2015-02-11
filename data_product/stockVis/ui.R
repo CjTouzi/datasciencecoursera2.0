@@ -7,7 +7,9 @@ shinyUI(fluidPage(
     sidebarPanel(
       helpText("kljkj; Select a stock to examine. 
         Information will be collected from yahoo finance."),
-    
+        
+      
+      
       textInput("symb", "Symbol", "SPY"),
     
       dateRangeInput("dates", 
