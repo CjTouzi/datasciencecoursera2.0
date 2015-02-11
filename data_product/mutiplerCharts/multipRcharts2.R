@@ -6,7 +6,7 @@ require(rCharts)
 require(shiny)
 require(data.table)
 runApp(list(
-        ui = fluidPage(
+        ui = fluidPage(      
                 
                 titlePanel("Basic widgets"),
    
