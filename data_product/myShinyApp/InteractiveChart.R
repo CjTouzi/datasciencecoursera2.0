@@ -8,10 +8,10 @@ require(data.table)
 runApp(list(
         ui = fluidPage(      
                 
-                titlePanel("Basic widgets"),
-   
+                titlePanel("Interactive Charts"),
+                
                 fluidRow(
-
+                        
                         # upload csv file
                         column(4,
                                fileInput('file1', 'Choose file to upload',
@@ -43,7 +43,7 @@ runApp(list(
                                  a(href = 'pressure.tsv', 'pressure.tsv'),
                                  'files, and then try uploading them.'
                                )
-                               ),
+                        ),
                         
                         column(4, 
                                h3("Column"),
@@ -71,16 +71,16 @@ runApp(list(
                         column(4, 
                                h3("Pie"),
                                showOutput("chart3", "Highcharts")
-                               ),
+                        ),
                         column(4, 
                                h3("Bar"),
                                showOutput("chart4", "Highcharts")
-                               )
                         )
+                )
                 
         ),
-       
-         
+        
+        
         server = function(input, output){
                 
                 output$contents <- renderTable({
@@ -102,8 +102,7 @@ runApp(list(
                         head(t)
                 })
                 
-                output$contentHead <- 
-                
+                        
                 output$chart1 <- renderChart({
                         a <- hPlot(Pulse ~ Height, data = MASS::survey, type = "bubble", title = "Zoom demo", subtitle = "bubble chart", size = "Age", group = "Exer")
                         a$chart(zoomType = "xy")
