@@ -5,15 +5,17 @@
 require(rCharts)
 require(shiny)
 require(data.table)
+require(rNVD3)
+
 runApp(list(
         ui = fluidPage(      
                 
                 titlePanel("Basic widgets"),
-   
+                
                 fluidRow(
-
+                        
                         # upload csv file
-                        column(4,
+                        column(2,
                                fileInput('file1', 'Choose file to upload',
                                          accept = c(
                                                  'text/csv',
@@ -43,22 +45,22 @@ runApp(list(
                                  a(href = 'pressure.tsv', 'pressure.tsv'),
                                  'files, and then try uploading them.'
                                )
-                               ),
+                        ),
                         
                         column(4, 
                                h3("Column"),
-                               showOutput("chart1", "Highcharts")
+                               showOutput("chart1")
                         ),
                         
                         column(4, 
                                h3("Line"),
-                               showOutput("chart2", "Highcharts")
+                               showOutput("chart2")
                         )
                         
                 ),
                 
                 fluidRow( 
-                        column(4,
+                        column(2,
                                
                                # table format
                                helpText("Check your table format"), 
@@ -70,17 +72,17 @@ runApp(list(
                                                cite = "Hadley Wickham")),
                         column(4, 
                                h3("Pie"),
-                               showOutput("chart3", "Highcharts")
-                               ),
+                               showOutput("chart3")
+                        ),
                         column(4, 
                                h3("Bar"),
-                               showOutput("chart4", "Highcharts")
-                               )
+                               showOutput("chart4")
                         )
+                )
                 
         ),
-       
-         
+        
+        
         server = function(input, output){
                 
                 output$contents <- renderTable({
@@ -102,42 +104,37 @@ runApp(list(
                         head(t)
                 })
                 
-                output$contentHead <- 
                 
-                output$chart1 <- renderChart({
-                        a <- hPlot(Pulse ~ Height, data = MASS::survey, type = "bubble", title = "Zoom demo", subtitle = "bubble chart", size = "Age", group = "Exer")
-                        a$chart(zoomType = "xy")
-                        a$chart(backgroundColor = NULL)
-                        a$set(dom = 'chart1')
-                        return(a)
-                })
-                
-                output$chart3 <- renderChart({
+                output$chart1 <- renderChart2({
                         
-                        a <- hPlot(Pulse ~ Height, data = MASS::survey, type = "bubble", title = "Zoom demo", subtitle = "bubble chart", size = "Age", group = "Exer")
-                        a$chart(zoomType = "xy")
-                        a$chart(backgroundColor = NULL)
-                        a$set(dom = 'chart3')
-                        return(a)
+                        dat <- data.frame(
+                                t = rep(0:23, each = 4), 
+                                var = rep(LETTERS[1:4], 4), 
+                                val = round(runif(4*24,0,50))
+                        )
+                        p8 <- nPlot(val ~ t, group =  'var', data = dat, 
+                                    type = 'stackedAreaChart', id = 'chart'
+                        )
+                        p8
                 })
                 
-                output$chart2 <- renderChart({
-                        survey <- as.data.table(MASS::survey)
-                        freq <- survey[ , .N, by = c('Sex', 'Smoke')]
-                        a <- hPlot(x = 'Smoke', y = 'N', data = freq, type = 'column', group = 'Sex')
-                        a$chart(backgroundColor = NULL)
-                        a$set(dom = 'chart2')
-                        return(a)
+                output$chart3 <- renderChart2({                       
+                        p1 <- nPlot(mpg ~ wt, group = 'cyl', data = mtcars, type = 'scatterChart')
+                        p1$xAxis(axisLabel = 'Weight (in lb)')
+                        p1
                 })
                 
-                output$chart4 <- renderChart({
-                        survey <- as.data.table(MASS::survey)
-                        freq <- survey[ , .N, by = c('Smoke')]
-                        a <- hPlot(x = "Smoke", y = "N", data = freq, type = "pie")
-                        a$plotOptions(pie = list(size = 150))
-                        a$chart(backgroundColor = NULL)
-                        a$set(dom = 'chart4')
-                        return(a)
+                output$chart2 <- renderChart2({
+                        hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
+                        a <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, 
+                                   type = 'multiBarChart')
+                        a
+                        
+                })
+                
+                output$chart4 <- renderChart2({
+                        p4 <- nPlot( ~ cyl, data = mtcars, type = 'pieChart')
+                        p4
                 })
         }
 ))

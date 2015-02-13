@@ -1,9 +1,9 @@
 require(rCharts)
 require(shiny)
 require(data.table)
-# require(rNVD3)
+require(rNVD3)
 
-instrunApp(list(
+runApp(list(
         ui= fluidPage(
                 
                 titlePanel("Interactive Charts"),
