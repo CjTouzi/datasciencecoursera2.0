@@ -1,120 +1,176 @@
 require(rCharts)
 library(shiny)
 require(data.table)
-require(rNVD3)
-require(shinysky)
+# require(rNVD3)
 
-runApp(list(        
-        
+runApp(list(                
         
         ui= fluidPage(
-        fluidRow(
-                
+            
+        fluidRow(                
                 column(2,""),
                 column(6,
-                       h1("Interactive Charts For Everyone"
-                        )
+                       h1("Interactive Charts For Everyone"),
+                       tags$hr(),
+                       tags$blockquote("Tell me and I forget, teach me and I remember, involve me and I learn"),
+                       tags$blockquote("--------- Benjamin Franklin")
+                       
                 )
         ),
-        br(),
+        tags$hr(),
+        
         fluidRow(
+                
                 column(2,""),
-                column(4,
-                       h3("Data Example"),
-                       dataTableOutput('stackedAreaTable'),                       
+                column(10,
+                       tabsetPanel(tabPanel("Example",
+                                        column(4,
+                                               h3("Data Story"),
+                                               tags$hr(),
+                                               h3("Data Example"),
+                                               dataTableOutput('stackedAreaTable'),
+                                               h3("save example to .csv"),
+                                               downloadButton('foo2')
+                                        ),                                     
+                                        column(6, showOutput("stackedArea"))),
+                                   
+                                   tabPanel("Charting",
+                                            
+                                            column(4, 
+                                                   h3("Data Example"),
+                                                   tags$hr(),
+                                                   fileInput('file1', 'Choose CSV File',
+                                                             accept=c('text/csv', 
+                                                                      'text/comma-separated-values,text/plain', 
+                                                                      '.csv')),
+                                                   tags$hr(),
+                                                   checkboxInput('header', 'Header', TRUE),
+                                                   radioButtons('sep', 'Separator',
+                                                                c(Comma=',',
+                                                                  Semicolon=';',
+                                                                  Tab='\t'),
+                                                                ','),
+                                                   radioButtons('quote', 'Quote',
+                                                                c(None='',
+                                                                  'Double Quote'='"',
+                                                                  'Single Quote'="'"),
+                                                                '"'),  
+                                                   tags$hr(),
+                                                   radioButtons("radio1", label = h4("Show"),
+                                                                choices = list("See your Table" = 1, "Plot!" = 2), 
+                                                                selected = 1),                                            
+                                                   # actionButton("down1", label = "Save to HTML")
+                                                   tags$hr(),
+                                                   h4("Save to standard-alone html file"),
+                                                   downloadButton('foo'),
+                                                   p('If you want a sample .csv or .tsv file to upload,',
+                                                     'you can first download the example csv'
+                                                   )
+                                                   ), 
+                                            column(6,
+                                                   conditionalPanel("input.radio1 == 1",dataTableOutput('t1')),
+                                                   conditionalPanel("input.radio1 == 2",showOutput("mp1"))
+                                                   )
+                                                  )                                            
+                                            )                     
+                       )
                                
-                               h3("Action button"),
-                               actionButton("up", label = "Upload Your Data"),
-                               actionButton("Plot", label = "Plot"),
-                               actionButton("down", label = "Save HTML")
-                                                
-                               
-                       ),
-                column(6, showOutput("stackedArea"))
-
-                
-                
-#                 column(4,
-#                        wellPanel(
-#                                h3("Action button"),
-#                                actionButton("action2", label = "Upload Your Data"),
-#                                hr(),
-#                                p("Current Value:", style = "color:#888888;"), 
-#                                verbatimTextOutput("action"),
-#                                a("See Code", class = "btn btn-primary btn-md", 
-#                                  href = "https://gallery.shinyapps.io/068-widget-action-button/")
-#                                
-#                        ))
-                
-                       
-                   
-        )
-
-#         titlePanel("Interactive Charts For Everyone"),
-#                       
-#                       sidebarLayout(                                
-#                               sidebarPanel(
-#                                       helpText("This ",
-#                                                "the specified number of observations, the",
-#                                                "summary will be based on the full dataset.")
-#                                       ),
-#                               mainPanel(fluidRow(
-#                                         column(8, showOutput("stackedArea")),
-#                                         column(3, 
-#                                                wellPanel( 
-#                                                        actionButton("st1", label = "Data Structure", block=FALSE),
-#                                                        actionButton("up1", label = "Upload Your Data",block=FALSE),
-#                                                        actionButton("plot1", label = "Plot it",block=FALSE),
-#                                                        actionButton("save1", label = "Save to HTML",block=FALSE))
-#                                               
-#                                                
-# #                                                tableOutput('stackedAreaTable'),
-# 
-#                                                )
-#                                                  ),
-#                                         br(),br()
-# 
-#                                       )
-#                       )
-        ),
+        )),
         server = function(input, output){ 
                 
-                
-                ## stackedArea pannel
-                
-                output$stackedArea <- renderChart2({
-                        
-                        dat <- data.frame(
-                                x = rep(0:23, each = 4), 
-                                z = rep(LETTERS[1:4], 4), 
-                                y = round(runif(4*24,0,50))
-                        )
-
-                        
-                        n <- nPlot(y ~ x, group =  'z', data = dat, 
-                                    type = 'stackedAreaChart', id = 'chart',width=800
-                        )
-                        
+                expData1 <- reactive({
+                    
+                    dat <- data.frame(
+                        x = rep(0:23, each = 4), 
+                        z = rep(LETTERS[1:4], 4), 
+                        y = round(runif(4*24,0,50))
+                    ) 
+                    
+                })
+                expChart1 <- reactive({
+                    dat <-  expData1()
+                    n <- nPlot(y ~ x, group =  'z', data = dat, 
+                               type = 'multiBarChart', id = 'chart',width=800
+                    )
+                    n$xAxis(axisLabel = 'x')
+                    n$yAxis(axisLabel = 'y')
+                    n
+                })
+            
+                ## stackedArea pannel                
+                output$stackedArea <- renderChart2({ 
+                   
+                    n <- expChart1()
+                    n$addParams(dom = "visual")  
+                    n
                 })
                 
-                output$stackedAreaTable <- renderDataTable({
-                        
-                        # input$file1 will be NULL initially. After the user selects
-                        # and uploads a file, it will be a data frame with 'name',
-                        # 'size', 'type', and 'datapath' columns. The 'datapath'
-                        # column will contain the local filenames where the data can
-                        # be found.
-                        
-                        dat <- data.frame(
-                                x = rep(0:23, each = 4), 
-                                z = rep(LETTERS[1:4], 4), 
-                                y = round(runif(4*24,0,50))
-                        )    
+                output$stackedAreaTable <- renderDataTable({                                            
+                        dat <-  expData1()
                         head(dat,n=4)
-                },
+                },                
                 options = list(searching = FALSE,paging = FALSE,searchable = FALSE))
+   
+                dataInput1 <- reactive({
+                    inFile <- input$file1                    
+                    if (is.null(inFile))
+                        return(NULL)
+                    read.csv(inFile$datapath, header=input$header, sep=input$sep, 
+                                       quote=input$quote)
+                })
                 
-          
+                chartInput1 <- reactive({
+                    
+                    data <- dataInput1()
+                    names(data) <- c("x","z","y")
+                    n <- nPlot(y ~ x, group =  'z', data = data ,type='multiBarChart',id = 'chart',width=800)
+                    # n$xAxis(axisLabel = names(dataInput1())[1])
+                    # n$yAxis(axisLabel = names(dataInput1())[3]) 
+                    
+                })
+ 
+                output$t1 <- renderDataTable({
+                    
+                    # input$file1 will be NULL initially. After the user selects
+                    # and uploads a file, it will be a data frame with 'name',
+                    # 'size', 'type', and 'datapath' columns. The 'datapath'
+                    # column will contain the local filenames where the data can
+                    # be found.
+                    dataInput1()
+                    
+
+                })
+                
+                
+                output$mp1 <- renderChart2({                                   
+                    chartInput1()
+                })
+                
+                plotInput = function(file) {
+                    # qplot(speed, dist, data = cars)
+#                     a <- hPlot(Pulse ~ Height, data = MASS::survey, type = "bubble", 
+#                                title = "Zoom demo", 
+#                                subtitle = "bubble chart", 
+#                                size = "Age", group = "Exer")
+                    a <- chartInput1()
+                    a$save(file, standalone = TRUE)
+                    
+                }
+                
+                output$foo = downloadHandler(                   
+                    filename = 'mychart.html',
+                    content = function(file) {
+                        plotInput(file)
+                           
+                    })
+                output$foo2 = downloadHandler(                   
+                    filename = 'ex1.csv',
+                    content = function(file) {
+                    write.table(expData1(),file=file,sep=",",col.names = TRUE,quote = TRUE)  
+                        
+                    })
+                
+
         }
         
 ))

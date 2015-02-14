@@ -19,7 +19,7 @@ runApp(list(
         }
         output$foo = downloadHandler(
             
-            filename = 'test.html',
+            filename = 'mychart.html',
             content = function(file) {
                 plotInput(file)
                
