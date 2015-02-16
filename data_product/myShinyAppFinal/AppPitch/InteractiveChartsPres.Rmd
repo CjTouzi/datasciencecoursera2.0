@@ -1,0 +1,76 @@
+---
+title       : Interactive Charts for Everyone
+ext_widgets : {rCharts: libraries/nvd3}
+mode: selfcontained
+---
+
+
+ 
+## What's Interactive Charts for Everyone ???
+        
+### [Interactive Charts for Everyone][4] is a project that helps people to creat javascript interactive  charts without coding experiences.  
+
+> The solution is 
+
+> 1. A basket of javascript visualizations solutions like [HighCharts][1], [Google Charts][2],[NVD3][3]
+> 2. A simple data format corresponding each interactive chart
+> 3. One click plotting function 
+> 4. One click share & save function
+
+
+[1]: http://www.highcharts.com
+[2]: https://developers.google.com/chart/interactive/docs/gallery
+[3]: http://nvd3.org/examples
+[4]: https://cttest.shinyapps.io/myShinyAppFinal/
+
+
+---
+
+
+
+
+## A demo 
+
+
+- **Select a Chart**  
+
+May be like this 
+
+```{r nvd3plot2, results = 'asis', comment = NA, message = F, echo = F} 
+require(rCharts)
+hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
+n1 <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, type = "multiBarChart")
+n1$print("chart3")
+
+```
+
+---
+
+
+## A demo 
+
+- **Save your data as .csv format** 
+
+- **Upload your csv under charting tab**
+
+- **Plot and Save as standard alone html**
+
+- **Use it anywhere you like (such as PPT)**
+
+
+---
+
+
+## Acknowledgements
+
+
+I would like to thank the authors of `D3.js`, `rCharts`, `knit` and also all the instructors of coursera specialization. 
+
+
+
+
+
+
+
+
+
