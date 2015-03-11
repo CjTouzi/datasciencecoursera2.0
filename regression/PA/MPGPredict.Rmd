@@ -1,6 +1,6 @@
 ---
 title: 'What decides Fuel Economy of motors? '
-author: "CJ"
+author: "Cheng Juan"
 date: "Thursday, January 22, 2015"
 output:
   pdf_document:
