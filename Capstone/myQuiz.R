@@ -10,7 +10,7 @@ source("NLPfuncs.R")
 # Q1 ----------------------------------------------------------------------
 
 # The en_US.blogs.txt file is how many megabytes?
-# Your Answer    	Score	Explanation
+# Your Answer        Score	Explanation
 # 100			
 # 150			
 # 200	Correct	1.00	
@@ -143,7 +143,6 @@ rm(twit)
 
 twit <- readLines("./Coursera-SwiftKey/final//en_US//en_US.twitter.txt")
 grep("A computer once beat me at chess, but it was no match for me at kickboxing", twit)
-
 
 
 
