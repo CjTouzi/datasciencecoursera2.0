@@ -1,0 +1,266 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="GitHub Pages" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <!-- identity stuff -->
+	<meta http-equiv="X-XRDS-Location" content="http://hansengel.myopenid.com/xrds?username=hansengel.myopenid.com" />
+	<meta name="microid" content="mailto+http:sha1:2b2811bc3da814ad4210e829e422c443f4b9d1e0" />
+	<link rel="openid.server" href="http://www.myopenid.com/server" />
+	<link rel="openid.delegate" href="http://hansengel.myopenid.com" />
+	<link rel="openid2.provider" href="http://www.myopenid.com/server" />
+	<link rel="openid2.local_id" href="http://hansengel.myopenid.com" />
+
+  <title>Kneser-Ney smoothing explained - foldl</title>
+
+  
+  <meta name="title" content="Kneser-Ney smoothing explained" />
+  <meta property="og:title" content="Kneser-Ney smoothing explained" />
+  <meta name="description" content="I explain a popular smoothing method applied to language models. The post describes Kneser-Ney as it applies to bigram language models and offers some intuition on why it works well." />
+  <meta property="og:description" content="I explain a popular smoothing method applied to language models. The post describes Kneser-Ney as it applies to bigram language models and offers some intuition on why it works well." />
+  <meta property="og:site_name" content="foldl" />
+  
+  <meta name="author" content="Jon Gauthier" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <link rel="stylesheet" type="text/css" href="/css/libs/jquery.qtip.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css" /><!-- syntax highlighting -->
+  <!--[if IE]>
+      <link rel="stylesheet" type="text/css" href="/css/ie.css" />
+  <![endif]-->
+
+  <script src="/js/libs/modernizr-2.5.3.min.js"></script>
+</head>
+
+<body>
+
+  <div id="container">
+    <aside id="topbar">
+      <div class="inner">
+        <h1><a href="/">foldl</a></h1>
+
+        <ul id="quick-links">
+          <li><a href="/">home</a></li>
+          <li><a href="/about.html">about</a></li>
+          <li><a href="http://feeds.feedburner.com/foldl/rss">feed</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <section id="main" role="main">
+      <div class="inner">
+        <article id="single" class="hentry">
+  <header>
+    <h1 class="entry-title">
+      
+        Kneser-Ney smoothing explained
+      
+    </h1>
+    <time datetime="2014-01-18T00:00:00+00:00">
+      18 January 2014
+    </time>
+  </header>
+
+  <div class="entry-content">
+    <p><strong>Language models</strong> are an essential element of natural language processing,
+  central to tasks ranging from spellchecking to machine translation. Given an
+  arbitrary piece of text, a language model determines whether that text belongs
+  to a given language.</p>
+
+<p>We can give a concrete example with a <strong>probabilistic language model</strong>, a
+specific construction which uses probabilities to estimate how likely any given
+string belongs to a language. Consider a probabilistic English language model
+\( P_E \). We would expect the probability</p>
+
+<p>\[P_E(\text{I went to the store})\]</p>
+
+<p>to be quite high, since we can confirm this is valid English. On the other hand,
+we expect the probabilities</p>
+
+<p>\[P_E(\text{store went to I the}), P_E(\text{Ich habe eine Katz})\]</p>
+
+<p>to be very low, since these fragments do not constitute proper English text.</p>
+
+<p>I don&rsquo;t aim to cover the entirety of language models at the moment &mdash; that
+would be an ambitious task for a single blog post. If you haven&rsquo;t encountered
+language models or <em>n</em>-grams before, I recommend the following resources:</p>
+
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Language_model">&ldquo;Language model&rdquo;</a> on Wikipedia</li>
+  <li>Chapter 4 of Jurafsky and Martin&rsquo;s <a href="http://www.amazon.com/gp/product/0131873210/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0131873210&amp;linkCode=as2&amp;tag=blog0cbb-20"><em>Speech and Language Processing</em></a></li>
+  <li>Chapter 7 of <a href="http://www.amazon.com/gp/product/0521874157/ref=as_li_tf_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0521874157&amp;linkCode=as2&amp;tag=blog0cbb-20"><em>Statistical Machine Translation</em></a> (see <a href="http://www.statmt.org/book/slides/07-language-models.pdf">summary slides</a> online)</li>
+</ul>
+
+<p>I&rsquo;d like to jump ahead to a trickier subject within language modeling known as
+<strong>Kneser-Ney smoothing</strong>. This smoothing method is most commonly applied in an
+<em>interpolated</em> form,<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> and this is the form that I&rsquo;ll present today.</p>
+
+<p>Kneser-Ney evolved from <strong>absolute-discounting interpolation</strong>, which makes use
+of both higher-order (i.e., higher-<em>n</em>) and lower-order language models,
+reallocating some probability mass from 4-grams or 3-grams to simpler unigram
+models. The formula for absolute-discounting smoothing as applied to a bigram
+language model is presented below:</p>
+
+<p>\[P_{abs}(w_i \mid w_{i}) = \dfrac{\max(c(w_{i-1} w_i) - \delta, 0)}{\sum_{w'} c(w_{i-1} w')} + \alpha\; p_{abs}(w_i)\]</p>
+
+<p>Here \(\delta\) refers to a fixed <strong>discount</strong> value, and \(\alpha\) is a
+normalizing constant. The details of this smoothing are covered in
+<a href="http://u.cs.biu.ac.il/~yogo/courses/mt2013/papers/chen-goodman-99.pdf">Chen and Goodman (1999)</a>.</p>
+
+<p>The essence of Kneser-Ney is in the clever observation that we can take
+advantage of this interpolation as a sort of backoff model. When the first term
+(in this case, the discounted relative bigram count) is near zero, the second
+term (the lower-order model) carries more weight. Inversely, when the
+higher-order model matches strongly, the second lower-order term has little
+weight.</p>
+
+<p>The Kneser-Ney design retains the first term of absolute discounting
+interpolation, but rewrites the second term to take advantage of this
+relationship. Whereas absolute discounting interpolation in a bigram model would
+simply default to a unigram model in the second term, Kneser-Ney depends upon
+the idea of a <em>continuation probability</em> associated with each unigram.</p>
+
+<p>This probability for a given token \(w_i\) is proportional to the <strong>number of
+bigrams which it completes</strong>:</p>
+
+<p>\[P_{\text{continuation}}(w_i) \propto \: \left&#124; \{ w_{i-1} : c(w_{i-1}, w_i) > 0 \} \right&#124;\]</p>
+
+<p>This quantity is normalized by dividing by the total number of bigram types
+(note that \(j\) is a free variable):</p>
+
+<p>\[P_{\text{continuation}}(w_i) = \dfrac{\left&#124; \{ w_{i-1} : c(w_{i-1}, w_i) > 0 \} \right&#124;}{\left&#124; \{ w_{j-1} : c(w_{j-1},w_j) > 0\} \right&#124;}\]</p>
+
+<p>The common example used to demonstrate the efficacy of Kneser-Ney is the phrase
+<em>San Francisco</em>. Suppose this phrase is abundant in a given training corpus.
+Then the unigram probability of <em>Francisco</em> will also be high. If we unwisely
+use something like absolute discounting interpolation in a context where our
+bigram model is weak, the unigram model portion may take over and lead to some
+strange results.</p>
+
+<p><a href="https://www.youtube.com/watch?v=wtB00EczoCM">Dan Jurafsky</a> gives the following example context:</p>
+
+<blockquote>
+  <p>I can&rsquo;t see without my reading <strong>__</strong>___.</p>
+</blockquote>
+
+<p>A fluent English speaker reading this sentence knows that the word <em>glasses</em>
+should fill in the blank. But since <em>San Francisco</em> is a common term,
+absolute-discounting interpolation might declare that <em>Francisco</em> is a better
+fit: \(P_{abs}(\text{Francisco}) > P_{abs}(\text{glasses})\).</p>
+
+<p>Kneser-Ney fixes this problem by asking a slightly harder question of our
+lower-order model. Whereas the unigram model simply provides how likely a word
+\(w_i\) is to appear, Kneser-Ney&rsquo;s second term determines how likely a word
+\(w_i\) is to appear in an unfamiliar bigram context.</p>
+
+<p>Kneser-Ney in whole follows:</p>
+
+\[P_{\mathit{KN}}(w_i \mid w_{i-1}) = \dfrac{\max(c(w_{i-1} w_i) - \delta, 0)}{\sum_{w'} c(w_{i-1} w')} + \lambda \dfrac{\left&#124; \{ w_{i-1} : c(w_{i-1}, w_i) > 0 \} \right&#124;}{\left&#124; \{ w_{j-1} : c(w_{j-1},w_j) > 0\} \right&#124;}\]
+
+<p>\(\lambda\) is a normalizing constant</p>
+
+\[\lambda(w_{i-1}) = \dfrac{\delta}{c(w_{i-1})} \left&#124; \{w' : c(w_{i-1}, w') > 0\} \right&#124;.\]
+
+<p>Note that the denominator of the first term can be simplified to a unigram count. Here is the final interpolated Kneser-Ney smoothed bigram model, in all its glory:</p>
+
+\[P_{\mathit{KN}}(w_i \mid w_{i-1}) = \dfrac{\max(c(w_{i-1} w_i) - \delta, 0)}{c(w_{i-1})} + \lambda \dfrac{\left&#124; \{ w_{i-1} : c(w_{i-1}, w_i) > 0 \} \right&#124;}{\left&#124; \{ w_{j-1} : c(w_{j-1},w_j) > 0\} \right&#124;}\]
+
+<h2 id="further-reading">Further reading</h2>
+
+<p>If you enjoyed this post, here is some further reading on Kneser-Ney and other
+smoothing methods:</p>
+
+<ul>
+  <li>Bill MacCartney&rsquo;s <a href="http://nlp.stanford.edu/~wcmac/papers/20050421-smoothing-tutorial.pdf">smoothing tutorial</a> (very accessible)</li>
+  <li><a href="http://u.cs.biu.ac.il/~yogo/courses/mt2013/papers/chen-goodman-99.pdf">Chen and Goodman (1999)</a></li>
+  <li>Section 4.9.1 in Jurafsky and Martin&rsquo;s <a href="http://www.amazon.com/gp/product/0131873210/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0131873210&amp;linkCode=as2&amp;tag=blog0cbb-20"><em>Speech and Language Processing</em></a></li>
+</ul>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<p><img src="http://ir-na.amazon-adsystem.com/e/ir?t=blog0cbb-20&amp;l=as2&amp;o=1&amp;a=0131873210" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>For the canonical definition of interpolated Kneser-Ney smoothing, see S. F. Chen and J. Goodman, <a href="http://u.cs.biu.ac.il/~yogo/courses/mt2013/papers/chen-goodman-99.pdf">&ldquo;An empirical study of smoothing techniques for language modeling,&rdquo;</a> Computer Speech and Language, vol. 13, no. 4, pp. 359&ndash;394, 1999. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+</article>
+
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+    <li><span>12 Jan 2015</span> &raquo; <a href="/2015/machine-learning-technical-debt/">Machine learning and technical debt</a></li>
+    
+    <li><span>24 Sep 2014</span> &raquo; <a href="/2014/glove-python/">A GloVe implementation in Python</a></li>
+    
+    <li><span>13 Sep 2014</span> &raquo; <a href="/2014/spanish-summarizer-corenlp/">Summarizing Spanish with Stanford CoreNLP</a></li>
+    
+  </ul>
+</div>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqusLoaded = false;
+  window.onscroll = function() {
+    if ( disqusLoaded ) return;
+
+    disqusLoaded = true;
+    window.onscroll = null;
+
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = 'http://foldl.disqus.com/embed.js';
+    document.body.appendChild(dsq);
+  };
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        <footer>
+	        <div id="hcard-Jon-Gauthier" class="vcard">
+            <a class="email fn n" href="mailto:jon@gauthiers.net">
+              <span class="given-name">Jon</span>
+              <span class="family-name">Gauthier</span>
+            </a> &mdash; <span class="adr">
+              <span class="locality">Stanford</span>, <span class="region">California</span>
+            </span>
+	        </div>
+        </footer>
+      </div>
+    </section>
+  </div>
+
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.8.3/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="/js/libs/jquery.qtip.min.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33380670-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+</body>
+</html>
