@@ -12,10 +12,10 @@ Sys.setenv(LANG = "en_US.UTF-8")
 
 # set parameters
 
-foldPath<- "./Coursera-SwiftKey/final//en_US/"
-files <- paste0(foldPath,list.files(foldPath))
-files
 
+# files <- paste0(foldPath,list.files(foldPath))
+files <- list("data/en_US/en_US.blogs.txt","data/en_US/en_US.news.txt")
+files
 
 # clean text --------------------------------------------------------------
 
@@ -48,7 +48,7 @@ convert_text_to_sentences <- function(text, lang = "en") {
 
 # then we further seperate the sentences by comma 
 
-convert_text_to_sentences_fragment_corpus <- function(text,lang="en"){
+convert_text_to_sentences_fragment_text <- function(text,lang="en"){
     
     # docs<- readLines(file,nline, encoding="UTF-8")
     text <- {
@@ -73,26 +73,69 @@ convert_text_to_Corpus <- function(text){
     
 }
 
+# data source selection
+# we have three kind of data source: news, blog and twitter
+# Intuitively, twitter text data may suffer more gramma errors and contain more emotions
+# abbreviations. While news and blog might consider to be written by professionals 
+# Therefore, to better complete our task of predicting the next word correctly
+# our data source will only contain text from news and blog.
 
-# sampling process 
-# Given the large amount of text and limited computational resources, sampling is performed. 
-# 10000 sentences fragments are randomly sampled, combined to corpus and finally saved to disk.
 
-
-# sn <- 10000
-# mytext <- ""
-# for (f in files){
-#     print(f)
-#     text.tmp <- readLines(f,sn) 
-#     text.tmp <- convert_text_to_sentences_fragment_corpus(text.tmp,"en")
 # remove non-ASCII characters
 # link: http://stackoverflow.com/questions/18153504/removing-non-english-text-from-corpus-in-r-using-tm
 
+rm_nonasc <- function(file){
+    
+    text <- readLines(file)
+    # find indices of words with non-ASCII characters
+    nonascIndex <- grep("text.tmp", iconv(text, "latin1", "ASCII", sub="text.tmp"))
+    # subset original vector of words to exclude words with non-ASCII char
+    text <- text[-nonascIndex]    
+    
+} 
 
-#     text.tmp <- text.tmp[sample(1:length(text.tmp),sn)]
-#     mytext <- c(text.tmp,mytext)
-#     print(mytext)
-# }
+
+# blog <- rm_nonasc("./data/en_US/en_US.blogs.txt")
+# save("blog",file="./data/en_US/en_US.blogs2asc.Rdata")
+# rm(blog)
+# 
+# news <- rm_nonasc("./data/en_US/en_US.news.txt")
+# save("news",file="./data/en_US/en_US.news2asc.Rdata")
+# rm(news)
+
+
+
+# samplling due the computation and memory limit
+
+load("./data/en_US/en_US.news2asc.Rdata")
+load("./data/en_US//en_US.blogs2asc.Rdata")
+myText <- c(blog, news)
+rm(blog,news)
+
+# divide into training set, dev set, and test set
+
+# set.seed(111)
+# train_size <- floor(0.75 * length(myText))
+# train_ind_tmp<- sample(1:length(myText),size=train_size)
+# myTest <- myText[-train_ind_tmp]
+# myTrain <- myText[train_ind_tmp]
+# 
+# dev_size <- floor(0.3 * length(myTrain))
+# dev_ind <- sample(1:length(myTrain), size=dev_size)
+# myDev <- myTrain[dev_ind]
+# myTrain <- myTrain[-dev_ind]
+# 
+# save(myDev,myTrain,myTest,file="myText.RData")
+# rm(myDev,myTrain,myTest)
+
+load("myText.RData")
+
+
+
+# convert the text into sentences fragment 
+sentence_fragment_text <- convert_text_to_sentences_fragment_text(myText,lang="en")
+
+
 
 # clean Corpus
 
@@ -132,6 +175,8 @@ myCorpus[[98]]
 
 
 # Exploratory analysis ----------------------------------------------------
+
+
 
 # find Frequency Per Term
 # http://stackoverflow.com/questions/14426925/frequency-per-term-r-tm-documenttermmatrix
