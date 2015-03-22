@@ -107,10 +107,10 @@ rm_nonasc <- function(file){
 
 # samplling due the computation and memory limit
 
-load("./data/en_US/en_US.news2asc.Rdata")
-load("./data/en_US//en_US.blogs2asc.Rdata")
-myText <- c(blog, news)
-rm(blog,news)
+# load("./data/en_US/en_US.news2asc.Rdata")
+# load("./data/en_US//en_US.blogs2asc.Rdata")
+# myText <- c(blog, news)
+# rm(blog,news)
 
 # divide into training set, dev set, and test set
 
@@ -130,16 +130,19 @@ rm(blog,news)
 
 load("myText.RData")
 
-
-
 # convert the text into sentences fragment 
-sentence_fragment_text <- convert_text_to_sentences_fragment_text(myText,lang="en")
+myDevSentences <- convert_text_to_sentences_fragment_text(myDev[1:10000],lang="en")
+rm(myDev)
+myTestSentences <- convert_text_to_sentences_fragment_text(myTest[1:10000],lang="en")
+rm(myTest)
+myTrainSentences <- convert_text_to_sentences_fragment_text(myTrain[1:10000],lang="en")
+rm(myTrain)
+
 
 
 
 # clean Corpus
 
-load("mytext.RData")
 myCorpus <- convert_text_to_Corpus(mytext)
 myCorpus <- {
     
@@ -154,6 +157,9 @@ myCorpus <- {
 save(myCorpus, file="myCorpus.RData")
 # save(mytext,file="mytext.RData")
 inspect(myCorpus)
+
+
+
 
 
 
