@@ -1,0 +1,10 @@
+base
+NLP
+tm
+dplyr
+openNLP
+RWeka
+SnowballC
+RColorBrewer
+wordcloud
+ggplot2

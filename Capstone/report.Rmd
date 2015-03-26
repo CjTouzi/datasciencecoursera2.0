@@ -1,0 +1,369 @@
+---
+title: "Data Science Specialization SwiftKey Capstone Milestone Report"
+author: "Cheng Juan"
+date: "Tuesday, March 24, 2015"
+output: html_document
+---
+
+### Abstract            
+
+================================================================================
+
+Word prediction software assists with reducing the number of required keystrokes, by predicting the word you are typing and the next word based on word frequency and context. To build up a word precition software, a word library is often needed as a prediction reference. In this report, we will use ngram model to construct such word library by text mining several online resources.
+
+
+### Data Source         
+
+================================================================================
+
+The data is from a corpus called [HC Corpora](www.corpora.heliohost.org). See the [readme file](http://www.corpora.heliohost.org/aboutcorpus.html) for details on the corpora available. The corpus provides three types of sources: blog, news and twitter. Intuitively, twitter text data may suffer more gramma errors and contain more emotions and abbreviations. While news and blog might consider to be written by professionals To better complete our task of predicting the next word correctly, we will only use the text from news and blog as our text mining sources
+
+
+### Data Cleaning
+
+================================================================================
+
+
+#### Non-ASCII Characters
+
+The Non-ASCII characters are removed using the method provided in the stackoverflow [link](link: http://stackoverflow.com/questions/18153504/removing-non-english-text-from-corpus-in-r-using-tm)
+
+
+```{r, echo=TRUE, results='hide', cache=TRUE, warning=FALSE}
+
+
+# rm_nonasc <- function(file){
+#     
+#     text <- readLines(file)
+#     # find indices of words with non-ASCII characters
+#     nonascIndex <- grep("text.tmp", iconv(text, "latin1", "ASCII", sub="text.tmp"))
+#     # subset original vector of words to exclude words with non-ASCII char
+#     text <- text[-nonascIndex]    
+#     
+# } 
+
+
+# blog <- rm_nonasc("./Coursera-SwiftKey/final//en_US//en_US.blogs.txt")
+# save("blog",file="./Coursera-SwiftKey/final/en_US/en_US.blogs2asc.Rdata")
+# rm(blog)
+# 
+# news <- rm_nonasc("./Coursera-SwiftKey/final//en_US//en_US.news.txt")
+# save("news",file="./Coursera-SwiftKey/final//en_US//en_US.news2asc.Rdata")
+# rm(news)
+
+```
+
+
+#### Samplling
+
+After combining the blog and news dataset together, 10% of the whole dataset are selected by random samplling due the computation and memory limit. 
+
+
+
+```{r, echo=TRUE, results='hide', cache=TRUE, warning=FALSE}
+
+## combine into one single dataset myText
+# load("./Coursera-SwiftKey/final//en_US/en_US.news2asc.Rdata")
+# load("./Coursera-SwiftKey/final//en_US/en_US.blogs2asc.Rdata")
+# myText <- c(blog, news)
+# save("myText",file="./Coursera-SwiftKey/final//en_US//myText.Rdata")
+# rm(blog,news)
+
+
+
+# load("./Coursera-SwiftKey//final//en_US//myText.Rdata")
+# 
+# 
+# myText.sample.ind <- sample(1:length(myText), 
+#                             size=floor(0.1*length(myText)))
+# myText.sample <- myText[myText.sample.ind]
+# head(myText.sample)
+# rm(myText)
+
+
+```
+
+
+#### Sentence Detection
+
+Since the aim of the project is to predict a single following word, errors often induce at the phrase junction. For example, "After a slow start, blogging rapidly gained in popularity. Blog usage spread during 1999 and the years following, being further popularized by the near-simultaneous arrival of the first hosted blog tools". Both the "slow start blogging" or "popularity Blog usage" are not the right way to connect these words. To remove unwanted tokens by sentence junction, we using sentence detector provided by openNLP. 
+
+
+```{r, echo=TRUE, results='hide', cache=TRUE, warning=FALSE}
+
+# 
+# convert_text_to_sentences <- function(text, lang = "en") {
+#     
+#     # Function to compute sentence annotations using the Apache OpenNLP Maxent sentence detector employing the default model for language 'en'. 
+#     sentence_token_annotator <- Maxent_Sent_Token_Annotator(language = lang)
+#     
+#     # Convert text to class String from package NLP
+#     text <- as.String(text)
+#     
+#     # Sentence boundaries in text
+#     sentence.boundaries <- annotate(text, sentence_token_annotator)
+#     
+#     # Extract sentences
+#     sentences <- text[sentence.boundaries]
+#     
+#     # return sentences
+#     return(sentences)
+# }
+# 
+# # then we further seperate the sentences by comma 
+# 
+# convert_text_to_sentences_fragment_text <- function(text,lang="en"){
+#     
+#     # docs<- readLines(file,nline, encoding="UTF-8")
+#     text <- {
+#         convert_text_to_sentences(text,lang) %>%
+#             strsplit("[,\n]") %>%        
+#             unlist()
+#     }
+#     
+# }
+# 
+# myText.Sentences <- convert_text_to_sentences_fragment_text(myText.sample,lang="en")
+# head(myText.Sentences)
+# remove(myText.sample)
+# save("myText.Sentences",file="./Coursera-SwiftKey/final//en_US//myText.Sentences.Rdata")
+
+
+## remove the sentences frame with length less than 4
+# load("./Coursera-SwiftKey/final//en_US//myText.Sentences.Rdata")
+# 
+# 
+# 
+# rmShortSentences<- function (text.list,len){
+#     
+#     ind.remove=0
+#     for (i in 1: length(text.list)){
+#         
+#         textlen<- length(unlist(strsplit(text.list[[i]]," ")))
+#         print(textlen)
+#         if (textlen<len){
+#          
+#             ind.remove=c(ind.remove,i)
+# 
+#         }
+#         
+#         
+#     }
+#     print(ind.remove[-1])
+#     text.list[-ind.remove[-1]]
+#     
+#     
+# }
+
+# myText.Sentences.Long <-rmShortSentences(myText.Sentences,5)
+# head(myText.Sentences.Long)
+# rm(myText.Sentences)
+# 
+# 
+
+```
+
+#### Corpus of sentences
+
+In this section, the sentences detected are combined together to form one single corpus. 
+
+```{r, echo=TRUE, results='hide', cache=TRUE, warning=FALSE}
+
+# convert_text_to_Corpus <- function(text){
+#     
+#     corpus.tmp <- {
+#             text %>%
+#             unlist() %>%
+#             as.vector() %>%
+#             VectorSource() %>%
+#             Corpus() 
+#     }
+#     
+# }
+# 
+# mySentence.Long.Corpus <- convert_text_to_Corpus(myText.Sentences.Long)
+
+# save(mySentence.Long.Corpus,file="mySentence.Long.Corpus.RData")
+# load("mySentence.Long.Corpus.RData")
+
+```
+
+
+#### Corpus Cleaning 
+
+Now, the punctuations, numbers, additional white scapce and stopping words are removed from the corpus. 
+
+```{r, echo=TRUE, results='hide', cache=TRUE, warning=FALSE}
+
+# clean Corpus
+
+# mySentence.Long.Corpus <- {
+#     
+#     # convert to lowercase
+#      tm_map(mySentence.Long.Corpus, content_transformer(tolower)) %>%
+#                 tm_map(removePunctuation) %>%
+#                 tm_map(removeNumbers) %>%
+#                 tm_map(stripWhitespace) %>%
+#                 tm_map(removeWords, stopwords("english")) 
+#     
+# }
+# 
+# save(mySentence.Long.Corpus, file="mySentence.Long.Corpus.RData")
+# 
+# 
+# inspect(mySentence.Long.Corpus)
+
+```
+
+
+#### Training, Development and Test Dataset
+
+Often, in machine leanring or text mining, it is better to divide the full dataset into three chunks namely training-set, dev-set and test-set: the training-set is used to train the algorithms; dev-set is used to select the parameters involve in the training process; test-set is used for the out-of-sample estimation. 
+Here the training-set contains 52.5% of the whole set, dev-set contains 22.5% and test-set contains 30%. 
+
+```{r, echo=TRUE, results='hide', cache=TRUE, warning=FALSE}
+
+##  divide into training set, dev set, and test set
+
+# set.seed(111)
+# train_size <- floor(0.75 * length(mySentence.Long.Corpus))
+# train_ind_tmp<- sample(1:length(mySentence.Long.Corpus),size=train_size)
+# myTest <- mySentence.Long.Corpus[-train_ind_tmp]
+# myTrain <- mySentence.Long.Corpus[train_ind_tmp]
+# 
+# dev_size <- floor(0.3 * length(myTrain))
+# dev_ind <- sample(1:length(myTrain), size=dev_size)
+# myDev <- myTrain[dev_ind]
+# myTrain <- myTrain[-dev_ind]
+# 
+# save(myTrain,file="myTrain.RData")
+# save(myDev,file="myDev.RData")
+# save(myTest,file="myTest.RData")
+
+```
+
+
+#### N-gram model and Term Document Matrix (TDM)
+
+N-gram model is a type of probabilistic language model for predicting the next item given a sequence of previous (n-1) items [1](http://en.wikipedia.org/wiki/N-gram). Here we use Weka n-gram tokenizer to split our corpus into terms. Then each term frequence is counted in each document(sentence here) in the corpus and stored in the term document matrix. In this section, we produced unigram, bigram, trigram and 4-gram term document matrix and save them as `.RData`.
+
+
+```{r, echo=TRUE, results='hide', cache=TRUE, warning=FALSE}
+# build TDM ---------------------------------------------------------------
+
+# load("myTrain.RData")
+# 
+# getNgramTDM <- function(corpus, ngram){
+#     
+#     Tokenizer <- function(x) NGramTokenizer(x, Weka_control(min = ngram, max = ngram))
+#    
+#     tdm <-  TermDocumentMatrix(corpus,
+#                               control = list(tokenize = Tokenizer))
+#             
+# }
+# 
+# 
+# tdm4 <- getNgramTDM(myTrain,4)
+# save(tdm4,file="tdm4.RData")
+
+```
+
+
+### Exploratory Analysis on TDM
+
+================================================================================
+
+The goal of exploratory Analysisis to understand the basic relationships you observe in the data and prepare to build your first linguistic models. 
+
+#### Top 10 Frequencies
+
+```{r, echo=TRUE, results='hide', cache=TRUE, warning=FALSE}
+# find Frequency Per Term
+# http://stackoverflow.com/questions/14426925/frequency-per-term-r-tm-documenttermmatrix
+
+load("tdm1.RData")
+load("tdm2.RData")
+load("tdm3.RData")
+
+
+libs <-c("tm", "dplyr","NLP","openNLP","RWeka","SnowballC","wordcloud","ggplot2")
+lapply(libs, require, character.only=TRUE)
+# set options
+options(stringsAsFactors = FALSE)
+
+# sometimes my system is in chinese.
+Sys.setenv(LANG = "en_US.UTF-8")
+
+```
+
+```{r, echo=TRUE, results='hold', cache=TRUE, warning=FALSE}
+# remove none frequent terms
+# Show this many top frequent terms
+
+## 1gram
+length(findFreqTerms(tdm1,200))
+
+tdm1.topFreq<- tdm1[findFreqTerms(tdm1,200),]%>%
+    as.matrix() %>%
+    rowSums() 
+
+# head(tdm1.topFreq,10)
+tdm1.topFreq <- sort(tdm1.topFreq, decreasing=TRUE)
+
+## 2gram
+length(findFreqTerms(tdm2,20))
+
+tdm2.topFreq<- tdm2[findFreqTerms(tdm2,20),]%>%
+    as.matrix() %>%
+    rowSums() 
+tdm2.topFreq <- sort(tdm2.topFreq, decreasing=TRUE)
+# head(tdm2.topFreq,10)
+
+## 3gram
+length(findFreqTerms(tdm3,3))
+
+tdm3.topFreq<- tdm3[findFreqTerms(tdm3,3),]%>%
+    as.matrix() %>%
+    rowSums() 
+tdm3.topFreq <- sort(tdm3.topFreq, decreasing=TRUE)
+
+# head(tdm3.topFreq,10)
+
+
+
+# plot unigram
+# refer link: http://stackoverflow.com/questions/10286473/rotating-x-axis-labels-in-r-for-barplot
+par(mar = c(7, 4, 2, 2) + 0.2) #add room for the rotated labels
+x1<- barplot(tdm1.topFreq[1:10], main="unigram",xaxt="n")
+text(cex=1, x=x1-.25, y=-1.25, names(tdm1.topFreq[1:10]), xpd=TRUE, srt=45, pos=2)
+
+# plot bigram
+par(mar = c(7, 4, 2, 2) + 0.2) #add room for the rotated labels
+x2<- barplot(tdm2.topFreq[1:10], main="bigram",xaxt="n")
+text(cex=1, x=x2-.25, y=-1.25, names(tdm2.topFreq[1:10]), xpd=TRUE, srt=45, pos=2)
+
+# plot trigram
+par(mar = c(7, 4, 2, 2) + 0.2) #add room for the rotated labels
+x3<- barplot(tdm3.topFreq[1:10], main="trigram",xaxt="n")
+text(cex=1, x=x3-.25, y=-1.25, names(tdm3.topFreq[1:10]), xpd=TRUE, srt=45, pos=2)
+
+# rm(tdm1,tdm2,tdm3)
+
+# save(tdm1.topFreq,tdm2.topFreq,tdm3.topFreq,tdm4.topFreq,file="tdmTopFreq.RData")
+
+# hist(tdm2.topFreq)
+
+```
+
+
+#### Word Cloud
+
+```{r, echo=TRUE, results='hold', cache=TRUE, warning=FALSE}
+
+set.seed(111)
+wordcloud(names(tdm1.topFreq), tdm1.topFreq, max.words=50, scale=c(5, .1), colors=brewer.pal(6, "Dark2"))
+wordcloud(names(tdm2.topFreq), tdm2.topFreq, max.words=50, scale=c(5, .1), colors=brewer.pal(6, "Dark2"))
+wordcloud(names(tdm3.topFreq), tdm3.topFreq, max.words=50, scale=c(5, .1), colors=brewer.pal(6, "Dark2"))
+
+
+```
